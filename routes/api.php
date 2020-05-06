@@ -20,6 +20,9 @@ use Illuminate\Support\Facades\Route;
 
 //Route::get('users', 'UsersController@index');
 
-Route::prefix('produit')->group(function () {
+/*Route::prefix('produit')->group(function () {
     Route::get('/', 'ProduitController@index');
-});
+}); */
+
+Route::get('users', 'UserController@index');
+Route::post('addProduit','AdminController@addProduit');

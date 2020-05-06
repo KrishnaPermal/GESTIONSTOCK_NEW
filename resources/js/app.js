@@ -1,2 +1,2 @@
 require('./bootstrap');
-require('./admin/dashboard/app.js');
+require('./dashboard/app.js');

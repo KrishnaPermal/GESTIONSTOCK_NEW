@@ -2,14 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Http\Resources\ProduitResource;
+use App\Produits;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
     function index()
     {
-       $user =  User::get();
-       return $user;
+        $produits =  Produits::with([
+            'fruits',
+            'producteurs',
+            'recompenses', 
+        ])->get();
+        return  ProduitResource::collection($produits);
+    
     }
 }

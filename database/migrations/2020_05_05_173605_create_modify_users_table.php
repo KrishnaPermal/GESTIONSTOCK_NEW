@@ -13,13 +13,10 @@ class CreateModifyUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('modify_users', function (Blueprint $table) {
-            $table->id();
-            $table->renameColumn('name','nom',255);
-            $table->string('prenom',255);
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('firstname',255);
+            $table->string('id_role');
+            
         });
 
     }
@@ -31,6 +28,10 @@ class CreateModifyUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('modify_users');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('firstname');
+            $table->dropColumn('id_role');
+            
+        });
     }
 }

@@ -18,4 +18,8 @@ use Illuminate\Support\Facades\Route;
     return $request->user();
 }); */
 
-Route::get('users', 'UsersController@index');
+//Route::get('users', 'UsersController@index');
+
+Route::prefix('produit')->group(function () {
+    Route::get('/', 'ProduitController@index');
+});

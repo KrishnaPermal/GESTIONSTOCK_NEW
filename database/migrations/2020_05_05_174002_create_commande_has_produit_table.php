@@ -16,9 +16,7 @@ class CreateCommandeHasProduitTable extends Migration
         Schema::disableForeignKeyConstraints();
         //Schema::enableForeignKeyConstraints();
         Schema::create('commande_has_produit', function (Blueprint $table) {
-            $table->dateTime('date');
-            $table->string('quantity',255);
-            $table->timestamps();
+            $table->string('quantity',255)->nullable();
         });
 
         Schema::table('commande_has_produit', function (Blueprint $table) {

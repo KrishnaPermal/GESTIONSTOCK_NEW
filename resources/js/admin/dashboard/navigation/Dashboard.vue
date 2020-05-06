@@ -7,16 +7,4 @@
 <v-divider></v-divider>
 
     </v-card>
-
 </template>
-
-
-
-<script>
-export default {
-  data: () => ({
-    items: [],
-    model: 1
-  })
-};
-</script>

@@ -2,16 +2,16 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\User;
+use App\Users;
 use Faker\Generator as Faker;
 
-$factory->define(User::class, function (Faker $faker) {
+$factory->define(Users::class, function (Faker $faker) {
     return [
-        'nom' => $faker->lastname,
-        'prenom' => $faker->firstname,
+        'name' => $faker->name,
+        'firstname' => $faker->firstname,
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
-        'password' => 'ioezo59aeaœ:zmzra', // password
-        'id_role' => 2,
+        'password' => 'ioezo59aeaœ:zmzra',
+        'id_role' => 1,
     ];
 });

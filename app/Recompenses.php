@@ -4,13 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Fruit extends Model
+class Recompenses extends Model
 {
-    protected $table = 'fruit';
-    protected $fillable = ['id','nom'];
+    protected $table = "recompense";
+    protected $fillable = ['name','year'];
     public $timestamps = false;
 
-    
     function users()
     {
         return $this->belongsToMany('App\Users', 'users_has_commande', 'id_users', 'id_commande');

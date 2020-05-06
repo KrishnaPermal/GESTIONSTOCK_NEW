@@ -15,9 +15,9 @@ class CreateRecompenseTable extends Migration
     {
         Schema::create('recompense', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nom',255);
-            $table->string('annee');
-            $table->timestamps();
+            $table->string('name',255);
+            $table->string('year');
+         
         });
     }
 

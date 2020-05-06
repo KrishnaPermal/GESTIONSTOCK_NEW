@@ -4,14 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Commande extends Model
+class Commandes extends Model
 {
     protected $table = "commande";
     public $timestamps = false;
     
     function produit()
     {
-        return $this->belongsToMany('App\Produit', 'commande_has_produit', 'id_commande','id_produit');
+        return $this->belongsToMany('App\Produits', 'commande_has_produit', 'id_commande','id_produit');
     }
     function users()
     {

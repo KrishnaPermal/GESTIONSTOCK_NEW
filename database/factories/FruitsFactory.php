@@ -2,11 +2,11 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Fruit;
+use App\Fruits;
 use Faker\Generator as Faker;
 
-$factory->define(Fruit::class, function (Faker $faker) {
+$factory->define(Fruits::class, function (Faker $faker) {
     return [
-        "nom" => $faker->lastname,
+        "name" => $faker->lastname,
     ];
 });

@@ -15,7 +15,7 @@ class CreateFruitTable extends Migration
     {
         Schema::create('fruit', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nom',255);
+            $table->string('name',255);
         });
     }
 

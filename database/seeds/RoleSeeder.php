@@ -15,12 +15,12 @@ class RoleSeeder extends Seeder
         $array = [
             [
                 "id" => 1,
-                "nom" => "Admin",
+                "name" => "Admin",
 
             ],
             [
                 "id" => 2,
-                "nom" => "Client",
+                "name" => "Client",
             ],
         ];
 

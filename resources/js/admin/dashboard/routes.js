@@ -15,19 +15,9 @@ const router = new VueRouter({
             path: '/dashboard',
             name: 'dashboard',
             component: Dashboard,
-            children: [{
-                    path: '/dashboard/users',
-                    name: 'users',
-                    component: Users
-                },
-                {
-                    path: '/dashboard/activities',
-                    name: 'activities',
-                    component: Activities
-                },
-            ]
+            
+            
         },
-
 
     ]
 })

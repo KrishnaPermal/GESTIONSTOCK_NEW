@@ -16,11 +16,11 @@ class UsersSeeder extends Seeder
         $array = [
             [
                 "id" => 1,
-                "nom" => "TPermal",
-                "prenom" => "Krishna",
+                "name" => "TPermal",
+                "firstname" => "Krishna",
                 "email" => "tpermal@gmail.com",
                 "password" => "admin",
-                "id_role" => "1"
+                "id_role" => 1,
 
             ]
         ];

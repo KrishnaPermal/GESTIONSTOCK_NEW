@@ -12,16 +12,15 @@ export default {
                 sortable: false,
                 value: "produit"
             },
-            { text: "Produits", value: "produit" },
             { text: "Fruits", value: "fruits" },
-            { text: "Quantité", value: "quantity" },
+            { text: "Quantite", value: "quantity" },
             { text: "Prix", value: "price" },
             { text: "Producteurs", value:"id_producteur"}
 
 
 
         ],
-        product: [],
+        produits: [],
 
     }),
     created() {
@@ -32,7 +31,7 @@ export default {
         initialize() {
             Axios.get("/api/users").then(({ data }) =>
                 data.data.forEach(data => {
-                    this.product.push(data);
+                    this.produits.push(data);
                 })
             );
         },

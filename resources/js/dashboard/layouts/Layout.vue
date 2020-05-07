@@ -21,7 +21,7 @@ import Footer from "../navigation/Footer";
 export default {
   components: {
     Navbar,
-    /* Dashboard, */
+    //Dashboard,
     Footer: Footer
   }
 };

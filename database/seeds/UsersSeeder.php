@@ -17,10 +17,10 @@ class UsersSeeder extends Seeder
             [
                 "id" => 1,
                 "name" => "TPermal",
-                "firstname" => "Krishna",
+                //"firstname" => "Krishna",
                 "email" => "tpermal@gmail.com",
-                "password" => "admin",
-                "id_role" => 1,
+                "password" => bcrypt('admin'),
+                "id_role" => "1"
 
             ]
         ];

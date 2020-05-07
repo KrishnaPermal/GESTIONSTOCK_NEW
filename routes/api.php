@@ -14,15 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/* Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
-}); */
+}); 
 
-//Route::get('users', 'UsersController@index');
+Route::post('/login','AuthController@login');
 
-/*Route::prefix('produit')->group(function () {
+Route::prefix('produit')->group(function () {
     Route::get('/', 'ProduitController@index');
-}); */
+}); 
 
-Route::get('users', 'UserController@index');
+Route::get('users', 'UsersController@index');
 Route::post('addProduit','AdminController@addProduit');

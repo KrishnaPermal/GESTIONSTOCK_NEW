@@ -8,7 +8,7 @@ export default {
             fruits:'',
             producteur:'',
             produit:'',
-            producteurs: [],
+            produits: [],
             price:'',
         }
     },
@@ -16,7 +16,7 @@ export default {
     methods: {
        
          addDatas() {
-            Axios.post('../api/addProduit', {
+            Axios.post('../api/Produit', {
                 name: this.produit,
                 id_producteur: this.producteur,
                 prix: this.prix,
@@ -29,13 +29,14 @@ export default {
                 }
             })
             .catch(
-                console.log(this.product + this.producteur)
+                console.log(this.produit + this.producteur)
             )
         }, 
-        getProducteur(){
-            Axios.get("/api/users").then(({ data }) =>
-            data.data.forEach(data => {
-                this.producteurs.push(data.id_producteur);
+        getProduit(){
+            Axios.get("/api/produit").then(({ data }) =>
+            data.data.forEach(_data => {
+                console.log(_data)
+               /*  this.produits.push(data.id_producteur); */
             })
         );       
      },
@@ -43,6 +44,6 @@ export default {
 
     },
     created() {
-        this.getProducteur();
+        this.getProduit();
     },
 }

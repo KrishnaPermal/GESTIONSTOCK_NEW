@@ -2187,13 +2187,16 @@ __webpack_require__.r(__webpack_exports__);
     return {
       dialog: false,
       headers: [{
-        text: "Liste",
+        text: "Produit",
         align: "start",
         sortable: false,
         value: "produit"
       }, {
         text: "Fruits",
         value: "fruits"
+      }, {
+        text: "Recompenses",
+        value: "recompenses"
       }, {
         text: "Quantite",
         value: "quantity"
@@ -2209,6 +2212,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.initialize();
+    this.getDatas();
   },
   methods: {
     initialize: function initialize() {
@@ -2221,12 +2225,31 @@ __webpack_require__.r(__webpack_exports__);
         });
       });
     },
+    getDatas: function getDatas() {
+      var _this2 = this;
+
+      axios.get("/api/produit").then(function (_ref2) {
+        var data = _ref2.data;
+        _this2.produits = data.data;
+        console.log(_this2.produits); //console.log(data);
+        //console.log(data.data[0].fruits[0].name);
+      })["catch"](function (error) {
+        return console.log(error);
+      });
+    },
     displayFruits: function displayFruits(items) {
       var fruits = [];
       items.forEach(function (item) {
         fruits.push(item.name);
       });
       return fruits.join(', ');
+    },
+    displayRecompenses: function displayRecompenses(items) {
+      var recompenses = [];
+      items.forEach(function (item) {
+        recompenses.push(item.name);
+      });
+      return recompenses.join(', ');
     }
   }
 });
@@ -27147,6 +27170,13 @@ var render = function() {
         fn: function(ref) {
           var item = ref.item
           return [_vm._v(_vm._s(_vm.displayFruits(item.fruits)))]
+        }
+      },
+      {
+        key: "item.recompenses",
+        fn: function(ref) {
+          var item = ref.item
+          return [_vm._v(_vm._s(_vm.displayRecompenses(item.recompenses)))]
         }
       },
       {

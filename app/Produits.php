@@ -14,7 +14,7 @@ class Produits extends Model
     {
         return $this->belongsTo(Producteurs::class, 'id_producteur');
     }
-    function recompense()
+    function recompenses()
     {
         return $this->belongsToMany('App\Recompenses', 'produit_has_recompense', 'id_produit', 'id_recompense');
     }

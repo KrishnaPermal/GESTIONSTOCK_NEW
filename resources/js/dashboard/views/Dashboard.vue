@@ -21,6 +21,7 @@
       </template>
       <template v-slot:item.produit="{ item }">{{item.name}},</template>
       <template v-slot:item.fruits="{ item }">{{displayFruits(item.fruits)}}</template>
+      <template v-slot:item.recompenses="{ item }">{{displayRecompenses(item.recompenses)}}</template>
       <template v-slot:item.quantite="{ item }">{{item.name}},</template>
       <template v-slot:item.prix="{ item }">{{item.price}}</template>
       <template v-slot:item.producteurs="{ item }">{{item.id_producteur.name}},</template>

@@ -14,7 +14,7 @@ class CreateModifyUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('firstname',255);
+            //$table->string('firstname',255);
             $table->string('id_role');
             
         });
@@ -29,7 +29,7 @@ class CreateModifyUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('firstname');
+            //$table->dropColumn('firstname');
             $table->dropColumn('id_role');
             
         });

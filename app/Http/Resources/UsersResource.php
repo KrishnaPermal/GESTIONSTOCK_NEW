@@ -19,17 +19,18 @@ class UsersResource extends JsonResource
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
+
     public function toArray($request)
     {
         if (isset($this->token)) {
-            //$role = new RolesResource($this->role);
-
+            
+            $role = new RoleResource($this->role);
             return [
                 'id' => $this->id,
                 'name' => $this->name,
                 'email' => $this->email,
                 'token' => $this->token,
-                //'id_role' => $role,
+                'id_role' => $role,     
             ];
         } else {
             return parent::toArray($request);

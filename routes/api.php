@@ -18,8 +18,12 @@ use Illuminate\Support\Facades\Route;
     return $request->user();
 });  */
 
-Route::post('/login','AuthController@login');
+/*LOGIN/LOGOUT*/
 
+Route::post('/login','AuthController@login');
+Route::get('/logout','AuthController@logout');
+
+/*LOGIN*/
 
 
 Route::prefix('produit')->group(function () {

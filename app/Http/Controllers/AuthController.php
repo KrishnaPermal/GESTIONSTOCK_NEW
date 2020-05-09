@@ -15,19 +15,15 @@ class AuthController extends Controller
     {
         $login = $request->validate([
             'email' => 'required|string|email',
-            'password' => 'required|string',
+            'password' => 'required|string'
         ]);
 
-        return $login;
-        if(!Auth::attempt($login)){
-            return response(['message' => 'Login invalide.']);
+        if(!Auth::attempt($login)) {
+            return response(['message' => 'login invalide']);
         }
 
-        $accessToken = Auth::user()->createToken('authToken')->$accessToken;
-
-        //return Auth::user();
-
-        return new UsersResource(Auth::user($accessToken),$accessToken);
+        $accessToken = Auth::user()->createToken('authToken')->accessToken;
+        return new UsersResource(Auth::user($accessToken), $accessToken);
     }
 
     /**

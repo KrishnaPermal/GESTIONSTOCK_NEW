@@ -33,7 +33,8 @@ class UsersResource extends JsonResource
                 'id_role' => $role,     
             ];
         } else {
-            return parent::toArray($request);
+            
+            return 'toto';
         }
     }
 }

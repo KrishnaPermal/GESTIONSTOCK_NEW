@@ -1,8 +1,11 @@
 import Axios from "axios";
-import addProduit from '../views/components/addProduit.vue'
+import addProduit from '../views/components/addProduit.vue';
+import editProduit from '../views/components/editProduit.vue';
+
 export default {
     components: {
         addProduit,
+        editProduit,
     },
     data: () => ({
         dialog: false,
@@ -13,12 +16,9 @@ export default {
                 value: "produit"
             },
             { text: "Fruits", value: "fruits" },
-            { text: "Recompenses", value: "recompenses"},
-            { text: "Quantite", value: "quantity" },
             { text: "Prix", value: "price" },
-            { text: "Producteurs", value:"id_producteur"}
-
-
+            { text: "Producteurs", value:"id_producteur" },
+            { text: "Actions", value:"actions" },
 
         ],
         produits: [],
@@ -42,7 +42,7 @@ export default {
                 .get("/api/produit")
                 .then(({ data }) => {
                   this.produits=data.data;
-                 console.log(this.produits);
+                 //console.log(this.produits);
                      //console.log(data);
                        //console.log(data.data[0].fruits[0].name);
                 })
@@ -57,12 +57,12 @@ export default {
             return fruits.join(', ');
         },
 
-        displayRecompenses(items){
-            var recompenses=[];
+        /* displayProducteurs(items){
+            var producteur=[];
             items.forEach(item=>{
-                recompenses.push((item.name))
+                producteur.push((item.name))
             })
-            return recompenses.join(', ');
-        }
+            return producteur.join(', ');
+        } */
     }
 };

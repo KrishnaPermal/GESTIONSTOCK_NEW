@@ -14,4 +14,9 @@ class Recompenses extends Model
     {
         return $this->belongsToMany('App\Users', 'users_has_commande', 'id_users', 'id_commande');
     }
+
+    function recompenses()
+    {
+        return $this->belongsToMany('App\Recompenses', 'produit_has_recompense', 'id_produit', 'id_recompense');
+    }
 }

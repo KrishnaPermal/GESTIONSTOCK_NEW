@@ -20,15 +20,17 @@ use Illuminate\Support\Facades\Route;
 
 /*LOGIN/LOGOUT*/
 
-Route::post('/login','AuthController@login');
-Route::get('/logout','AuthController@logout')->middleware('auth:api');
+//Route::post('/login','AuthController@login');
+//Route::get('/logout','AuthController@logout')->middleware('auth:api');
 
 /*LOGIN*/
 
 
 Route::prefix('produit')->group(function () {
     Route::get('/', 'ProduitController@index');
+    Route::post('/add', 'ProduitController@add');
+    Route::patch('/edit', 'ProduitController@edit');
 }); 
 
 Route::get('users', 'UsersController@index');
-Route::post('addProduit','AdminController@addProduit');
+Route::get('Fruits', 'FruitsController@index');

@@ -2147,6 +2147,9 @@ __webpack_require__.r(__webpack_exports__);
         text: "Prix",
         value: "price"
       }, {
+        text: "Quantité",
+        value: "quantity"
+      }, {
         text: "Producteurs",
         value: "id_producteur"
       }, {
@@ -2158,29 +2161,16 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.initialize();
-    this.getDatas();
   },
   methods: {
     initialize: function initialize() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/users").then(function (_ref) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/produit").then(function (_ref) {
         var data = _ref.data;
         return data.data.forEach(function (data) {
           _this.produits.push(data);
         });
-      });
-    },
-    getDatas: function getDatas() {
-      var _this2 = this;
-
-      axios.get("/api/produit").then(function (_ref2) {
-        var data = _ref2.data;
-        _this2.produits = data.data; //console.log(this.produits);
-        //console.log(data);
-        //console.log(data.data[0].fruits[0].name);
-      })["catch"](function (error) {
-        return console.log(error);
       });
     },
     displayFruits: function displayFruits(items) {
@@ -2222,50 +2212,47 @@ __webpack_require__.r(__webpack_exports__);
       dialog: false,
       informations: '',
       fruits: [],
-      producteur: '',
+      id_producteur: {},
       produit: '',
       produits: [],
-      producteurs: {},
-      valeurProducteur: {},
+      producteurs: [],
+      //valeurProducteur:{},
       price: '',
+      quantity: '',
+      snackbar: false,
+      text: '',
       loading: false
     };
   },
   methods: {
     addDatas: function addDatas() {
-      /* Axios.post('/api/produit/add', {
-          name: this.produit,
-          id_producteur: this.id_producteur,
-          prix: this.price,
-          fruits:this.fruits
-      }) */
-      //console.log(this.producteurs)
+      var _this = this;
 
-      /* .then(response => {
-          if (response.status === 201) {
-              console.log("Données enregistrée")
-              console.log(response.data)
-              this.$emit('addProduit', response.data)
-              console.log(response.data)
-          }
-      }) */
-
-      /* .catch(
-          console.log(this.produit + this.producteur)
-      ) */
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/produit/add', {
+        name: this.produit,
+        id_producteur: this.id_producteur,
+        price: this.price,
+        quantity: this.quantity,
+        fruits: this.fruits
+      }).then(function (response) {
+        _this.dialog = false;
+        _this.snackbar = true;
+        _this.text = 'le produit à bien été ajoutée';
+        console.log('toto');
+      })["catch"](console.log(this.produit + this.producteur));
     },
     createFruit: function createFruit(val) {
       console.log(val);
     },
     getProducteur: function getProducteur() {
-      var _this = this;
+      var _this2 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/produit").then(function (_ref) {
         var data = _ref.data;
         data.data.forEach(function (_produit) {
-          _this.producteurs.push(_produit.producteur);
+          //console.log(_produit.producteur)
+          _this2.producteurs.push(_produit.producteur);
         });
-        console.log(_this.producteurs);
       });
     }
   },
@@ -20779,7 +20766,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("v-data-table", {
     staticClass: "elevation-1",
-    attrs: { headers: _vm.headers, items: _vm.produits, "items-per-page": 50 },
+    attrs: { headers: _vm.headers, items: _vm.produits, "items-per-page": 5 },
     scopedSlots: _vm._u([
       {
         key: "top",
@@ -20847,6 +20834,13 @@ var render = function() {
         fn: function(ref) {
           var item = ref.item
           return [_vm._v(_vm._s(item.price))]
+        }
+      },
+      {
+        key: "item.quantite",
+        fn: function(ref) {
+          var item = ref.item
+          return [_vm._v(_vm._s(item.quantity))]
         }
       },
       {
@@ -20961,173 +20955,232 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-dialog",
-    {
-      attrs: { persistent: "", "max-width": "600px" },
-      scopedSlots: _vm._u([
-        {
-          key: "activator",
-          fn: function(ref) {
-            var on = ref.on
-            return [
-              _c(
-                "v-btn",
-                _vm._g(
-                  {
-                    attrs: {
-                      color: "light-blue lighten-3",
-                      fab: "",
-                      dark: "",
-                      small: ""
-                    }
-                  },
-                  on
-                ),
-                [_c("v-icon", [_vm._v("mdi-plus")])],
-                1
-              )
-            ]
-          }
-        }
-      ]),
-      model: {
-        value: _vm.dialog,
-        callback: function($$v) {
-          _vm.dialog = $$v
-        },
-        expression: "dialog"
-      }
-    },
+    "v-row",
     [
-      _vm._v(" "),
       _c(
-        "v-card",
-        [
-          _c("v-card-title", [
-            _c("span", { staticClass: "headline" }, [_vm._v("Ajouter")])
+        "v-dialog",
+        {
+          attrs: { persistent: "", "max-width": "600px" },
+          scopedSlots: _vm._u([
+            {
+              key: "activator",
+              fn: function(ref) {
+                var on = ref.on
+                return [
+                  _c(
+                    "v-btn",
+                    _vm._g(
+                      {
+                        attrs: {
+                          color: "light-blue lighten-3",
+                          dark: "",
+                          small: ""
+                        }
+                      },
+                      on
+                    ),
+                    [
+                      _c("v-icon", [_vm._v("mdi-plus")]),
+                      _vm._v("Ajouter un produit\n      ")
+                    ],
+                    1
+                  )
+                ]
+              }
+            }
           ]),
+          model: {
+            value: _vm.dialog,
+            callback: function($$v) {
+              _vm.dialog = $$v
+            },
+            expression: "dialog"
+          }
+        },
+        [
           _vm._v(" "),
           _c(
-            "v-card-text",
+            "v-card",
             [
+              _c("v-card-title", [
+                _c("span", { staticClass: "headline" }, [_vm._v("Ajouter")])
+              ]),
+              _vm._v(" "),
               _c(
-                "v-container",
+                "v-card-text",
                 [
-                  _c("v-spacer"),
-                  _vm._v(" "),
                   _c(
-                    "v-row",
+                    "v-container",
                     [
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", sm: "6", md: "4" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              color: "light-blue lighten-4",
-                              label: "Nom*",
-                              required: ""
-                            },
-                            model: {
-                              value: _vm.produit,
-                              callback: function($$v) {
-                                _vm.produit = $$v
-                              },
-                              expression: "produit"
-                            }
-                          })
-                        ],
-                        1
-                      ),
+                      _c("v-spacer"),
                       _vm._v(" "),
                       _c(
-                        "v-col",
-                        { attrs: { cols: "12", sm: "6", md: "4" } },
+                        "v-row",
                         [
-                          _c("v-select", {
-                            attrs: {
-                              items: _vm.id_producteur,
-                              "item-value": "id*",
-                              "item-text": "name",
-                              label: "Producteur*"
-                            },
-                            model: {
-                              value: _vm.producteurs,
-                              callback: function($$v) {
-                                _vm.producteurs = $$v
-                              },
-                              expression: "producteurs"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "v-col",
-                        { attrs: { cols: "12", sm: "6", md: "4" } },
-                        [
-                          _c("v-text-field", {
-                            attrs: {
-                              color: "light-blue lighten-4",
-                              label: "Prix*",
-                              required: ""
-                            },
-                            model: {
-                              value: _vm.price,
-                              callback: function($$v) {
-                                _vm.price = $$v
-                              },
-                              expression: "price"
-                            }
-                          })
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12", sm: "6", md: "4" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  color: "light-blue lighten-4",
+                                  label: "Nom*",
+                                  required: ""
+                                },
+                                model: {
+                                  value: _vm.produit,
+                                  callback: function($$v) {
+                                    _vm.produit = $$v
+                                  },
+                                  expression: "produit"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12", sm: "6", md: "4" } },
+                            [
+                              _c("v-select", {
+                                attrs: {
+                                  items: _vm.producteurs,
+                                  "item-value": "id",
+                                  "item-text": "name",
+                                  label: "Producteur*"
+                                },
+                                model: {
+                                  value: _vm.id_producteur,
+                                  callback: function($$v) {
+                                    _vm.id_producteur = $$v
+                                  },
+                                  expression: "id_producteur"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12", sm: "6", md: "4" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  color: "light-blue lighten-4",
+                                  label: "Prix*",
+                                  required: ""
+                                },
+                                model: {
+                                  value: _vm.price,
+                                  callback: function($$v) {
+                                    _vm.price = $$v
+                                  },
+                                  expression: "price"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12", sm: "6", md: "4" } },
+                            [
+                              _c("v-text-field", {
+                                attrs: {
+                                  color: "light-blue lighten-4",
+                                  label: "Quantité*",
+                                  required: ""
+                                },
+                                model: {
+                                  value: _vm.quantity,
+                                  callback: function($$v) {
+                                    _vm.quantity = $$v
+                                  },
+                                  expression: "quantity"
+                                }
+                              })
+                            ],
+                            1
+                          )
                         ],
                         1
                       )
                     ],
                     1
-                  )
+                  ),
+                  _vm._v(" "),
+                  _c("small", [_vm._v("*Champ obligatoire")])
                 ],
                 1
               ),
               _vm._v(" "),
-              _c("small", [_vm._v("*Champ obligatoire")])
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "v-card-actions",
-            [
-              _c("v-spacer"),
-              _vm._v(" "),
               _c(
-                "v-btn",
-                {
-                  attrs: { color: "red", text: "" },
-                  on: {
-                    click: function($event) {
-                      _vm.dialog = false
-                    }
-                  }
-                },
-                [_vm._v("Fermer")]
-              ),
-              _vm._v(" "),
-              _c(
-                "v-btn",
-                {
-                  attrs: { color: "green", text: "" },
-                  on: {
-                    click: function($event) {
-                      ;(_vm.dialog = false), _vm.addDatas()
-                    }
-                  }
-                },
-                [_vm._v("Enregistrer")]
+                "v-card-actions",
+                [
+                  _c("v-spacer"),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "red", text: "" },
+                      on: {
+                        click: function($event) {
+                          _vm.dialog = false
+                        }
+                      }
+                    },
+                    [_vm._v("Fermer")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-btn",
+                    {
+                      attrs: { color: "green", text: "" },
+                      on: {
+                        click: function($event) {
+                          ;(_vm.dialog = false), _vm.addDatas()
+                        }
+                      }
+                    },
+                    [_vm._v("Enregistrer")]
+                  )
+                ],
+                1
               )
             ],
             1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-snackbar",
+        {
+          model: {
+            value: _vm.snackbar,
+            callback: function($$v) {
+              _vm.snackbar = $$v
+            },
+            expression: "snackbar"
+          }
+        },
+        [
+          _vm._v(_vm._s(_vm.text) + " "),
+          _c(
+            "v-btn",
+            {
+              attrs: { color: "cyan", text: "" },
+              on: {
+                click: function($event) {
+                  _vm.snackbar = false
+                }
+              }
+            },
+            [_vm._v("Fermer")]
           )
         ],
         1

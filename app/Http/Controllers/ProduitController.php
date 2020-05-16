@@ -24,15 +24,16 @@ class ProduitController extends Controller
     }
 
     /**Ajout d'un Produit*/
-    public function addProduit(Request $request)
+    public function add(Request $request)
     {
         $datasToAdd = Validator::make(
             $request->input(),
             [
                 "name" => "required",
                 "price" => "required",
+                "quantity" => "required",
                 "id_producteur" => "required|numeric",
-                "fruits" => "required",
+                //"fruits" => "required",
             ],
             [
                 'required' => 'Le champ :attribute est requis'
@@ -47,15 +48,16 @@ class ProduitController extends Controller
         return new ProduitResource($produits);
 
 
-        /* $addToDb = new  Produits;
+       /*  $addToDb = new  Produits;
         $addToDb->name = $datasToAdd['name'];
+        $addToDb->price = $datasToAdd['price'];
         $addToDb->price = $datasToAdd['price'];
         $producteur = Producteurs::find($datasToAdd['id_producteur']);
         if (!$producteur) {
             return 'err';
         }
         $addToDb->producteur()->associate($producteur);
-        $addToDb->save(); */
+        $addToDb->save();  */
 
 
         /**Fruits*/

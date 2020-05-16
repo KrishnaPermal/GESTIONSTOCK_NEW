@@ -1,5 +1,5 @@
 <template>
-    <v-data-table :headers="headers" :items="produits" class="elevation-1" :items-per-page="50">
+    <v-data-table :headers="headers" :items="produits" class="elevation-1" :items-per-page="5">
       <template v-slot:top>
         
 
@@ -24,6 +24,7 @@
       <!--<template v-slot:item.recompenses="{ item }">{{displayRecompenses(item.recompenses)}}</template>-->
       <!--<template v-slot:item.quantite="{ item }">{{item.name}},</template>-->
       <template v-slot:item.prix="{ item }">{{item.price}}</template>
+      <template v-slot:item.quantite="{ item }">{{item.quantity}}</template>
       <template v-slot:item.id_producteur="{ item }">{{item.name}}</template>
       <template v-slot:item.actions="{ item }"><editProduit :product="item" :isModif="true"/></template>
     </v-data-table>

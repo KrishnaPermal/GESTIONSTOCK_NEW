@@ -17,6 +17,7 @@ export default {
             },
             { text: "Fruits", value: "fruits" },
             { text: "Prix", value: "price" },
+            { text: "Quantité", value: "quantity"},
             { text: "Producteurs", value:"id_producteur" },
             { text: "Actions", value:"actions" },
 
@@ -26,28 +27,18 @@ export default {
     }),
     created() {
         this.initialize();
-        this.getDatas();
+      
     },
 
     methods: {
         initialize() {
-            Axios.get("/api/users").then(({ data }) =>
+            Axios.get("/api/produit").then(({ data }) =>
                 data.data.forEach(data => {
                     this.produits.push(data);
                 })
             );
         },
-            getDatas() {
-              axios
-                .get("/api/produit")
-                .then(({ data }) => {
-                  this.produits=data.data;
-                 //console.log(this.produits);
-                     //console.log(data);
-                       //console.log(data.data[0].fruits[0].name);
-                })
-                .catch(error => console.log(error));
-            },
+            
 
         displayFruits(items){
             var fruits=[];

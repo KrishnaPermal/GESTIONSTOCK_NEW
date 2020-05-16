@@ -9,12 +9,15 @@ export default {
             dialog: false,
             informations: '',
             fruits: [],
-            producteur:'',
+            id_producteur: {},
             produit:'',
             produits: [],
-            producteurs: {},
-            valeurProducteur:{},
+            producteurs: [],
+            //valeurProducteur:{},
             price:'',
+            quantity:'',
+            snackbar: false,
+            text: '',
             loading: false,
             
         }
@@ -23,28 +26,25 @@ export default {
    
     methods: {
        
-         addDatas() {
-            /* Axios.post('/api/produit/add', {
+        addDatas() {
+             Axios.post('/api/produit/add', {
                 name: this.produit,
                 id_producteur: this.id_producteur,
-                prix: this.price,
+                price: this.price,
+                quantity: this.quantity,
                 fruits:this.fruits
-            }) */
-            //console.log(this.producteurs)
+                
+            }).then(response => {
+                this.dialog = false
+                this.snackbar = true
+                this.text = 'le produit à bien été ajoutée'
+                console.log('toto');
+            }) 
 
-            /* .then(response => {
-                if (response.status === 201) {
-                    console.log("Données enregistrée")
-                    console.log(response.data)
-                    this.$emit('addProduit', response.data)
-                    console.log(response.data)
-                }
-            }) */
-
-            /* .catch(
+             .catch(
                 console.log(this.produit + this.producteur)
-            ) */
-        },
+            )  
+        }, 
 
         createFruit(val){
             console.log(val)
@@ -52,13 +52,12 @@ export default {
 
         getProducteur(){
             Axios.get("/api/produit").then(({ data }) =>{
-            data.data.forEach(_produit => {
-                
-                this.producteurs.push(_produit.producteur)
-            
+                data.data.forEach(_produit => {
+                    //console.log(_produit.producteur)
+                        this.producteurs.push(_produit.producteur)
                 }
             )
-            console.log(this.producteurs)
+            
         }
 
         );       

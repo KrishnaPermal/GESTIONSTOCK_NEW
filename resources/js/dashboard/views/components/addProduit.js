@@ -2,7 +2,16 @@ import Axios from "axios"
 
 export default {
     
-    //props: ["product"],
+    props: {
+        
+        isModification: {default:false},
+        product: {default:function(){
+          return {}  
+        }
+        
+        
+       
+    },
 
     data() {
         return {
@@ -16,7 +25,7 @@ export default {
             //valeurProducteur:{},
             price:'',
             quantity:'',
-            snackbar: false,
+            //snackbar: false,
             text: '',
             loading: false,
             
@@ -25,7 +34,16 @@ export default {
 
    
     methods: {
-       
+        
+        modifierProduit(product){
+            /* this.produit = product
+            this.id_producteur,
+            this.price,
+            this.quantity,
+            this.fruits */
+            console.log(product)
+         },
+
         addDatas() {
              Axios.post('/api/produit/add', {
                 name: this.produit,
@@ -36,7 +54,7 @@ export default {
                 
             }).then(response => {
                 this.dialog = false
-                this.snackbar = true
+                //this.snackbar = true
                 this.text = 'le produit à bien été ajoutée'
                 console.log('toto');
             }) 
@@ -62,11 +80,11 @@ export default {
 
         );       
      },
-    
 
+    
     },
     created() {
         this.getProducteur();
         
     },
-}
+}}

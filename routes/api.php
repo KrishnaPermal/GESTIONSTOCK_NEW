@@ -29,8 +29,9 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('produit')->group(function () {
     Route::get('/', 'ProduitController@index');
     Route::post('/add', 'ProduitController@add');
+    //Route::get('/fruits', 'ProduitController@viewFruits');
     Route::patch('/edit', 'ProduitController@edit');
 }); 
 
 Route::get('users', 'UsersController@index');
-Route::get('Fruits', 'FruitsController@index');
+//Route::get('Fruits', 'FruitsController@index');

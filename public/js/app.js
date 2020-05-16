@@ -2206,58 +2206,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  //props: ["product"],
-  data: function data() {
-    return {
-      dialog: false,
-      informations: '',
-      fruits: [],
-      id_producteur: {},
-      produit: '',
-      produits: [],
-      producteurs: [],
-      //valeurProducteur:{},
-      price: '',
-      quantity: '',
-      snackbar: false,
-      text: '',
-      loading: false
-    };
-  },
-  methods: {
-    addDatas: function addDatas() {
-      var _this = this;
-
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/produit/add', {
-        name: this.produit,
-        id_producteur: this.id_producteur,
-        price: this.price,
-        quantity: this.quantity,
-        fruits: this.fruits
-      }).then(function (response) {
-        _this.dialog = false;
-        _this.snackbar = true;
-        _this.text = 'le produit à bien été ajoutée';
-        console.log('toto');
-      })["catch"](console.log(this.produit + this.producteur));
+  props: {
+    isModification: {
+      "default": false
     },
-    createFruit: function createFruit(val) {
-      console.log(val);
+    product: {
+      "default": function _default() {
+        return {};
+      }
     },
-    getProducteur: function getProducteur() {
-      var _this2 = this;
+    data: function data() {
+      return {
+        dialog: false,
+        informations: '',
+        fruits: [],
+        id_producteur: {},
+        produit: '',
+        produits: [],
+        producteurs: [],
+        //valeurProducteur:{},
+        price: '',
+        quantity: '',
+        //snackbar: false,
+        text: '',
+        loading: false
+      };
+    },
+    methods: {
+      modifierProduit: function modifierProduit(product) {
+        /* this.produit = product
+        this.id_producteur,
+        this.price,
+        this.quantity,
+        this.fruits */
+        console.log(product);
+      },
+      addDatas: function addDatas() {
+        var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/produit").then(function (_ref) {
-        var data = _ref.data;
-        data.data.forEach(function (_produit) {
-          //console.log(_produit.producteur)
-          _this2.producteurs.push(_produit.producteur);
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/produit/add', {
+          name: this.produit,
+          id_producteur: this.id_producteur,
+          price: this.price,
+          quantity: this.quantity,
+          fruits: this.fruits
+        }).then(function (response) {
+          _this.dialog = false; //this.snackbar = true
+
+          _this.text = 'le produit à bien été ajoutée';
+          console.log('toto');
+        })["catch"](console.log(this.produit + this.producteur));
+      },
+      createFruit: function createFruit(val) {
+        console.log(val);
+      },
+      getProducteur: function getProducteur() {
+        var _this2 = this;
+
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/produit").then(function (_ref) {
+          var data = _ref.data;
+          data.data.forEach(function (_produit) {
+            //console.log(_produit.producteur)
+            _this2.producteurs.push(_produit.producteur);
+          });
         });
-      });
+      }
+    },
+    created: function created() {
+      this.getProducteur();
     }
-  },
-  created: function created() {
-    this.getProducteur();
   }
 });
 
@@ -20766,7 +20783,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("v-data-table", {
     staticClass: "elevation-1",
-    attrs: { headers: _vm.headers, items: _vm.produits, "items-per-page": 5 },
+    attrs: { headers: _vm.headers, items: _vm.produits, "items-per-page": 100 },
     scopedSlots: _vm._u([
       {
         key: "top",
@@ -20855,7 +20872,7 @@ var render = function() {
         fn: function(ref) {
           var item = ref.item
           return [
-            _c("editProduit", { attrs: { product: item, isModif: true } })
+            _c("addProduit", { attrs: { product: item, isModification: true } })
           ]
         }
       }
@@ -20980,8 +20997,23 @@ var render = function() {
                       on
                     ),
                     [
-                      _c("v-icon", [_vm._v("mdi-plus")]),
-                      _vm._v("Ajouter un produit\n      ")
+                      !_vm.isModification
+                        ? _c("v-icon", [_vm._v("mdi-plus")])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.isModification
+                        ? _c(
+                            "v-icon",
+                            {
+                              on: {
+                                click: function($event) {
+                                  return _vm.modifierProduit(_vm.product)
+                                }
+                              }
+                            },
+                            [_vm._v("mdi-pencil")]
+                          )
+                        : _vm._e()
                     ],
                     1
                   )
@@ -21003,7 +21035,15 @@ var render = function() {
             "v-card",
             [
               _c("v-card-title", [
-                _c("span", { staticClass: "headline" }, [_vm._v("Ajouter")])
+                !_vm.isModification
+                  ? _c("span", { staticClass: "headline" }, [_vm._v("Ajouter")])
+                  : _vm._e(),
+                _vm._v(" "),
+                _vm.isModification
+                  ? _c("span", { staticClass: "headline" }, [
+                      _vm._v("Modifier")
+                    ])
+                  : _vm._e()
               ]),
               _vm._v(" "),
               _c(
@@ -21152,35 +21192,6 @@ var render = function() {
               )
             ],
             1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "v-snackbar",
-        {
-          model: {
-            value: _vm.snackbar,
-            callback: function($$v) {
-              _vm.snackbar = $$v
-            },
-            expression: "snackbar"
-          }
-        },
-        [
-          _vm._v(_vm._s(_vm.text) + " "),
-          _c(
-            "v-btn",
-            {
-              attrs: { color: "cyan", text: "" },
-              on: {
-                click: function($event) {
-                  _vm.snackbar = false
-                }
-              }
-            },
-            [_vm._v("Fermer")]
           )
         ],
         1

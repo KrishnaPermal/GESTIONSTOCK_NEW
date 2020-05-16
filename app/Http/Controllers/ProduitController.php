@@ -47,120 +47,12 @@ class ProduitController extends Controller
 
         return new ProduitResource($produits);
 
+    }
 
-       /*  $addToDb = new  Produits;
-        $addToDb->name = $datasToAdd['name'];
-        $addToDb->price = $datasToAdd['price'];
-        $addToDb->price = $datasToAdd['price'];
-        $producteur = Producteurs::find($datasToAdd['id_producteur']);
-        if (!$producteur) {
-            return 'err';
-        }
-        $addToDb->producteur()->associate($producteur);
-        $addToDb->save();  */
-
-
-        /**Fruits*/
-
-        /* $fruits = [];
-        if (is_array($datasToAdd['fruits'])) {
-            foreach ($datasToAdd['fruits'] as $_fruit) {
-                if (isset($_fruit['id'])) {
-                    $fruit = Fruits::find($_fruit['id']);
-                    if (!$fruit) {
-                        return 'err';
-                    }
-                    $fruits[] = $fruit->id;
-                } else {
-                    return "id existe pas";
-                    //On va créer un objet par la suite fruit:{name:""}
-                }
-            }
-        }
-        if (!empty($fruits)) {
-            $addToDb->fruits()->attach($fruits);
-        }
-
-        return new addProduitResource($addToDb);
+    /* public function viewFruits() {
+        return Fruits::all();
     } */
-
-    /* function updateProduit(Request $request, $id)
-    {
-        $dataUpdate = Validator::make(
-            $request->input(),
-            [
-                "name" => "required",
-                "producteur" => "required",
-                "fruits" => "required",
-                "price" => "required",
-            ]
-        )->validate();
-
-        $Producteur = Produits::where('id', '=', $id)
-            ->first();
-            if (!$Producteur){
-                return "err";
-            }
-            else{
-                $Producteur->nom = $dataUpdate['nom'];
-                $Producteur->producer = $dataUpdate['producteur'];
-                $Producteur->prix = $dataUpdate['price'];
-                $Producteur->save();
-            }
-
-
-        return ($dataUpdate); */
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-        public function addProduct(Request $request)
-    {
-        $validator = Validator::make(
-            $request->all(),
-            [
-                'name' => 'required',
-                'price' => 'required',
-                'id_producteur' => 'required',
-            ],
-            [
-                'required' => 'Le champs :attribute est requis', // :attribute renvoie le champs / l'id de l'element en erreure
-            ]
-        )->validate();
-
-        $donneesBdd = Produits::create(
-            $validator
-        )->save();
-
-        return $donneesBdd;
-    }
+    
 
     
 

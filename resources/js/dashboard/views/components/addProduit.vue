@@ -4,14 +4,16 @@
 
   
     <template v-slot:activator="{ on }">
-      <v-btn color="light-blue lighten-3" dark small v-on="on">
-        <v-icon>mdi-plus</v-icon>Ajouter un produit
+      <v-btn color="light-blue lighten-3" dark small v-on="on" >
+        <v-icon v-if="!isModification">mdi-plus</v-icon>
+        <v-icon v-if="isModification" @click="modifierProduit(product)">mdi-pencil</v-icon>
       </v-btn>
     </template>
 
     <v-card>
       <v-card-title>
-        <span class="headline">Ajouter</span> 
+        <span v-if="!isModification" class="headline">Ajouter</span>
+        <span v-if="isModification" class="headline">Modifier</span> 
       </v-card-title>
       <v-card-text>
         <v-container>
@@ -40,6 +42,7 @@
                 </template>
               </v-autocomplete>
             </v-col> -->
+
           </v-row>
         </v-container>
         <small>*Champ obligatoire</small>
@@ -51,7 +54,7 @@
       </v-card-actions>
     </v-card>
   </v-dialog>
-  <v-snackbar v-model="snackbar">{{ text }} <v-btn color="cyan" text @click="snackbar=false">Fermer</v-btn></v-snackbar>
+  <!-- <v-snackbar v-model="snackbar">{{ text }} <v-btn color="cyan" text @click="snackbar=false">Fermer</v-btn></v-snackbar> -->
 
   </v-row>
 </template>

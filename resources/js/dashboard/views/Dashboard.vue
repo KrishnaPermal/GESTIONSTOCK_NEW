@@ -1,5 +1,5 @@
 <template>
-    <v-data-table :headers="headers" :items="produits" class="elevation-1" :items-per-page="100">
+    <v-data-table :headers="headers" :items="produits" class="elevation-1" :items-per-page="20">
       <template v-slot:top>
       
 <v-card color="basil">

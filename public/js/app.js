@@ -2214,67 +2214,100 @@ __webpack_require__.r(__webpack_exports__);
       "default": function _default() {
         return {};
       }
-    },
-    data: function data() {
-      return {
-        dialog: false,
-        informations: '',
-        fruits: [],
-        id_producteur: {},
-        produit: '',
-        produits: [],
-        producteurs: [],
-        //valeurProducteur:{},
-        price: '',
-        quantity: '',
-        //snackbar: false,
-        text: '',
-        loading: false
-      };
-    },
-    methods: {
-      modifierProduit: function modifierProduit(product) {
-        /* this.produit = product
-        this.id_producteur,
-        this.price,
-        this.quantity,
-        this.fruits */
-        console.log(product);
-      },
-      addDatas: function addDatas() {
-        var _this = this;
+    }
+  },
+  data: function data() {
+    return {
+      id: '',
+      dialog: false,
+      informations: '',
+      fruits: [],
+      id_producteur: {},
+      produit: '',
+      produits: [],
+      producteurs: [],
+      fruitList: [],
+      search: null,
+      //valeurProducteur:{},
+      price: '',
+      quantity: '',
+      //snackbar: false,
+      text: '',
+      loading: false
+    };
+  },
+  watch: {
+    search: function search(val) {
+      var _this = this;
 
-        axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/produit/add', {
-          name: this.produit,
-          id_producteur: this.id_producteur,
-          price: this.price,
-          quantity: this.quantity,
-          fruits: this.fruits
-        }).then(function (response) {
-          _this.dialog = false; //this.snackbar = true
-
-          _this.text = 'le produit à bien été ajoutée';
-          console.log('toto');
-        })["catch"](console.log(this.produit + this.producteur));
-      },
-      createFruit: function createFruit(val) {
-        console.log(val);
-      },
-      getProducteur: function getProducteur() {
-        var _this2 = this;
-
-        axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/produit").then(function (_ref) {
+      if (val && val.length > 2) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/produit/fruits', {
+          params: {
+            query: val
+          }
+        }).then(function (_ref) {
           var data = _ref.data;
-          data.data.forEach(function (_produit) {
-            //console.log(_produit.producteur)
-            _this2.producteurs.push(_produit.producteur);
+          _this.loading = false;
+          data.forEach(function (fruit) {
+            _this.fruitList.push(fruit);
           });
         });
       }
-    },
-    created: function created() {
-      this.getProducteur();
     }
+  },
+  methods: {
+    modifierProduit: function modifierProduit(product) {
+      this.id_producteur = product.id_producteur;
+      this.produit = product.name;
+      this.quantity = product.quantity;
+      this.fruits = product.fruits;
+      this.price = product.price;
+      this.id = product.id;
+
+      _.merge(this.fruitList, this.fruits); //console.log(product)
+
+    },
+    addDatas: function addDatas() {
+      var _this2 = this;
+
+      console.log(this.produit);
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/produit/updateProduct', {
+        name: this.produit,
+        id_producteur: this.id_producteur,
+        price: this.price,
+        quantity: this.quantity,
+        fruits: this.fruits,
+        id: this.id
+      }).then(function (response) {
+        if (response.status === 201) {
+          console.log("Données enregistrée");
+          console.log(_this2.product.id);
+
+          _this2.$emit('addProduit', response.data);
+        }
+        /* this.dialog = false
+        this.snackbar = true
+        this.text = 'le produit à bien été ajoutée'
+        console.log('toto');  */
+
+      })["catch"](console.log(this.produit + this.producteur));
+    },
+    createFruit: function createFruit(val) {
+      console.log(val);
+    },
+    getProducteur: function getProducteur() {
+      var _this3 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/produit").then(function (_ref2) {
+        var data = _ref2.data;
+        data.data.forEach(function (_produit) {
+          _this3.producteurs.push(_produit.producteur);
+        });
+      });
+    }
+  },
+  created: function created() {
+    this.getProducteur();
   }
 });
 
@@ -20783,7 +20816,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("v-data-table", {
     staticClass: "elevation-1",
-    attrs: { headers: _vm.headers, items: _vm.produits, "items-per-page": 100 },
+    attrs: { headers: _vm.headers, items: _vm.produits, "items-per-page": 20 },
     scopedSlots: _vm._u([
       {
         key: "top",
@@ -21140,6 +21173,71 @@ var render = function() {
                                     _vm.quantity = $$v
                                   },
                                   expression: "quantity"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12", sm: "6", md: "6" } },
+                            [
+                              _c("v-autocomplete", {
+                                attrs: {
+                                  loading: _vm.loading,
+                                  items: _vm.fruitList,
+                                  "search-input": _vm.search,
+                                  "item-text": "name",
+                                  "return-object": "",
+                                  multiple: "",
+                                  "cache-items": "",
+                                  "hide-no-data": "",
+                                  "hide-details": "",
+                                  placeholder: "Fruits*",
+                                  label: "Fruit"
+                                },
+                                on: {
+                                  "update:searchInput": function($event) {
+                                    _vm.search = $event
+                                  },
+                                  "update:search-input": function($event) {
+                                    _vm.search = $event
+                                  },
+                                  input: _vm.createFruit
+                                },
+                                scopedSlots: _vm._u([
+                                  {
+                                    key: "prepend",
+                                    fn: function() {
+                                      return [
+                                        _c(
+                                          "v-btn",
+                                          {
+                                            attrs: {
+                                              icon: "",
+                                              color: "success",
+                                              disabled: _vm.fruits.length == 0
+                                            }
+                                          },
+                                          [
+                                            _c("v-icon", [
+                                              _vm._v("mdi-plus-circle")
+                                            ])
+                                          ],
+                                          1
+                                        )
+                                      ]
+                                    },
+                                    proxy: true
+                                  }
+                                ]),
+                                model: {
+                                  value: _vm.fruits,
+                                  callback: function($$v) {
+                                    _vm.fruits = $$v
+                                  },
+                                  expression: "fruits"
                                 }
                               })
                             ],

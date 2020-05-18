@@ -25,28 +25,7 @@ class ProduitController extends Controller
         return ProduitResource::collection($produits);
     }
 
-    /* public function add(Request $request)
-    {
-        $datasToAdd = Validator::make(
-            $request->input(),
-            [
-                "name" => "required",
-                "price" => "required",
-                "quantity" => "required",
-                "id_producteur" => "required|numeric",
-                //"fruits" => "required",
-            ],
-            [
-                'required' => 'Le champ :attribute est requis'
-            ]
-        )->validate();
-        //Ajout en bdd des données validées par le validator
-        $produits =Produits::create($datasToAdd);
-        //Retourne le produit formaté grâce à la ressource
-        return new ProduitResource($produits);
-
-    } */
-
+    
     /**Ajout d'un Produit & Modifier*/
 
     public function createOrUpdate(Request $request)
@@ -60,7 +39,7 @@ class ProduitController extends Controller
                 "quantity" => "required",
                 "id_producteur" => "required|numeric",
                 "fruits" => "",
-                //"oldFruit"=>"",
+              
             ],
             [
                 'required' => 'Le champ :attribute est requis'
@@ -78,43 +57,56 @@ class ProduitController extends Controller
         $addToDb->name = $datasToAdd['name'];
         $addToDb->price = $datasToAdd['price'];
         $addToDb->quantity = $datasToAdd['quantity'];
-        $producteur = Producteurs::find($datasToAdd['id_producteur']);
-        if (!$producteur) {
-            return 'err';
+        if ($product && isset($product->producteur) && $datasToAdd['id_producteur'] != $product->producteur->id){       
+        } else {
+            $producteur = Producteurs::find($datasToAdd['id_producteur']);
+            if (!$producteur) {
+                return 'err';
+        
+            }
+            $addToDb->producteur()->associate($producteur);
         }
-        $addToDb->producteur()->associate($producteur);
+
         $addToDb->save();
 
         
         /**Fruits*/
 
-        $fruits = [];
-        if (is_array($datasToAdd['fruits'])) {
-            foreach ($datasToAdd['fruits'] as $_fruit) {
-                if (isset($_fruit['id'])) {
-                    $fruit = Fruits::find($_fruit['id']);
-                    if (!$fruit) {
-                        return 'err';
-                    }
-                    $fruits[] = $fruit->id;
-                } else {
-                    return "id existe pas";
-                    //On va créer un objet par la suite fruit:{name:""}
-                }
+        $produitFruits = [];
+        $clientFruits = [];
+        $detachArray = []; //stocker les id que l'ont devra supprimer (detach)
+        $attachArray = []; //stocker les id que l'ont devra ajouter (attach)
+
+        foreach ($datasToAdd['fruits'] as $_clientFruit) { //sert à recuperé les id des fruits
+            $clientFruits[] = $_clientFruit['id'];
+        }
+        if ($product && isset($product->fruits)) { // le 2eme verifie si product existe et qu'il y a bien des fruits 
+            foreach ($product->fruits as $_fruits) { 
+                $produitFruits[] = $_fruits->id; // puis ils leur attribue une id
             }
         }
-        if (!empty($fruits)) {
-            $addToDb->fruits()->attach($fruits);
+        foreach ($clientFruits as $_clientFruit) { // comparaison pour savoir si chacun des clientFruits as _clientFruit 
+            if (!in_array($_clientFruit, $produitFruits)) { //présent dans produitFruits
+                $attachArray[] = $_clientFruit; // ont rajoute
+            }
         }
-         
-        return new ProduitResource($addToDb);
+        foreach ($produitFruits as $_produitFruit) { // comparaison ici pour savoir les même choses avec produitFruits 
+            if (!in_array($_produitFruit, $produitFruits)) {
+                $detachArray[] = $_produitFruit; // ont supprime
+            }
+        }
+        if (!empty($detachArray)) {
+            $product->fruits()->detach($detachArray);
+        }
+        if (!empty($attachArray)) {
+            $product->fruits()->attach($attachArray);
+        }
 
-        /* withPivot, if exist detach else attach
-        $pivot = Produits::wherePivotIn('id_fruit', '=', '1')->get();
-        return ($pivot);*/
+        return new ProduitResource($addToDb);
     }
 
-
-
+    /* withPivot, if exist detach else attach
+        $pivot = Produits::wherePivotIn('id_fruit', '=', '1')->get();
+        return ($pivot);*/
 
 }

@@ -29,6 +29,7 @@ export default {
             quantity: '',
             //snackbar: false,
             text: '',
+            //files: [],
             loading: false,
 
         }
@@ -56,9 +57,10 @@ export default {
             this.produit = product.name
             this.quantity = product.quantity
             this.fruits = product.fruits
+            //this.files = product.files
             this.price = product.price
             this.id = product.id
-            _.merge(this.fruitList, this.fruits)
+            _.merge(this.fruitList, this.fruits) // sert à fusionner
             //console.log(product)
            
 
@@ -71,6 +73,7 @@ export default {
                 price: this.price,
                 quantity: this.quantity,
                 fruits: this.fruits,
+                //files: this.files,
                 id: this.id,
 
             }).then(response => {
@@ -97,6 +100,8 @@ export default {
             console.log(val)
         },
 
+
+        //Todo à modifier getProducteur (la route c'est plus api/producteur)
         getProducteur() {
             Axios.get("/api/produit").then(({ data }) => {
                 data.data.forEach(_produit => {

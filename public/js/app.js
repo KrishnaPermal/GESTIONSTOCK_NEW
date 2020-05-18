@@ -2233,6 +2233,7 @@ __webpack_require__.r(__webpack_exports__);
       quantity: '',
       //snackbar: false,
       text: '',
+      //files: [],
       loading: false
     };
   },
@@ -2260,11 +2261,13 @@ __webpack_require__.r(__webpack_exports__);
       this.id_producteur = product.id_producteur;
       this.produit = product.name;
       this.quantity = product.quantity;
-      this.fruits = product.fruits;
+      this.fruits = product.fruits; //this.files = product.files
+
       this.price = product.price;
       this.id = product.id;
 
-      _.merge(this.fruitList, this.fruits); //console.log(product)
+      _.merge(this.fruitList, this.fruits); // sert à fusionner
+      //console.log(product)
 
     },
     addDatas: function addDatas() {
@@ -2277,6 +2280,7 @@ __webpack_require__.r(__webpack_exports__);
         price: this.price,
         quantity: this.quantity,
         fruits: this.fruits,
+        //files: this.files,
         id: this.id
       }).then(function (response) {
         if (response.status === 201) {
@@ -2295,6 +2299,7 @@ __webpack_require__.r(__webpack_exports__);
     createFruit: function createFruit(val) {
       console.log(val);
     },
+    //Todo à modifier getProducteur (la route c'est plus api/producteur)
     getProducteur: function getProducteur() {
       var _this3 = this;
 
@@ -21238,6 +21243,81 @@ var render = function() {
                                     _vm.fruits = $$v
                                   },
                                   expression: "fruits"
+                                }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "v-col",
+                            { attrs: { cols: "12", sm: "7", md: "7" } },
+                            [
+                              _c("v-file-input", {
+                                attrs: {
+                                  color: "deep-purple accent-4",
+                                  counter: "",
+                                  label: "File input",
+                                  multiple: "",
+                                  placeholder: "Select your files",
+                                  "prepend-icon": "mdi-paperclip",
+                                  outlined: "",
+                                  "show-size": 1000
+                                },
+                                scopedSlots: _vm._u([
+                                  {
+                                    key: "selection",
+                                    fn: function(ref) {
+                                      var index = ref.index
+                                      var text = ref.text
+                                      return [
+                                        index < 2
+                                          ? _c(
+                                              "v-chip",
+                                              {
+                                                attrs: {
+                                                  color: "deep-purple accent-4",
+                                                  dark: "",
+                                                  label: "",
+                                                  small: ""
+                                                }
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                      " +
+                                                    _vm._s(text) +
+                                                    "\n                  "
+                                                )
+                                              ]
+                                            )
+                                          : index === 2
+                                          ? _c(
+                                              "span",
+                                              {
+                                                staticClass:
+                                                  "overline grey--text text--darken-3 mx-2"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  "\n                      +" +
+                                                    _vm._s(
+                                                      _vm.image.length - 2
+                                                    ) +
+                                                    " File(s)\n                    "
+                                                )
+                                              ]
+                                            )
+                                          : _vm._e()
+                                      ]
+                                    }
+                                  }
+                                ]),
+                                model: {
+                                  value: _vm.image,
+                                  callback: function($$v) {
+                                    _vm.image = $$v
+                                  },
+                                  expression: "image"
                                 }
                               })
                             ],

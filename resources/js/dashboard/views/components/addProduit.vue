@@ -45,6 +45,7 @@
                 ></v-text-field>
               </v-col>
 
+          <!--autocomplete-->
               <v-col cols="12" sm="6" md="6">
                 <v-autocomplete
                   v-model="fruits"
@@ -68,7 +69,32 @@
                   </template>
                 </v-autocomplete>
               </v-col>
+          <!--autocomplete-->
 
+            <!--upload-->
+              <v-col cols="12" sm="7" md="7">
+                <v-file-input
+                  v-model="image"
+                  color="deep-purple accent-4"
+                  counter
+                  label="File input"
+                  multiple
+                  placeholder="Select your files"
+                  prepend-icon="mdi-paperclip"
+                  outlined
+                  :show-size="1000"
+              >
+                  <template v-slot:selection="{ index, text }">
+                    <v-chip v-if="index < 2" color="deep-purple accent-4" dark label small>
+                        {{ text }}
+                    </v-chip>
+                      <span v-else-if="index === 2" class="overline grey--text text--darken-3 mx-2">
+                        +{{ image.length - 2 }} File(s)
+                      </span>
+                  </template>
+                </v-file-input>
+              </v-col> 
+            <!--upload-->
             </v-row>
           </v-container>
           <small>*Champ obligatoire</small>

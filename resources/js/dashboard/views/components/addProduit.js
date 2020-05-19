@@ -24,12 +24,12 @@ export default {
             producteurs: [],
             fruitList: [],
             search: null,
-            //valeurProducteur:{},
             price: '',
             quantity: '',
-            //snackbar: false,
+            snackbar: false,
             text: '',
-            //files: [],
+            photo: [],
+
             loading: false,
 
         }
@@ -57,7 +57,6 @@ export default {
             this.produit = product.name
             this.quantity = product.quantity
             this.fruits = product.fruits
-            //this.files = product.files
             this.price = product.price
             this.id = product.id
             _.merge(this.fruitList, this.fruits) // sert à fusionner
@@ -73,7 +72,6 @@ export default {
                 price: this.price,
                 quantity: this.quantity,
                 fruits: this.fruits,
-                //files: this.files,
                 id: this.id,
 
             }).then(response => {
@@ -83,18 +81,53 @@ export default {
                     this.$emit('addProduit', response.data)
                 }
 
-                /* this.dialog = false
+                this.dialog = false
                 this.snackbar = true
                 this.text = 'le produit à bien été ajoutée'
-                console.log('toto');  */
+                //console.log('toto'); 
             })
 
                 .catch(
                     console.log(this.produit + this.producteur)
-                )
-
-                
+                )  
         },
+
+        
+        onFileSelected(e) {
+            let files = e.target.files || e.dataTransfer.files;
+            this.createImg(files[0]);
+        },
+        
+        createImg(file) {
+            let reader = new FileReader;
+
+            reader.onload = (e) => {
+                this.photo = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        },
+
+        greet: function uploadImg() {
+
+           
+            console.log(this.photo);
+            axios.post('/api/produit/image/{id}/' + this.produit.id, {
+                photo: this.photo
+                
+            })
+                .then(function ({data}) {
+                   // console.log(data);
+                })
+                .catch(function (error) {
+                    //console.log(error);
+                });
+        },
+
+        removeImg() {
+            this.photo = "";
+        },
+
+        
 
         createFruit(val) {
             console.log(val)

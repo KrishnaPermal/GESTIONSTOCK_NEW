@@ -31,6 +31,8 @@ Route::prefix('produit')->group(function () {
     Route::post('updateProduct', 'ProduitController@createOrUpdate');
     Route::get('fruits', 'FruitsController@index');
     Route::patch('/edit', 'ProduitController@edit');
+    Route::post('/photo/{id}', 'ProduitController@addPhoto')->where('id', "[0-9]+");
+
 }); 
 
 //Route::get('users', 'UsersController@index');

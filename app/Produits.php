@@ -7,12 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Produits extends Model
 {
     protected $table = "produit";
-    protected $fillable = ['name','quantity','price','id_producteur'];
+    protected $fillable = ['name','quantity','price','id_producteur','id_photo'];
     public $timestamps = false;
 
     function producteur()
     {
         return $this->belongsTo(Producteurs::class, 'id_producteur');
+    }
+    function photo()
+    {
+        return $this->belongsToMany('App\Photos', 'id_photo');
     }
     function recompenses()
     {

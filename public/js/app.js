@@ -2228,12 +2228,11 @@ __webpack_require__.r(__webpack_exports__);
       producteurs: [],
       fruitList: [],
       search: null,
-      //valeurProducteur:{},
       price: '',
       quantity: '',
-      //snackbar: false,
+      snackbar: false,
       text: '',
-      //files: [],
+      photo: [],
       loading: false
     };
   },
@@ -2261,8 +2260,7 @@ __webpack_require__.r(__webpack_exports__);
       this.id_producteur = product.id_producteur;
       this.produit = product.name;
       this.quantity = product.quantity;
-      this.fruits = product.fruits; //this.files = product.files
-
+      this.fruits = product.fruits;
       this.price = product.price;
       this.id = product.id;
 
@@ -2280,7 +2278,6 @@ __webpack_require__.r(__webpack_exports__);
         price: this.price,
         quantity: this.quantity,
         fruits: this.fruits,
-        //files: this.files,
         id: this.id
       }).then(function (response) {
         if (response.status === 201) {
@@ -2289,24 +2286,51 @@ __webpack_require__.r(__webpack_exports__);
 
           _this2.$emit('addProduit', response.data);
         }
-        /* this.dialog = false
-        this.snackbar = true
-        this.text = 'le produit à bien été ajoutée'
-        console.log('toto');  */
 
+        _this2.dialog = false;
+        _this2.snackbar = true;
+        _this2.text = 'le produit à bien été ajoutée'; //console.log('toto'); 
       })["catch"](console.log(this.produit + this.producteur));
+    },
+    onFileSelected: function onFileSelected(e) {
+      var files = e.target.files || e.dataTransfer.files;
+      this.createImg(files[0]);
+    },
+    createImg: function createImg(file) {
+      var _this3 = this;
+
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        _this3.photo = e.target.result;
+      };
+
+      reader.readAsDataURL(file);
+    },
+    greet: function uploadImg() {
+      console.log(this.photo);
+      axios.post('/api/produit/image/{id}/' + this.produit.id, {
+        photo: this.photo
+      }).then(function (_ref2) {// console.log(data);
+
+        var data = _ref2.data;
+      })["catch"](function (error) {//console.log(error);
+      });
+    },
+    removeImg: function removeImg() {
+      this.photo = "";
     },
     createFruit: function createFruit(val) {
       console.log(val);
     },
     //Todo à modifier getProducteur (la route c'est plus api/producteur)
     getProducteur: function getProducteur() {
-      var _this3 = this;
+      var _this4 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/produit").then(function (_ref2) {
-        var data = _ref2.data;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/produit").then(function (_ref3) {
+        var data = _ref3.data;
         data.data.forEach(function (_produit) {
-          _this3.producteurs.push(_produit.producteur);
+          _this4.producteurs.push(_produit.producteur);
         });
       });
     }
@@ -21249,80 +21273,57 @@ var render = function() {
                             1
                           ),
                           _vm._v(" "),
-                          _c(
-                            "v-col",
-                            { attrs: { cols: "12", sm: "7", md: "7" } },
-                            [
-                              _c("v-file-input", {
-                                attrs: {
-                                  color: "deep-purple accent-4",
-                                  counter: "",
-                                  label: "File input",
-                                  multiple: "",
-                                  placeholder: "Select your files",
-                                  "prepend-icon": "mdi-paperclip",
-                                  outlined: "",
-                                  "show-size": 1000
-                                },
-                                scopedSlots: _vm._u([
-                                  {
-                                    key: "selection",
-                                    fn: function(ref) {
-                                      var index = ref.index
-                                      var text = ref.text
-                                      return [
-                                        index < 2
-                                          ? _c(
-                                              "v-chip",
-                                              {
-                                                attrs: {
-                                                  color: "deep-purple accent-4",
-                                                  dark: "",
-                                                  label: "",
-                                                  small: ""
-                                                }
-                                              },
-                                              [
-                                                _vm._v(
-                                                  "\n                      " +
-                                                    _vm._s(text) +
-                                                    "\n                  "
-                                                )
-                                              ]
-                                            )
-                                          : index === 2
-                                          ? _c(
-                                              "span",
-                                              {
-                                                staticClass:
-                                                  "overline grey--text text--darken-3 mx-2"
-                                              },
-                                              [
-                                                _vm._v(
-                                                  "\n                      +" +
-                                                    _vm._s(
-                                                      _vm.image.length - 2
-                                                    ) +
-                                                    " File(s)\n                    "
-                                                )
-                                              ]
-                                            )
-                                          : _vm._e()
-                                      ]
-                                    }
-                                  }
-                                ]),
-                                model: {
-                                  value: _vm.image,
-                                  callback: function($$v) {
-                                    _vm.image = $$v
-                                  },
-                                  expression: "image"
-                                }
-                              })
-                            ],
-                            1
-                          )
+                          _c("v-col", [
+                            !_vm.photo
+                              ? _c("div", [
+                                  _c("input", {
+                                    attrs: { name: "photo", type: "file" },
+                                    on: { change: _vm.onFileSelected }
+                                  })
+                                ])
+                              : _c(
+                                  "div",
+                                  [
+                                    _c("img", {
+                                      staticStyle: { width: "200px" },
+                                      attrs: { src: _vm.photo }
+                                    }),
+                                    _vm._v(" "),
+                                    _c("br"),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        attrs: { icon: "" },
+                                        on: { click: _vm.greet }
+                                      },
+                                      [_c("v-icon", [_vm._v("mdi-download")])],
+                                      1
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        attrs: { icon: "" },
+                                        on: { click: _vm.removeImg }
+                                      },
+                                      [
+                                        _c("v-icon", [
+                                          _vm._v("mdi-close-circle")
+                                        ])
+                                      ],
+                                      1
+                                    )
+                                  ],
+                                  1
+                                ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              { on: { click: _vm.onFileSelected } },
+                              [_vm._v("Upload")]
+                            )
+                          ])
                         ],
                         1
                       )

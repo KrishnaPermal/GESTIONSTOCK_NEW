@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Fruits;
-
+use App\Http\Resources\PhotosResource;
 use App\Http\Resources\ProduitResource;
+use App\PhotosModel;
 use App\Producteurs;
 use App\Produits;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -109,4 +111,45 @@ class ProduitController extends Controller
         $pivot = Produits::wherePivotIn('id_fruit', '=', '1')->get();
         return ($pivot);*/
 
+
+            /**
+     * ajouter une photo a un circuit
+     */
+    public function  addPhoto(Request $request, $id)
+    {
+
+        $img = $request->get('photo');
+
+        $exploded = explode(",", $img);
+
+        if (str::contains($exploded[0], 'gif')) {
+            $ext = 'gif';
+        } else if (str::contains($exploded[0], 'png')) {
+            $ext = 'png';
+        } else {
+            $ext = 'jpg';
+        }
+
+        $decode = base64_decode($exploded[1]);
+
+        $filename = str::random() . "." . $ext;
+
+        
+        $path = public_path() . "/storage/imgs/" . $filename;
+
+        if (file_put_contents($path, $decode)) {
+           echo "fichier téléchargé et envoyé dans: " . "/storage/imgs/" . $filename;
+
+            /* $dataPhoto = PhotosModel::find(1)
+                ->where('id', '=', $id)
+                ->first(); */
+            $dataPhoto = new PhotosModel();
+            $dataPhoto->photo = "/storage/imgs/" . $filename;
+            $dataPhoto->save();
+            
+            return $dataPhoto;
+            return new PhotosResource($dataPhoto);
+        }
+
+    }
 }

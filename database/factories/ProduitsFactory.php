@@ -9,11 +9,19 @@ use Faker\Generator as Faker;
 
 $factory->define(Produits::class, function (Faker $faker) {
 
+    $id_producteurs = Producteurs::all();
+    $id_producteur = $faker->randomElement($id_producteurs)->id;
+
+    $id_photos = PhotosModel::all();
+    $id_photo = $faker->randomElement($id_photos)->id;
+
     return [
         "name" => $faker->firstName,
-        "quantity" => $faker->numberBetween($min = 10, $max = 15),
-        "price" => $faker->numberBetween($min = 10, $max = 15),
-        "id_producteur" => factory(Producteurs::class),
-        "id_photo" => PhotosModel::all()->random()->id,
+        "quantity" => $faker->numberBetween($min = 3, $max = 800),
+        "price" => $faker->numberBetween($min = 3, $max = 100),
+        "id_producteur" => $id_producteur,
+        "id_photo" => $id_photo,
+        //"id_producteur" => factory(Producteurs::class),
+        //"id_photo" => PhotosModel::all()->random()->id,
     ];
 });

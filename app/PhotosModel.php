@@ -12,6 +12,6 @@ class PhotosModel extends Model
 
     function produit()
     {
-        return $this->hasMany('App\Photos', 'id_photo');
+        return $this->hasMany(Produits::class, 'id_photo');
     }
 }

@@ -16,7 +16,7 @@ class Produits extends Model
     }
     function photo()
     {
-        return $this->belongsToMany('App\Photos', 'id_photo');
+        return $this->belongsTo(PhotosModel::class, 'id_photo');
     }
     function recompenses()
     {

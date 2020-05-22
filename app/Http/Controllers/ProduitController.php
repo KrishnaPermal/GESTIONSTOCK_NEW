@@ -11,6 +11,7 @@ use App\Produits;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class ProduitController extends Controller
@@ -23,7 +24,7 @@ class ProduitController extends Controller
      */
     public function index()
     {
-        $produits = Produits::with(['producteur','fruits','recompenses'])->get();
+        $produits = Produits::with(['producteur','fruits','recompenses','photo'])->get();
         return ProduitResource::collection($produits);
     }
 
@@ -40,6 +41,7 @@ class ProduitController extends Controller
                 "price" => "required",
                 "quantity" => "required",
                 "id_producteur" => "required|numeric",
+                "id_photo" => "",
                 "fruits" => "",
               
             ],
@@ -47,20 +49,22 @@ class ProduitController extends Controller
                 'required' => 'Le champ :attribute est requis'
             ]
         )->validate();
-        $product = Produits::find($datasToAdd['id']);
+        $product = Produits::with(['producteur','photo','fruits'])->find($datasToAdd['id']);
         if (!$product) {
             $addToDb = new Produits;
-            Log::debug('CreateProduct');
+            
         } else {
             $addToDb = $product;
-            Log::debug('UpdateProduct');
+            
         }
+
+        if (isset($addToDb)){
 
         $addToDb->name = $datasToAdd['name'];
         $addToDb->price = $datasToAdd['price'];
         $addToDb->quantity = $datasToAdd['quantity'];
         if ($product && isset($product->producteur) && $datasToAdd['id_producteur'] != $product->producteur->id){       
-        } else {
+ 
             $producteur = Producteurs::find($datasToAdd['id_producteur']);
             if (!$producteur) {
                 return 'err';
@@ -68,43 +72,57 @@ class ProduitController extends Controller
             }
             $addToDb->producteur()->associate($producteur);
         }
+        if ($product && isset($product->photo) && $datasToAdd['id_photo'] != $product->photo->id){       
+      
+            $photo = PhotosModel::find($datasToAdd['id_photo']);
+            if (!$photo) {
+                return 'err';
+        
+            }
+            $addToDb->photo()->associate($photo);
+        }
 
+        
         $addToDb->save();
 
         
         /**Fruits*/
 
         $produitFruits = [];
-        $clientFruits = [];
+        $clientFruits = $datasToAdd['fruits'];
         $detachArray = []; //stocker les id que l'ont devra supprimer (detach)
         $attachArray = []; //stocker les id que l'ont devra ajouter (attach)
+        $idClientFruits = [];
+        
 
-        foreach ($datasToAdd['fruits'] as $_clientFruit) { //sert à recuperé les id des fruits
-            $clientFruits[] = $_clientFruit['id'];
+        foreach ($clientFruits as $_clientFruit) { //sert à recuperé les id des fruits
+            $idClientFruits[] = $_clientFruit['id'];
         }
         if ($product && isset($product->fruits)) { // le 2eme verifie si product existe et qu'il y a bien des fruits 
             foreach ($product->fruits as $_fruits) { 
                 $produitFruits[] = $_fruits->id; // puis ils leur attribue une id
             }
         }
-        foreach ($clientFruits as $_clientFruit) { // comparaison pour savoir si chacun des clientFruits as _clientFruit 
+        foreach ($idClientFruits as $_clientFruit) { // comparaison pour savoir si chacun des idClientFruits as _clientFruit 
             if (!in_array($_clientFruit, $produitFruits)) { //présent dans produitFruits
                 $attachArray[] = $_clientFruit; // ont rajoute
             }
         }
         foreach ($produitFruits as $_produitFruit) { // comparaison ici pour savoir les même choses avec produitFruits 
-            if (!in_array($_produitFruit, $produitFruits)) {
+            if (!in_array($_produitFruit, $idClientFruits)) {
                 $detachArray[] = $_produitFruit; // ont supprime
             }
         }
         if (!empty($detachArray)) {
-            $product->fruits()->detach($detachArray);
+            $addToDb->fruits()->detach($detachArray);
         }
         if (!empty($attachArray)) {
-            $product->fruits()->attach($attachArray);
-        }
+            $addToDb->fruits()->attach($attachArray);
+        } 
 
-        return new ProduitResource($addToDb);
+       
+        return new ProduitResource($addToDb); 
+    }
     }
 
     /* withPivot, if exist detach else attach
@@ -112,44 +130,4 @@ class ProduitController extends Controller
         return ($pivot);*/
 
 
-            /**
-     * ajouter une photo a un circuit
-     */
-    public function  addPhoto(Request $request, $id)
-    {
-
-        $img = $request->get('photo');
-
-        $exploded = explode(",", $img);
-
-        if (str::contains($exploded[0], 'gif')) {
-            $ext = 'gif';
-        } else if (str::contains($exploded[0], 'png')) {
-            $ext = 'png';
-        } else {
-            $ext = 'jpg';
-        }
-
-        $decode = base64_decode($exploded[1]);
-
-        $filename = str::random() . "." . $ext;
-
-        
-        $path = public_path() . "/storage/imgs/" . $filename;
-
-        if (file_put_contents($path, $decode)) {
-           echo "fichier téléchargé et envoyé dans: " . "/storage/imgs/" . $filename;
-
-            /* $dataPhoto = PhotosModel::find(1)
-                ->where('id', '=', $id)
-                ->first(); */
-            $dataPhoto = new PhotosModel();
-            $dataPhoto->photo = "/storage/imgs/" . $filename;
-            $dataPhoto->save();
-            
-            return $dataPhoto;
-            return new PhotosResource($dataPhoto);
-        }
-
-    }
 }

@@ -15,19 +15,10 @@ class Fruits extends Model
         return $this->belongsToMany('App\Users', 'users_has_commande', 'id_users', 'id_commande');
     }
 
-    function fruits()
+    function produit()
     {
-        return $this->belongsToMany(Fruits::class, 'produit_has_fruit', 'id_produit', 'id_fruit');
+        return $this->belongsToMany('App\Produits', 'produit_has_fruit', 'id_produit', 'id_fruit');
     }
 
 
-    /* function produits()
-    {
-        return $this->belongsToMany('App\Users', 'users_has_commande', 'id_users', 'id_commande');
-    } */
-
-    /* function fruits()
-    {
-        return $this->belongsToMany('App\Fruits', 'produit_has_fruit', 'id_produit', 'id_fruit');
-    } */
 }

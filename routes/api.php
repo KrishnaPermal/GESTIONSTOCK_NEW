@@ -28,10 +28,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('produit')->group(function () {
     Route::get('/', 'ProduitController@index');
-    Route::post('updateProduct', 'ProduitController@createOrUpdate');
+    Route::post('/updateProduct', 'ProduitController@createOrUpdate');
     Route::get('fruits', 'FruitsController@index');
     Route::patch('/edit', 'ProduitController@edit');
-    Route::post('/photo/{id}', 'ProduitController@addPhoto')->where('id', "[0-9]+");
+    Route::post('uploadPhoto', 'PhotosController@photoUpload')->where('id', "[0-9]+");
 
 }); 
 

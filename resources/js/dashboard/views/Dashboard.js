@@ -1,11 +1,11 @@
 import Axios from "axios";
 import addProduit from '../views/components/addProduit.vue';
-import editProduit from '../views/components/editProduit.vue';
+
 
 export default {
     components: {
         addProduit,
-        editProduit,
+       
     },
     data: () => ({
         dialog: false,
@@ -16,27 +16,33 @@ export default {
                 value: "produit"
             },
             { text: "Fruits", value: "fruits" },
-            { text: "Prix", value: "price" },
-            { text: "Quantité", value: "quantity"},
             { text: "Producteurs", value:"id_producteur" },
+            { text: "Quantité", value: "quantity"},
+            { text: "Prix", value: "price" },
+            { text: "Photo", value:"photo"},
             { text: "Actions", value:"actions" },
 
         ],
         produits: [],
-
+        
     }),
+    
     created() {
         this.initialize();
-      
+
     },
+
+    
 
     methods: {
         initialize() {
             Axios.get("/api/produit").then(({ data }) =>
                 data.data.forEach(data => {
                     this.produits.push(data);
-                })
+                    
+                }),
             );
+
         },
             
 

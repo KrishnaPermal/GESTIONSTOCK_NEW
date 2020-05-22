@@ -3,13 +3,15 @@ import Axios from "axios"
 export default {
 
     props: {
-        isModification: {
-            default: false
-        },
         product: {
             default: function () {
-                return {}
+                return {
+
+                }
             }
+        },
+        isModification: {
+            default: false
         },
     },
     data() {
@@ -28,10 +30,9 @@ export default {
             quantity: '',
             snackbar: false,
             text: '',
-            photo: [],
-
+            getphotos: [],
+            id_photo: {},
             loading: false,
-
         }
     },
     watch: {
@@ -52,18 +53,6 @@ export default {
 
     methods: {
 
-        modifierProduit(product) {
-            this.id_producteur = product.id_producteur
-            this.produit = product.name
-            this.quantity = product.quantity
-            this.fruits = product.fruits
-            this.price = product.price
-            this.id = product.id
-            _.merge(this.fruitList, this.fruits) // sert à fusionner
-            //console.log(product)
-           
-
-        },
         addDatas() {
            console.log(this.produit)
             Axios.post('/api/produit/updateProduct', {
@@ -72,61 +61,72 @@ export default {
                 price: this.price,
                 quantity: this.quantity,
                 fruits: this.fruits,
+                id_photo: this.id_photo,
                 id: this.id,
+            
 
             }).then(response => {
-                if (response.status === 201) {
+                 
                     console.log("Données enregistrée")
-                    console.log(this.product.id)
+                   
                     this.$emit('addProduit', response.data)
-                }
+                    this.dialog = false;
+                    this.dialog = false
+                    this.snackbar = true
+                    this.text = 'le produit à bien été ajoutée'
+            
+                })
+            
+             
 
-                this.dialog = false
-                this.snackbar = true
-                this.text = 'le produit à bien été ajoutée'
-                //console.log('toto'); 
-            })
-
+            
                 .catch(
                     console.log(this.produit + this.producteur)
                 )  
         },
 
-        
-        onFileSelected(e) {
-            let files = e.target.files || e.dataTransfer.files;
-            this.createImg(files[0]);
+        modifierProduit(product) {
+            this.id_producteur = this.product.id_producteur
+            this.produit = product.name
+            this.quantity = product.quantity
+            this.fruits = product.fruits
+            this.price = product.price
+            this.id = product.id
+            this.id_photo = this.product.photo
+
+            
+            _.merge(this.fruitList, this.fruits) // sert à fusionner
+            
+           
+
         },
+
         
-        createImg(file) {
+       /*  onFileChange(file) {
+            this.photo = new Photo;
             let reader = new FileReader;
 
-            reader.onload = (e) => {
-                this.photo = e.target.result;
+            reader.onload = (file) => {
+               
+                this.photo = file.target.result;
             };
             reader.readAsDataURL(file);
         },
 
-        greet: function uploadImg() {
-
-           
-            console.log(this.photo);
-            axios.post('/api/produit/image/{id}/' + this.produit.id, {
-                photo: this.photo
-                
+        uploadPhoto() {
+            
+            axios.post('/api/produit/uploadPhoto/', {
+                photo: this.photo,
+                id:this.product.id
             })
-                .then(function ({data}) {
-                   // console.log(data);
+                .then(function ({ data }) {
+                    
                 })
                 .catch(function (error) {
-                    //console.log(error);
+                    console.log(error);
                 });
         },
-
-        removeImg() {
-            this.photo = "";
-        },
-
+ */
         
 
         createFruit(val) {
@@ -139,6 +139,17 @@ export default {
             Axios.get("/api/produit").then(({ data }) => {
                 data.data.forEach(_produit => {
                     this.producteurs.push(_produit.producteur)
+                    
+                })
+            }
+            );
+        },
+
+        getPhoto() {
+            Axios.get("/api/produit").then(({ data }) => {
+                data.data.forEach(_produit => {
+                    this.getphotos.push(_produit.photo) 
+                   
                 })
             }
             );
@@ -148,6 +159,7 @@ export default {
     },
     created() {
         this.getProducteur();
+        this.getPhoto();
 
     },
 }

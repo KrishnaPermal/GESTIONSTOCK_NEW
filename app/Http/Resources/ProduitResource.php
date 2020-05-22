@@ -18,7 +18,7 @@ class ProduitResource extends JsonResource
         $producteur = new ProducteursResource($this->whenLoaded('producteur'));
         $fruits = FruitsResource::collection($this->whenLoaded('fruits'));
         $recompenses = RecompensesResource::collection($this->whenLoaded('recompenses'));
-       
+        $photos = new PhotosResource($this->whenLoaded('photo'));
 
         return [
             'id' =>$this->id,
@@ -29,6 +29,7 @@ class ProduitResource extends JsonResource
             'fruits' => $fruits,
             'recompenses' => $recompenses,
             'id_producteur'=>$this->id_producteur,
+            'photo' => $photos,
         ];
 
     }

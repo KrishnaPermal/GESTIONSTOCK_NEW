@@ -17,6 +17,7 @@ class ModifyTableProduit extends Migration
             $table->unsignedBigInteger('id_photo');
             $table->foreign('id_photo')->references('id')->on('photos');
         });
+        
     }
 
     /**
@@ -26,6 +27,13 @@ class ModifyTableProduit extends Migration
      */
     public function down()
     {
+
+        Schema::table('produit', function (Blueprint $table) {
+            Schema::disableForeignKeyConstraints();
+            $table->dropForeign(['id_photo']);
+            $table->dropIfExists('id_photo');
+        });
+        
         Schema::dropIfExists('produit');
     }
 }

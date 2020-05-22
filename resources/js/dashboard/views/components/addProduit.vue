@@ -24,14 +24,16 @@
                 required>
                 </v-text-field>
               </v-col>
+
               <v-col cols="12" sm="6" md="4">
                 <v-select
                   :items="producteurs"
                   item-value="id"
                   v-model="id_producteur"
                   item-text="name"
-                  label="Producteur*"
+                  label="Producteur"
                 ></v-select>
+
               </v-col>
               <v-col cols="12" sm="6" md="4">
                 <v-text-field color="light-blue lighten-4" v-model="price" label="Prix*" required></v-text-field>
@@ -45,7 +47,19 @@
                 ></v-text-field>
               </v-col>
 
-          <!--autocomplete-->
+            <v-col cols="12" sm="6" md="4">
+                <v-select
+                  :items="getphotos"
+                  item-value="id"
+                  v-model="id_photo"
+                  item-text="photo"
+                  label="Photo"
+                ></v-select>
+
+                
+
+              </v-col>
+          
               <v-col cols="12" sm="6" md="6">
                 <v-autocomplete
                   v-model="fruits"
@@ -68,26 +82,14 @@
                     </v-btn>
                   </template>
                 </v-autocomplete>
+         
+              
+                <!-- <v-col cols="12" sm="6" md="12">
+                  <v-file-input  v-on:change="onFileChange" ></v-file-input>
+                </v-col> -->
+
               </v-col>
-          <!--autocomplete-->
-
-          <!--upload-->
-            
-            <v-col>
-              <div v-if="!photo">
-                <input name="photo" type="file" @change="onFileSelected" />
-              </div>
-              <div v-else>
-                <img v-bind:src="photo" style="width:200px" />
-              <br />
-              <v-btn icon v-on:click="greet"><v-icon>mdi-download</v-icon></v-btn>
-              <v-btn icon v-on:click="removeImg"><v-icon>mdi-close-circle</v-icon></v-btn>
-            </div>
-
-              <button @click="onFileSelected">Upload</button>
-            </v-col>
-
-          <!--upload-->
+             
             </v-row>
           </v-container>
           <small>*Champ obligatoire</small>
@@ -99,7 +101,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <!-- <v-snackbar v-model="snackbar">{{ text }} <v-btn color="cyan" text @click="snackbar=false">Fermer</v-btn></v-snackbar> -->
+    <v-snackbar v-model="snackbar">{{ text }} <v-btn color="cyan" text @click="snackbar=false">Fermer</v-btn></v-snackbar>
   </v-row>
 </template>
 <script src="./addProduit.js">

@@ -47,6 +47,7 @@
                 ></v-text-field>
               </v-col>
 
+            <!--pour le upload-->
             <v-col cols="12" sm="6" md="4">
                 <v-select
                   :items="getphotos"
@@ -55,11 +56,10 @@
                   item-text="photo"
                   label="Photo"
                 ></v-select>
-
-                
-
               </v-col>
-          
+            <!--pour le upload-->
+
+            <!--autocomplete-->
               <v-col cols="12" sm="6" md="6">
                 <v-autocomplete
                   v-model="fruits"
@@ -82,14 +82,8 @@
                     </v-btn>
                   </template>
                 </v-autocomplete>
-         
-              
-                <!-- <v-col cols="12" sm="6" md="12">
-                  <v-file-input  v-on:change="onFileChange" ></v-file-input>
-                </v-col> -->
-
               </v-col>
-             
+             <!--autocomplete-->
             </v-row>
           </v-container>
           <small>*Champ obligatoire</small>

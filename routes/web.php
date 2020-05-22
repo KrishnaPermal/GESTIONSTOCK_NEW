@@ -20,8 +20,6 @@ use Illuminate\Support\Facades\Route;
 
 /* Route::get('/', 'AccueilController@index'); */
 
-Route::get('/public/storage/images/{filename}', 'PhotosController@index');
-
 
 Route::prefix('/')->group(function(){
     Route::get('/', 'AdminController@index');

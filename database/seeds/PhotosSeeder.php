@@ -15,22 +15,21 @@ class PhotosSeeder extends Seeder
         $array = [
             [
                 "id" => 1,
-                "photo" => "https://www.chaletmodele-comte.com/photos/produit-66-86.jpg",
-                
-                //"photo" => "/public/storage/images/test.jpeg",
+                "photo" => "/storage/images/test1.jpg",
 
             ],
             [
                 "id" => 2,
-                "photo" => "https://www.confiture-songeduverger.com/Files/122474/Img/02/mini-pots-accueil-confitures-1.png",
-               
-                //"photo" => "/public/storage/images/test2.jpeg",
+                "photo" => "/storage/images/test2.jpeg",
             ],
             [
                 "id" => 3,
-                "photo" => "https://cdn.radiofrance.fr/s3/cruiser-production/2019/03/ee5e0778-7fb7-4b1b-9dbb-23e605c35df1/870x489_img_20190305_175205.jpg",
-              
-                //"photo" => "/public/storage/images/test2.jpeg",
+                "photo" => "/storage/images/test3.jpeg",
+            ],
+
+            [
+                "id" => 4,
+                "photo" => "/storage/images/test4.png",
             ],
             
         ];

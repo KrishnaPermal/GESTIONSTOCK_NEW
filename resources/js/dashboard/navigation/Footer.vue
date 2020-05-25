@@ -1,33 +1,36 @@
-
 <template>
+  <div>
   <v-footer dark padless
   >
     <v-card
-      class="flex"
+      class="flex cyan darken-2 white--text text-center"
       flat
       tile
     >
-      <v-card-title class=" py-5 cyan lighten-2 text-center">
-        <strong class="subheading">Connectez-vous avec nous sur les réseaux sociaux!</strong>
+    <v-divider></v-divider>
 
-        <v-spacer></v-spacer>
-
+   
+      <v-card-text class=" py-0 flex grey darken-3">
         <v-btn
           v-for="icon in icons"
           :key="icon"
-          class="mx-4"
-          dark
+          class="mx-2 white--text"
           icon
         >
-          <v-icon size="25px">{{ icon }}</v-icon>
+          <v-icon size="24px">{{ icon }}</v-icon>
         </v-btn>
-      </v-card-title>
+      </v-card-text>
 
-      <v-card-text class="py-3 white--text text-center">
+      <v-divider></v-divider>
+
+
+      <v-card-text class="py-2 flex white--text text-center">
         {{ new Date().getFullYear() }} — <strong>© S.N.INFORMATIQUE : By KRISHNA</strong>
       </v-card-text>
+      
     </v-card>
   </v-footer>
+  </div>
 </template>
 
 <script>
@@ -37,6 +40,7 @@
         'mdi-facebook',
         'mdi-instagram',
       ],
+       
     }),
   }
 </script>

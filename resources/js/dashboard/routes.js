@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Dashboard from './views/Dashboard.vue';
 import Home from "./views/Home.vue";
+import Dashboard from './views/Dashboard.vue';
+import Card from "./views/Card.vue";
 //import Login from "./login/Login.vue";
 //import { Role } from './_helpers/role';
 //import { authenticationService } from '../dashboard/_services/authentication.service'
@@ -14,6 +15,11 @@ const router = new VueRouter({
             path: '/',
             name: 'home',
             component: Home,
+        },
+        {
+            path: '/confitures',
+            name: 'confitures',
+            component: Card,
         },
 
         /* {

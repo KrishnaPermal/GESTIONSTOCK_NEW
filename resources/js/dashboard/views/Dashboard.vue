@@ -23,14 +23,13 @@
       </template>
       <template v-slot:item.produit="{ item }">{{item.name}}</template>
       <template v-slot:item.fruits="{ item }">{{displayFruits(item.fruits)}}</template>
-      <!--<template v-slot:item.recompenses="{ item }">{{displayRecompenses(item.recompenses)}}</template>-->
       <template v-slot:item.prix="{ item }">{{item.price}}</template>
       <template v-slot:item.quantite="{ item }">{{item.quantity}}</template>
       <template v-slot:item.id_producteur="{ item }">{{item.name}}</template>
       
      <template v-slot:item.photo="{ item }">
        <!--  <v-img :src="'/public/storage/images'+item.id_photo" aspect-ratio="1.9"></v-img> -->
-        <v-img :src="item.photo.photo" aspect-ratio="1.5"></v-img> 
+        <v-img :src="item.photo.photo" aspect-ratio="1.7"></v-img> 
       </template> 
 
       <template v-slot:item.actions="{ item }"><addProduit :product="item" :isModification='true'></addProduit></template>

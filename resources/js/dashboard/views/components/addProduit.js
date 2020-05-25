@@ -100,9 +100,8 @@ export default {
            
 
         },
-
         
-       /*  onFileChange(file) {
+         /*  onFileChange(file) {
             this.photo = new Photo;
             let reader = new FileReader;
 
@@ -128,6 +127,7 @@ export default {
         },
  */
         
+
 
         createFruit(val) {
             console.log(val)

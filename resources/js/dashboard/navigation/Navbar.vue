@@ -2,7 +2,7 @@
   <div>
 
 <!--  Navbar -->
-    <v-app-bar color="cyan lighten-2" dense dark>
+    <v-app-bar color="cyan darken-1" dense dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
      <v-toolbar-title>
           <h1>CONFIPEI</h1>
@@ -14,11 +14,11 @@
 
  <!-- Navigation vertical -->
     <v-navigation-drawer v-model="drawer" absolute temporary>
-     <v-img :aspect-ratio="16/9" src="https://www.universite-rose-croix.org/wp-content/uploads/2018/12/video-informatique-et-spiritualit%C3%A9.jpg"></v-img>
+     <v-img :aspect-ratio="16/9" src="https://www.mycuisine.com/wp-content/uploads/2017/06/pots_de_confiture-768x461.jpg"></v-img>
       <v-list-item>
         <v-list-item-content color="black">
           <v-list-item-title class="font-italic">CONFIPEI</v-list-item-title>
-          <v-list-item-subtitle class="font-italic">BIENVENUE SUR NOTRE PAGE</v-list-item-subtitle>
+          <v-list-item-subtitle class="font-italic">BIENVENUE SUR NOTRE SITE</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
 
@@ -50,6 +50,21 @@
             </v-list-item-title>
           </v-list-item-content>
          </v-list-item>
+
+<v-divider></v-divider>
+
+         <v-list-item link>
+          <v-list-item-icon>
+            <v-icon>mdi-shopping</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title class="font-weight-bold">
+              <router-link :to="{name:'confitures'}">Confitures</router-link>
+            </v-list-item-title>
+          </v-list-item-content>
+         </v-list-item>
+
       </v-list>
     </v-navigation-drawer>
 <!-- Navigation vertical -->
@@ -65,8 +80,10 @@ export default {
       items: [
         { title: "Accueil", icon: "mdi-home" },
         { title: "Dashboard", icon: "mdi-view-dashboard" },
+        { title: "Confitures", icon: "mdi-shopping" },
       ]
     };
   }
 };
 </script>
+

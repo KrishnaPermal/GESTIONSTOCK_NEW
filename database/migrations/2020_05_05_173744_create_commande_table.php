@@ -25,6 +25,8 @@ class CreateCommandeTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('commande');
+        Schema::enableForeignKeyConstraints();
     }
 }

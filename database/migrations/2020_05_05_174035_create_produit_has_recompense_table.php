@@ -30,13 +30,8 @@ class CreateProduitHasRecompenseTable extends Migration
      */
     public function down()
     {
-        Schema::table('produit_has_recompense', function (Blueprint $table) {
-            $table->dropForeign(['id_produit']);
-            $table->dropIfExists('id_produit');
-            $table->dropForeign(['id_recompense']);
-            $table->dropIfExists('id_recompense');
-        });
-
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('produit_has_recompense');
+        Schema::enableForeignKeyConstraints();
     }
 }

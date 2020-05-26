@@ -30,8 +30,7 @@ export default {
             quantity: '',
             snackbar: false,
             text: '',
-            getphotos: [],
-            id_photo: {},
+            photo: '',
             loading: false,
         }
     },
@@ -50,30 +49,29 @@ export default {
         },
     },
 
-
+    
     methods: {
 
         addDatas() {
-           console.log(this.produit)
+           //console.log(this.produit)
             Axios.post('/api/produit/updateProduct', {
                 name: this.produit,
                 id_producteur: this.id_producteur,
                 price: this.price,
                 quantity: this.quantity,
                 fruits: this.fruits,
-                id_photo: this.id_photo,
+                photo: this.photo,
                 id: this.id,
             
 
             }).then(response => {
-                 
-                    console.log("Données enregistrée")
-                   
-                    this.$emit('addProduit', response.data)
-                    this.dialog = false;
-                    this.dialog = false
-                    this.snackbar = true
-                    this.text = 'le produit à bien été ajoutée'
+                 console.log(response)
+                    // console.log("Données enregistrée")
+                    // this.$emit('addProduit', response.data)
+                    // this.dialog = false;
+                    // this.dialog = false
+                    // this.snackbar = true
+                    // this.text = 'le produit à bien été ajoutée'
             
                 })
             
@@ -81,7 +79,6 @@ export default {
 
             
                 .catch(
-                    console.log(this.produit + this.producteur)
                 )  
         },
 
@@ -92,42 +89,21 @@ export default {
             this.fruits = product.fruits
             this.price = product.price
             this.id = product.id
-            this.id_photo = this.product.photo
+            this.photo = this.product.photo
 
-            
-            _.merge(this.fruitList, this.fruits) // sert à fusionner
-            
-           
+
+            _.merge(this.fruits, this.fruitList) // sert à fusionner
 
         },
         
-         /*  onFileChange(file) {
-            this.photo = new Photo;
+        onFileChange(file) {
             let reader = new FileReader;
 
             reader.onload = (file) => {
-               
                 this.photo = file.target.result;
             };
             reader.readAsDataURL(file);
         },
-
-        uploadPhoto() {
-            
-            axios.post('/api/produit/uploadPhoto/', {
-                photo: this.photo,
-                id:this.product.id
-            })
-                .then(function ({ data }) {
-                    
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        },
- */
-        
-
 
         createFruit(val) {
             console.log(val)
@@ -145,21 +121,8 @@ export default {
             );
         },
 
-        getPhoto() {
-            Axios.get("/api/produit").then(({ data }) => {
-                data.data.forEach(_produit => {
-                    this.getphotos.push(_produit.photo) 
-                   
-                })
-            }
-            );
-        },
-
-
     },
     created() {
         this.getProducteur();
-        this.getPhoto();
-
     },
 }

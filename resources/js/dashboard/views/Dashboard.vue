@@ -29,7 +29,7 @@
       
      <template v-slot:item.photo="{ item }">
        <!--  <v-img :src="'/public/storage/images'+item.id_photo" aspect-ratio="1.9"></v-img> -->
-        <v-img :src="item.photo.photo" aspect-ratio="1.7"></v-img> 
+        <v-img :src="item.photo" aspect-ratio="1.7"></v-img> 
       </template> 
 
       <template v-slot:item.actions="{ item }"><addProduit :product="item" :isModification='true'></addProduit></template>

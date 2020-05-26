@@ -18,7 +18,7 @@ export default {
         search: function (val) {
             if (val && val.length > 2) { //Si la valeur plus grand que 2 alors il fait ce qu'il a dedans;
                 this.loading = true
-                Axios.get('/api/Fruits', { params: { query: val } })
+                Axios.get('/api/produit/fruits', { params: { query: val } })
                     .then(({ data }) => {
                         this.loading = false
 

@@ -31,13 +31,8 @@ class CreateProduitHasFruitTable extends Migration
     public function down()
     {
 
-        Schema::table('produit_has_fruit', function (Blueprint $table) {
-            $table->dropForeign(['id_fruit']);
-            $table->dropIfExists('id_fruit');
-            $table->dropForeign(['id_produit']);
-            $table->dropIfExists('id_produit');
-        });
-
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('produit_has_fruit');
+        Schema::enableForeignKeyConstraints();
     }
 }

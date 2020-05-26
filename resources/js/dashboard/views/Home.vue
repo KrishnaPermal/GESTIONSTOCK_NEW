@@ -6,17 +6,17 @@
     </v-card-title>
     
 
-<v-template>
- <v-carousel>
-    <v-carousel-item
-      v-for="(produit,i) in produitsDisplay"
-      :key="i"
-      :src="produit.photo.photo" :aspect-ratio="1.7"
-      reverse-transition="fade-transition"
-      transition="fade-transition"
-    ></v-carousel-item>
-  </v-carousel>
-</v-template>
+    <template>
+    <v-carousel>
+        <v-carousel-item
+        v-for="(produit,i) in produitsDisplay"
+        :key="i"
+        :src="produit.photo.photo" :aspect-ratio="1.7"
+        reverse-transition="fade-transition"
+        transition="fade-transition"
+        ></v-carousel-item>
+    </v-carousel>
+    </template>
 
 </div>
 </template>

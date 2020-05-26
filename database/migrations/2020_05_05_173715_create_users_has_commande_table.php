@@ -32,14 +32,8 @@ class CreateUsersHasCommandeTable extends Migration
     public function down()
     {
 
-        Schema::table('users_has_commande', function (Blueprint $table) {
-            $table->dropForeign(['id_users']);
-            $table->dropIfExists('id_users');
-            $table->dropForeign(['id_commande']);
-            $table->dropIfExists('id_commande');
-        });
-
-
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('users_has_commande');
+        Schema::enableForeignKeyConstraints();
     }
 }

@@ -24,7 +24,7 @@ class ProduitController extends Controller
      */
     public function index()
     {
-        $produits = Produits::with(['producteur','fruits','recompenses','photo'])->get();
+        $produits = Produits::with(['producteur','fruits','recompenses'])->get();
         return ProduitResource::collection($produits);
     }
 
@@ -41,7 +41,6 @@ class ProduitController extends Controller
                 "price" => "required",
                 "quantity" => "required",
                 "id_producteur" => "required|numeric",
-                "id_photo" => "",
                 "fruits" => "",
               
             ],
@@ -49,7 +48,7 @@ class ProduitController extends Controller
                 'required' => 'Le champ :attribute est requis'
             ]
         )->validate();
-        $product = Produits::with(['producteur','photo','fruits'])->find($datasToAdd['id']);
+        $product = Produits::with(['producteur','fruits'])->find($datasToAdd['id']);
         if (!$product) {
             $addToDb = new Produits;
             
@@ -57,33 +56,47 @@ class ProduitController extends Controller
             $addToDb = $product;
             
         }
-
         if (isset($addToDb)){
 
         $addToDb->name = $datasToAdd['name'];
         $addToDb->price = $datasToAdd['price'];
         $addToDb->quantity = $datasToAdd['quantity'];
-        if ($product && isset($product->producteur) && $datasToAdd['id_producteur'] != $product->producteur->id){       
  
+        
             $producteur = Producteurs::find($datasToAdd['id_producteur']);
             if (!$producteur) {
                 return 'err';
         
             }
             $addToDb->producteur()->associate($producteur);
-        }
-        if ($product && isset($product->photo) && $datasToAdd['id_photo'] != $product->photo->id){       
-      
-            $photo = PhotosModel::find($datasToAdd['id_photo']);
-            if (!$photo) {
-                return 'err';
-        
+
+            if (isset($addToDb->photo)) { //Si ceci est vrai, alors on save dans la base
+                $addToDb->save();
+            } else {
+                $img = $request->get('photo'); // Sinon envoie une requête
+                
+                $exploded = explode(",", $img); // explode retourne une chaîne de caractère
+                
+                if (str::contains($exploded[0], 'gif')) { // si la chaîne donnée contient la valeur donnée 'gif'
+                    $ext = 'gif'; // exter
+                } else if (str::contains($exploded[0], 'png')) { // sinon si 'png'
+                    $ext = 'png'; 
+                } else {
+                    $ext = 'jpeg'; // sinon 'jpeg'
+                }
+
+                
+                $decode = base64_decode($exploded[1]); // ici on va encodée sous forme de chaîne de caractère
+                
+                $filename = str::random() . "." . $ext; // génère une chaîne aléatoire
+                $path = public_path() . "/storage/images/" . $filename; // renvoie le chemin d'accès complet au répertoire public
+                if (file_put_contents($path, $decode)) { // si Écrit le résultat dans le fichier
+                    $addToDb->photo = "/storage/images/" . $filename; // ajout photo dans /storage/images/
+                }
             }
-            $addToDb->photo()->associate($photo);
-        }
 
         
-        $addToDb->save();
+        $addToDb->save(); // on save
 
         
         /**Fruits*/

@@ -22,7 +22,7 @@
     "dependencies": {
         "rxjs": "^6.5.5",
         "vue": "^2.6.11",
-        "vue-router": "^3.1.6",
-        "vuetify": "^2.2.27"
+        "vue-router": "^3.2.0",
+        "vuetify": "^2.2.29"
     }
 }

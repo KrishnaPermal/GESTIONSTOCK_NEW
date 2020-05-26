@@ -2,10 +2,12 @@
   <v-row>
     <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on }">
-        <v-btn color="light-blue lighten-3" dark small v-on="on">
-          <v-icon v-if="!isModification">mdi-plus</v-icon>
-          <v-icon v-if="isModification" @click="modifierProduit(product)">mdi-pencil</v-icon>
+        <v-btn v-if="!isModification" color="light-blue lighten-3" dark small v-on="on">
+          <v-icon>mdi-plus</v-icon>
         </v-btn>
+        <v-btn v-if="isModification" color="light-blue lighten-3" dark small v-on="on">
+         <v-icon @click="modifierProduit(product)" left>mdi-pencil</v-icon>
+         </v-btn>
       </template>
 
       <v-card>
@@ -47,18 +49,6 @@
                 ></v-text-field>
               </v-col>
 
-            <!--pour le upload-->
-            <v-col cols="12" sm="6" md="4">
-                <v-select
-                  :items="getphotos"
-                  item-value="id"
-                  v-model="id_photo"
-                  item-text="photo"
-                  label="Photo"
-                ></v-select>
-              </v-col>
-            <!--pour le upload-->
-
             <!--autocomplete-->
               <v-col cols="12" sm="6" md="6">
                 <v-autocomplete
@@ -83,6 +73,10 @@
                   </template>
                 </v-autocomplete>
               </v-col>
+              <v-col cols="12" sm="6" md="12">
+                  <v-file-input v-on:change="onFileChange"></v-file-input>
+                </v-col>
+                <v-img :src="produit.photo" aspect-ratio="1.9"></v-img>
              <!--autocomplete-->
             </v-row>
           </v-container>

@@ -28,6 +28,8 @@ class CreateRecompenseTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('recompense');
+        Schema::enableForeignKeyConstraints();
     }
 }

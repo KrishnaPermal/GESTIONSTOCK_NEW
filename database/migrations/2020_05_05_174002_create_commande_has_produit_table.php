@@ -35,13 +35,9 @@ class CreateCommandeHasProduitTable extends Migration
      */
     public function down()
     {
-        Schema::table('commande_has_produit', function (Blueprint $table) {
-            $table->dropForeign(['id_commande']);
-            $table->dropIfExists('id_commande');
-            $table->dropForeign(['id_produit']);
-            $table->dropIfExists('id_produit');
-        });
-        
+       
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('commande_has_produit');
+        Schema::enableForeignKeyConstraints();
     }
 }

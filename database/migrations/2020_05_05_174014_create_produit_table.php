@@ -18,6 +18,7 @@ class CreateProduitTable extends Migration
             $table->string('name',255);
             $table->string('quantity',255);
             $table->string('price',255);
+            $table->string('photo');
         });
 
         Schema::table('produit', function (Blueprint $table) {

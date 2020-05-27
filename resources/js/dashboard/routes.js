@@ -3,9 +3,9 @@ import VueRouter from 'vue-router';
 import Home from "./views/Home.vue";
 import Dashboard from './views/Dashboard.vue';
 import Card from "./views/Card.vue";
-//import Login from "./login/Login.vue";
-//import { Role } from './_helpers/role';
-//import { authenticationService } from '../dashboard/_services/authentication.service'
+import Login from "./login/Login.vue";
+import { Role } from './_helpers/role';
+import { authenticationService } from '../dashboard/_services/authentication.service'
 
 Vue.use(VueRouter);
 
@@ -22,24 +22,24 @@ const router = new VueRouter({
             component: Card,
         },
 
-        /* {
+         {
             path: '/login',
             name: 'login',
             component: Login,
-            //meta: { authorize: [] }
-        }, */
+       
+        }, 
 
         {
             path: '/dashboard',
             name: 'dashboard',
             component: Dashboard,
-            //meta: { authorize: [Role.Admin] }
+            meta: { authorize: [Role.Admin] }
         },
     ]
 })
 
 
-/* router.beforeEach((to, from, next) => {
+router.beforeEach((to, from, next) => {
 
     // redirect to login page if not logged in and trying to access a restricted page
     const { authorize } = to.meta;
@@ -62,7 +62,7 @@ const router = new VueRouter({
     }
 
     return next();
-}); */
+});
 
 
 

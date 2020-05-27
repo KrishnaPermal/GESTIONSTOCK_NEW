@@ -1,5 +1,5 @@
 import Axios from "axios"
-
+import {apiServices} from '../../_services/api.services'
 export default {
 
     props: {
@@ -37,7 +37,7 @@ export default {
     watch: {
         search: function (val) {
             if (val && val.length > 2) {
-                Axios.get('/api/produit/fruits', { params: { query: val } })
+                apiServices.get('/api/fruits',  { query: val } )
                     .then(({ data }) => {
                         this.loading = false
 
@@ -54,7 +54,7 @@ export default {
 
         addDatas() {
            //console.log(this.produit)
-            Axios.post('/api/produit/updateProduct', {
+            apiServices.post('/api/produits/', {
                 name: this.produit,
                 id_producteur: this.id_producteur,
                 price: this.price,
@@ -65,13 +65,13 @@ export default {
             
 
             }).then(response => {
-                 console.log(response)
-                    // console.log("Données enregistrée")
-                    // this.$emit('addProduit', response.data)
-                    // this.dialog = false;
-                    // this.dialog = false
-                    // this.snackbar = true
-                    // this.text = 'le produit à bien été ajoutée'
+                 
+                    console.log("Données enregistrée")
+                    this.$emit('addProduit', response.data)
+                    this.dialog = false;
+                    this.dialog = false
+                    this.snackbar = true
+                    this.text = 'le produit à bien été ajoutée'
             
                 })
             
@@ -112,7 +112,7 @@ export default {
 
         //Todo à modifier getProducteur (la route c'est plus api/producteur)
         getProducteur() {
-            Axios.get("/api/produit").then(({ data }) => {
+            apiServices.get("/api/produits").then(({ data }) => {
                 data.data.forEach(_produit => {
                     this.producteurs.push(_produit.producteur)
                     

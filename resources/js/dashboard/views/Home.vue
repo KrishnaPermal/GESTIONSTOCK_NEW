@@ -36,7 +36,7 @@ export default {
 
     methods: {
         produitDisplay() {
-            Axios.get('/api/produit')
+            Axios.get('/api/produits')
                 .then(({ data }) => {
                     data.data.forEach(_produit => {
                         this.produits.push(_produit)

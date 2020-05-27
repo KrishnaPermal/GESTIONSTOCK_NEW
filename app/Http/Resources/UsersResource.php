@@ -30,7 +30,7 @@ class UsersResource extends JsonResource
                 'name' => $this->name,
                 'email' => $this->email,
                 'token' => $this->token,
-                'id_role' => $role,     
+                'role' => $role,     
             ];
         } else {
             

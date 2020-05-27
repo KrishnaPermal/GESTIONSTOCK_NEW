@@ -18,7 +18,7 @@ export default {
         search: function (val) {
             if (val && val.length > 2) { //Si la valeur plus grand que 2 alors il fait ce qu'il a dedans;
                 this.loading = true
-                Axios.get('/api/produit/fruits', { params: { query: val } })
+                Axios.get('/api/produits/fruits', { params: { query: val } })
                     .then(({ data }) => {
                         this.loading = false
 
@@ -33,7 +33,7 @@ export default {
 
     methods: {
         produitDisplay() {
-            Axios.get('/api/produit')
+            Axios.get('/api/produits')
                 .then(({ data }) => {
                     data.data.forEach(_data => {
                         this.produits.push(_data)

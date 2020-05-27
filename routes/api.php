@@ -20,20 +20,22 @@ use Illuminate\Support\Facades\Route;
 
 /*LOGIN/LOGOUT*/
 
-//Route::post('/login','AuthController@login');
-//Route::get('/logout','AuthController@logout')->middleware('auth:api');
+Route::post('/login','AuthController@login');
+Route::get('/logout','AuthController@logout')->middleware('auth:api');
 
-/*LOGIN*/
+/*LOGIN/LOGOUT*/
 
-
-Route::prefix('produit')->group(function () {
-    Route::get('/', 'ProduitController@index');
-    Route::post('/updateProduct', 'ProduitController@createOrUpdate');
-    Route::get('fruits', 'FruitsController@index');
-    Route::patch('/edit', 'ProduitController@edit');
-    Route::post('uploadPhoto', 'PhotosController@photoUpload')->where('id', "[0-9]+");
-
+// Sécurisation de la route
+Route::middleware(['auth:api','roles:Admin|Producteur'])->prefix('produits')->group(function () {
+    Route::post('/', 'ProduitController@createOrUpdate'); 
 }); 
+
+
+Route::get('fruits', 'FruitsController@index');
+
+Route::get('/', 'ProduitController@index');
+
+
 
 //Route::get('Fruits', 'FruitsController@index');
 

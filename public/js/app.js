@@ -2399,13 +2399,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _services_api_services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../_services/api.services */ "./resources/js/dashboard/_services/api.services.js");
-/* harmony import */ var _views_components_addProduit_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../views/components/addProduit.vue */ "./resources/js/dashboard/views/components/addProduit.vue");
+/* harmony import */ var _components_addProduit_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/addProduit.vue */ "./resources/js/dashboard/views/components/addProduit.vue");
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    addProduit: _views_components_addProduit_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    addProduit: _components_addProduit_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
@@ -2483,6 +2483,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _services_api_services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../_services/api.services */ "./resources/js/dashboard/_services/api.services.js");
+/* harmony import */ var _services_authentication_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../_services/authentication.service */ "./resources/js/dashboard/_services/authentication.service.js");
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2513,7 +2515,8 @@ __webpack_require__.r(__webpack_exports__);
       snackbar: false,
       text: '',
       photo: '',
-      loading: false
+      loading: false,
+      isProducteur: _services_authentication_service__WEBPACK_IMPORTED_MODULE_2__["authenticationService"].isProducteur()
     };
   },
   watch: {
@@ -2597,6 +2600,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.getProducteur();
+
+    if (this.isProducteur) {
+      console.log(this.isProducteur);
+      console.log('PRODUCTok');
+    } else {
+      console.log('ADMINOK');
+    }
   }
 });
 
@@ -2614,13 +2624,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _services_api_services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../_services/api.services */ "./resources/js/dashboard/_services/api.services.js");
-/* harmony import */ var _addProduit_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./addProduit.vue */ "./resources/js/dashboard/views/components/addProduit.vue");
+/* harmony import */ var _services_authentication_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../_services/authentication.service */ "./resources/js/dashboard/_services/authentication.service.js");
+/* harmony import */ var _addProduit_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./addProduit.vue */ "./resources/js/dashboard/views/components/addProduit.vue");
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    addProduit: _addProduit_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    addProduit: _addProduit_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   data: function data() {
     return {
@@ -85663,8 +85675,11 @@ function headers() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "authenticationService", function() { return authenticationService; });
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
-/* harmony import */ var _helpers_request_options__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../_helpers/request-options */ "./resources/js/dashboard/_helpers/request-options.js");
-/* harmony import */ var _helpers_handle_response__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../_helpers/handle-response */ "./resources/js/dashboard/_helpers/handle-response.js");
+/* harmony import */ var _helpers_role__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../_helpers/role */ "./resources/js/dashboard/_helpers/role.js");
+/* harmony import */ var _helpers_request_options__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../_helpers/request-options */ "./resources/js/dashboard/_helpers/request-options.js");
+/* harmony import */ var _helpers_handle_response__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../_helpers/handle-response */ "./resources/js/dashboard/_helpers/handle-response.js");
+ // IMPORTATION DES ROLES DEPUIS Role js
+
 
 
 
@@ -85673,6 +85688,8 @@ var authenticationService = {
   connected: connected,
   login: login,
   logout: logout,
+  isAdmin: isAdmin,
+  isProducteur: isProducteur,
   currentUser: currentUserSubject.asObservable(),
 
   get currentUserValue() {
@@ -85687,7 +85704,7 @@ function connected() {
 }
 
 function login(user) {
-  return fetch("/api/login", _helpers_request_options__WEBPACK_IMPORTED_MODULE_1__["requestOptions"].post(user)).then(_helpers_handle_response__WEBPACK_IMPORTED_MODULE_2__["handleResponse"]).then(function (_ref) {
+  return fetch("/api/login", _helpers_request_options__WEBPACK_IMPORTED_MODULE_2__["requestOptions"].post(user)).then(_helpers_handle_response__WEBPACK_IMPORTED_MODULE_3__["handleResponse"]).then(function (_ref) {
     var data = _ref.data;
     // store user details and jwt token in local storage to keep user logged in between page refreshes
     localStorage.setItem("currentUser", JSON.stringify(data));
@@ -85700,6 +85717,29 @@ function logout() {
   // remove user from local storage to log user out
   localStorage.removeItem("currentUser");
   currentUserSubject.next(null);
+} // ici recherche le role du currentUser et ont recup son user role.name(ex: role.producteur)
+
+
+function role() {
+  var user = localStorage.getItem("currentUser");
+
+  if (!user) {
+    return null;
+  }
+
+  user = JSON.parse(user);
+  return user.role.name;
+} //Function qui vérifie le role retourné dans le currentUser appartient bien aux roles dans role.js
+
+
+function isAdmin() {
+  console.log(role());
+  return role() === _helpers_role__WEBPACK_IMPORTED_MODULE_1__["Role"].Admin;
+}
+
+function isProducteur() {
+  console.log(role());
+  return role() === _helpers_role__WEBPACK_IMPORTED_MODULE_1__["Role"].Producteur;
 }
 
 /***/ }),
@@ -86538,8 +86578,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/krishna/Projet/ConfiPei/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/krishna/Projet/ConfiPei/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/krishna/Projet/ConfiPei Moi/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/krishna/Projet/ConfiPei Moi/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

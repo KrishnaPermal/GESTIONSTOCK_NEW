@@ -1,5 +1,6 @@
 import Axios from "axios"
 import {apiServices} from '../../_services/api.services'
+import { authenticationService } from '../../_services/authentication.service';
 export default {
 
     props: {
@@ -32,6 +33,7 @@ export default {
             text: '',
             photo: '',
             loading: false,
+            isProducteur: authenticationService.isProducteur(),
         }
     },
     watch: {
@@ -124,5 +126,12 @@ export default {
     },
     created() {
         this.getProducteur();
+
+        if(this.isProducteur){
+            console.log(this.isProducteur)
+            console.log('PRODUCTok')
+        }else{
+            console.log('ADMINOK')
+        }
     },
 }

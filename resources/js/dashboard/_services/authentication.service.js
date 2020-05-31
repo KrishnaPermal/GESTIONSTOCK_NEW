@@ -1,5 +1,8 @@
 import { BehaviorSubject } from "rxjs";
 
+// IMPORTATION DES ROLES DEPUIS Role js
+import { Role } from '../_helpers/role';
+
 import { requestOptions } from "../_helpers/request-options";
 import { handleResponse } from "../_helpers/handle-response";
 
@@ -12,6 +15,11 @@ export const authenticationService = {
     connected,
     login,
     logout,
+    isAdmin,
+    isProducteur,
+
+
+
     currentUser: currentUserSubject.asObservable(),
     get currentUserValue() {
         return currentUserSubject.value;
@@ -43,3 +51,29 @@ function logout() {
     localStorage.removeItem("currentUser");
     currentUserSubject.next(null);
 }
+
+
+
+// ici recherche le role du currentUser et ont recup son user role.name(ex: role.producteur)
+function role() {
+    let user = localStorage.getItem("currentUser");
+    if (!user) {
+        return null
+    }
+    user = JSON.parse(user)
+    return user.role.name
+}
+
+
+//Function qui vérifie le role retourné dans le currentUser appartient bien aux roles dans role.js
+
+function isAdmin() {
+    console.log(role())
+    return role() === Role.Admin
+}
+
+function isProducteur() {
+    console.log(role())
+    return role() === Role.Producteur
+}
+

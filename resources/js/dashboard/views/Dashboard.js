@@ -1,11 +1,11 @@
 import Axios from "axios";
-import {apiServices} from '../_services/api.services'
-import addProduit from '../views/components/addProduit.vue';
+import {apiServices} from '../_services/api.services';
+import addProduit from './components/addProduit.vue';
 
 
 export default {
     components: {
-        addProduit,
+        addProduit, 
        
     },
     data: () => ({
@@ -37,6 +37,7 @@ export default {
 
     methods: {
         initialize() {
+     
             apiServices.get("/api/produits").then(({ data }) =>
                 data.data.forEach(data => {
                     this.produits.push(data);

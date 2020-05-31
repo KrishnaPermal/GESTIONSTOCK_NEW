@@ -44,4 +44,8 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class, 'id_role');
     }
     
+    public function producteur()
+    {
+        return $this->hasOne(Producteurs::class, 'id_users');
+    }
 }

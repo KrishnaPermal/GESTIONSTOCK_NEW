@@ -34,7 +34,8 @@ class UsersResource extends JsonResource
             ];
         } else {
             
-            return 'toto';
+            return parent::toArray($request);
+            //return 'toto';
         }
     }
 }

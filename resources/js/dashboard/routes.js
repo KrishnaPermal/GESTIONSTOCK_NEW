@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Home from "./views/Home.vue";
 import Dashboard from './views/Dashboard.vue';
 import Card from "./views/Card.vue";
+import dashboardProducteur from './views/dashboardProducteur.vue';
 import Login from "./login/Login.vue";
 import { Role } from './_helpers/role';
 import { authenticationService } from '../dashboard/_services/authentication.service'
@@ -34,6 +35,13 @@ const router = new VueRouter({
             name: 'dashboard',
             component: Dashboard,
             meta: { authorize: [Role.Admin] }
+        },
+
+        {
+            path: '/dashboardProducteur',
+            name: 'producteur',
+            component: dashboardProducteur,
+            meta: { authorize: [Role.Producteur] }
         },
     ]
 })

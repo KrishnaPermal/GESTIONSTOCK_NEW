@@ -12,7 +12,7 @@ class Recompenses extends Model
 
     function users()
     {
-        return $this->belongsToMany('App\Users', 'users_has_commande', 'id_users', 'id_commande');
+        return $this->belongsToMany('App\User', 'users_has_commande', 'id_users', 'id_commande');
     }
 
     function recompenses()

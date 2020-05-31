@@ -33,7 +33,7 @@ Route::middleware(['auth:api','roles:Admin|Producteur'])->prefix('produits')->gr
 
 Route::get('fruits', 'FruitsController@index');
 
-Route::get('/', 'ProduitController@index');
+Route::get('produits', 'ProduitController@index');
 
 
 

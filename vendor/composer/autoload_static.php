@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit2982aeef2e4ee9463e9d4f88bc9899bf
+class ComposerStaticInit97ee208f59ba1edf0321e29771ff20ce
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -551,25 +551,25 @@ class ComposerStaticInit2982aeef2e4ee9463e9d4f88bc9899bf
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\FruitsController' => __DIR__ . '/../..' . '/app/Http/Controllers/FruitsController.php',
         'App\\Http\\Controllers\\PhotosController' => __DIR__ . '/../..' . '/app/Http/Controllers/PhotosController.php',
+        'App\\Http\\Controllers\\ProducteursController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProducteursController.php',
         'App\\Http\\Controllers\\ProduitController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProduitController.php',
         'App\\Http\\Controllers\\UsersController' => __DIR__ . '/../..' . '/app/Http/Controllers/UsersController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
+        'App\\Http\\Middleware\\CheckRoles' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckRoles.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Resources\\FruitsResource' => __DIR__ . '/../..' . '/app/Http/Resources/FruitsResource.php',
-        'App\\Http\\Resources\\PhotosResource' => __DIR__ . '/../..' . '/app/Http/Resources/PhotosResource.php',
         'App\\Http\\Resources\\ProducteursResource' => __DIR__ . '/../..' . '/app/Http/Resources/ProducteursResource.php',
         'App\\Http\\Resources\\ProduitResource' => __DIR__ . '/../..' . '/app/Http/Resources/ProduitResource.php',
         'App\\Http\\Resources\\RecompensesResource' => __DIR__ . '/../..' . '/app/Http/Resources/RecompensesResource.php',
         'App\\Http\\Resources\\RoleResource' => __DIR__ . '/../..' . '/app/Http/Resources/RoleResource.php',
         'App\\Http\\Resources\\UsersResource' => __DIR__ . '/../..' . '/app/Http/Resources/UsersResource.php',
         'App\\Http\\Resources\\addProduitResource' => __DIR__ . '/../..' . '/app/Http/Resources/addProduitResource.php',
-        'App\\PhotosModel' => __DIR__ . '/../..' . '/app/PhotosModel.php',
         'App\\Producteurs' => __DIR__ . '/../..' . '/app/Producteurs.php',
         'App\\Produits' => __DIR__ . '/../..' . '/app/Produits.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
@@ -3620,7 +3620,6 @@ class ComposerStaticInit2982aeef2e4ee9463e9d4f88bc9899bf
         'PharIo\\Version\\VersionConstraintParser' => __DIR__ . '/..' . '/phar-io/version/src/VersionConstraintParser.php',
         'PharIo\\Version\\VersionConstraintValue' => __DIR__ . '/..' . '/phar-io/version/src/VersionConstraintValue.php',
         'PharIo\\Version\\VersionNumber' => __DIR__ . '/..' . '/phar-io/version/src/VersionNumber.php',
-        'PhotosSeeder' => __DIR__ . '/../..' . '/database/seeds/PhotosSeeder.php',
         'PhpOption\\LazyOption' => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption/LazyOption.php',
         'PhpOption\\None' => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption/None.php',
         'PhpOption\\Option' => __DIR__ . '/..' . '/phpoption/phpoption/src/PhpOption/Option.php',
@@ -5179,10 +5178,10 @@ class ComposerStaticInit2982aeef2e4ee9463e9d4f88bc9899bf
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit2982aeef2e4ee9463e9d4f88bc9899bf::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit2982aeef2e4ee9463e9d4f88bc9899bf::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit2982aeef2e4ee9463e9d4f88bc9899bf::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit2982aeef2e4ee9463e9d4f88bc9899bf::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit97ee208f59ba1edf0321e29771ff20ce::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit97ee208f59ba1edf0321e29771ff20ce::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit97ee208f59ba1edf0321e29771ff20ce::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit97ee208f59ba1edf0321e29771ff20ce::$classMap;
 
         }, null, ClassLoader::class);
     }

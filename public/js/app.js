@@ -2111,6 +2111,31 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/views/Dashboard.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/dashboard/views/Dashboard.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_produitsTable_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/produitsTable.vue */ "./resources/js/dashboard/views/components/produitsTable.vue");
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    produitsTable: _components_produitsTable_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/views/Home.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/dashboard/views/Home.vue?vue&type=script&lang=js& ***!
@@ -2387,90 +2412,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./resources/js/dashboard/views/Dashboard.js?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./resources/js/dashboard/views/Dashboard.js?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _services_api_services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../_services/api.services */ "./resources/js/dashboard/_services/api.services.js");
-/* harmony import */ var _components_addProduit_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/addProduit.vue */ "./resources/js/dashboard/views/components/addProduit.vue");
-
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    addProduit: _components_addProduit_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
-  },
-  data: function data() {
-    return {
-      dialog: false,
-      headers: [{
-        text: "Produit",
-        align: "start",
-        sortable: false,
-        value: "produit"
-      }, {
-        text: "Fruits",
-        value: "fruits"
-      }, {
-        text: "Producteurs",
-        value: "id_producteur"
-      }, {
-        text: "Quantité",
-        value: "quantity"
-      }, {
-        text: "Prix",
-        value: "price"
-      }, {
-        text: "Photo",
-        value: "photo"
-      }, {
-        text: "Actions",
-        value: "actions"
-      }],
-      produits: []
-    };
-  },
-  created: function created() {
-    this.initialize();
-  },
-  methods: {
-    initialize: function initialize() {
-      var _this = this;
-
-      _services_api_services__WEBPACK_IMPORTED_MODULE_1__["apiServices"].get("/api/produits").then(function (_ref) {
-        var data = _ref.data;
-        return data.data.forEach(function (data) {
-          _this.produits.push(data);
-        });
-      });
-    },
-    displayFruits: function displayFruits(items) {
-      var fruits = [];
-      items.forEach(function (item) {
-        fruits.push(item.name);
-      });
-      return fruits.join(', ');
-    }
-    /* displayProducteurs(items){
-        var producteur=[];
-        items.forEach(item=>{
-            producteur.push((item.name))
-        })
-        return producteur.join(', ');
-    } */
-
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./resources/js/dashboard/views/components/addProduit.js?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./resources/js/dashboard/views/components/addProduit.js?vue&type=script&lang=js& ***!
@@ -2587,15 +2528,19 @@ __webpack_require__.r(__webpack_exports__);
       console.log(val);
     },
     //Todo à modifier getProducteur (la route c'est plus api/producteur)
+    //function qui gère les données du selectProducteur
     getProducteur: function getProducteur() {
       var _this4 = this;
 
-      _services_api_services__WEBPACK_IMPORTED_MODULE_1__["apiServices"].get("/api/produits").then(function (_ref2) {
-        var data = _ref2.data;
-        data.data.forEach(function (_produit) {
-          _this4.producteurs.push(_produit.producteur);
+      // si le role n'est pas producteur, ne vas pas faire la requête
+      if (!this.isProducteur) {
+        _services_api_services__WEBPACK_IMPORTED_MODULE_1__["apiServices"].get("/api/produits").then(function (_ref2) {
+          var data = _ref2.data;
+          data.data.forEach(function (_produit) {
+            _this4.producteurs.push(_produit.producteur);
+          });
         });
-      });
+      }
     }
   },
   created: function created() {
@@ -2637,46 +2582,71 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       dialog: false,
-      headers: [{
-        text: "Produit",
-        align: "start",
-        sortable: false,
-        value: "produit"
-      }, {
-        text: "Fruits",
-        value: "fruits"
-      }, {
-        text: "Producteurs",
-        value: "id_producteur"
-      }, {
-        text: "Quantité",
-        value: "quantity"
-      }, {
-        text: "Prix",
-        value: "price"
-      }, {
-        text: "Photo",
-        value: "photo"
-      }, {
-        text: "Actions",
-        value: "actions"
-      }],
+      headers: [],
+      availableHeaders: {
+        produit: {
+          text: "Produit",
+          align: "start",
+          sortable: false,
+          value: "produit"
+        },
+        fruits: {
+          text: "Fruits",
+          value: "fruits"
+        },
+        id_producteur: {
+          text: "Producteurs",
+          value: "id_producteur"
+        },
+        quantite: {
+          text: "Quantité",
+          value: "quantity"
+        },
+        price: {
+          text: "Prix",
+          value: "price"
+        },
+        photo: {
+          text: "Photo",
+          value: "photo"
+        },
+        actions: {
+          text: "Actions",
+          value: "actions"
+        }
+      },
       produits: []
     };
   },
   created: function created() {
     this.initialize();
+    this.setHeaders();
   },
   methods: {
     initialize: function initialize() {
       var _this = this;
 
-      _services_api_services__WEBPACK_IMPORTED_MODULE_1__["apiServices"].get("/api/producteurs/produits").then(function (_ref) {
+      // Si isProducteur est vrai alors utilise api/producteurs/produits sinon la route api/produits (retourne tous les produits)         
+      var url = _services_authentication_service__WEBPACK_IMPORTED_MODULE_2__["authenticationService"].isProducteur() ? "/api/producteurs/produits" : "/api/produits"; //let....() forme ternaire = condition ? (si la condition est vrai ont execute) : (si elle est fausse ont execute l'autre)
+
+      _services_api_services__WEBPACK_IMPORTED_MODULE_1__["apiServices"].get(url).then(function (_ref) {
         var data = _ref.data;
-        return data.data.forEach(function (data) {
-          _this.produits.push(data);
-        });
+        return (//test avec url ok sinon avec la route api/producteurs/produits = forbidden
+          data.data.forEach(function (data) {
+            _this.produits.push(data);
+          })
+        );
       });
+    },
+    //Function pour set le headers  si ont est producteur ou pas dans le tableau
+    setHeaders: function setHeaders() {
+      if (_services_authentication_service__WEBPACK_IMPORTED_MODULE_2__["authenticationService"].isProducteur()) {
+        //si nous sommes producteur pas besoin du id_producteur
+        this.headers = [this.availableHeaders.produit, this.availableHeaders.fruits, this.availableHeaders.quantite, this.availableHeaders.price, this.availableHeaders.photo, this.availableHeaders.actions];
+      } else {
+        //sinon ont affiche tout !!!
+        this.headers = [this.availableHeaders.produit, this.availableHeaders.fruits, this.availableHeaders.id_producteur, this.availableHeaders.quantite, this.availableHeaders.price, this.availableHeaders.photo, this.availableHeaders.actions];
+      }
     },
     displayFruits: function displayFruits(items) {
       var fruits = [];
@@ -27746,112 +27716,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("v-data-table", {
-    staticClass: "elevation-1",
-    attrs: { headers: _vm.headers, items: _vm.produits, "items-per-page": 20 },
-    scopedSlots: _vm._u([
-      {
-        key: "top",
-        fn: function() {
-          return [
-            _c(
-              "v-card",
-              { attrs: { color: "basil" } },
-              [
-                _c(
-                  "v-card-title",
-                  { staticClass: "text-center justify-center py-4" },
-                  [
-                    _c(
-                      "h1",
-                      { staticClass: "font-weight-bold display-2 basil--text" },
-                      [_vm._v("LISTES DES CONFITURES")]
-                    )
-                  ]
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("v-spacer"),
-            _vm._v(" "),
-            _c("v-divider"),
-            _vm._v(" "),
-            _c(
-              "v-toolbar",
-              { attrs: { flat: "", color: "blue-grey lighten-4" } },
-              [
-                _c("v-spacer"),
-                _vm._v(" "),
-                _c("addProduit", {
-                  on: {
-                    addProduit: function($event) {
-                      return _vm.produits.push($event)
-                    }
-                  }
-                })
-              ],
-              1
-            )
-          ]
-        },
-        proxy: true
-      },
-      {
-        key: "item.produit",
-        fn: function(ref) {
-          var item = ref.item
-          return [_vm._v(_vm._s(item.name))]
-        }
-      },
-      {
-        key: "item.fruits",
-        fn: function(ref) {
-          var item = ref.item
-          return [_vm._v(_vm._s(_vm.displayFruits(item.fruits)))]
-        }
-      },
-      {
-        key: "item.prix",
-        fn: function(ref) {
-          var item = ref.item
-          return [_vm._v(_vm._s(item.price))]
-        }
-      },
-      {
-        key: "item.quantite",
-        fn: function(ref) {
-          var item = ref.item
-          return [_vm._v(_vm._s(item.quantity))]
-        }
-      },
-      {
-        key: "item.id_producteur",
-        fn: function(ref) {
-          var item = ref.item
-          return [_vm._v(_vm._s(item.name))]
-        }
-      },
-      {
-        key: "item.photo",
-        fn: function(ref) {
-          var item = ref.item
-          return [
-            _c("v-img", { attrs: { src: item.photo, "aspect-ratio": "1.7" } })
-          ]
-        }
-      },
-      {
-        key: "item.actions",
-        fn: function(ref) {
-          var item = ref.item
-          return [
-            _c("addProduit", { attrs: { product: item, isModification: true } })
-          ]
-        }
-      }
-    ])
-  })
+  return _c("div", [_c("produitsTable")], 1)
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -28052,28 +27917,30 @@ var render = function() {
                             1
                           ),
                           _vm._v(" "),
-                          _c(
-                            "v-col",
-                            { attrs: { cols: "12", sm: "6", md: "4" } },
-                            [
-                              _c("v-select", {
-                                attrs: {
-                                  items: _vm.producteurs,
-                                  "item-value": "id",
-                                  "item-text": "name",
-                                  label: "Producteur"
-                                },
-                                model: {
-                                  value: _vm.id_producteur,
-                                  callback: function($$v) {
-                                    _vm.id_producteur = $$v
-                                  },
-                                  expression: "id_producteur"
-                                }
-                              })
-                            ],
-                            1
-                          ),
+                          !_vm.isProducteur
+                            ? _c(
+                                "v-col",
+                                { attrs: { cols: "12", sm: "6", md: "4" } },
+                                [
+                                  _c("v-select", {
+                                    attrs: {
+                                      items: _vm.producteurs,
+                                      "item-value": "id",
+                                      "item-text": "name",
+                                      label: "Producteur"
+                                    },
+                                    model: {
+                                      value: _vm.id_producteur,
+                                      callback: function($$v) {
+                                        _vm.id_producteur = $$v
+                                      },
+                                      expression: "id_producteur"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            : _vm._e(),
                           _vm._v(" "),
                           _c(
                             "v-col",
@@ -86215,20 +86082,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/dashboard/views/Dashboard.js?vue&type=script&lang=js&":
-/*!****************************************************************************!*\
-  !*** ./resources/js/dashboard/views/Dashboard.js?vue&type=script&lang=js& ***!
-  \****************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_Dashboard_js_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!./Dashboard.js?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./resources/js/dashboard/views/Dashboard.js?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_Dashboard_js_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
 /***/ "./resources/js/dashboard/views/Dashboard.vue":
 /*!****************************************************!*\
   !*** ./resources/js/dashboard/views/Dashboard.vue ***!
@@ -86239,7 +86092,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Dashboard_vue_vue_type_template_id_1950de0a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Dashboard.vue?vue&type=template&id=1950de0a& */ "./resources/js/dashboard/views/Dashboard.vue?vue&type=template&id=1950de0a&");
-/* harmony import */ var _Dashboard_js_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Dashboard.js?vue&type=script&lang=js& */ "./resources/js/dashboard/views/Dashboard.js?vue&type=script&lang=js&");
+/* harmony import */ var _Dashboard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Dashboard.vue?vue&type=script&lang=js& */ "./resources/js/dashboard/views/Dashboard.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -86249,7 +86102,7 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Dashboard_js_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Dashboard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _Dashboard_vue_vue_type_template_id_1950de0a___WEBPACK_IMPORTED_MODULE_0__["render"],
   _Dashboard_vue_vue_type_template_id_1950de0a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
@@ -86263,6 +86116,20 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 if (false) { var api; }
 component.options.__file = "resources/js/dashboard/views/Dashboard.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/dashboard/views/Dashboard.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/dashboard/views/Dashboard.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Dashboard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Dashboard.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/dashboard/views/Dashboard.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Dashboard_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 

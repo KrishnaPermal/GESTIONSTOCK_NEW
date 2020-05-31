@@ -27,7 +27,7 @@
                 </v-text-field>
               </v-col>
 
-              <v-col cols="12" sm="6" md="4">
+              <v-col cols="12" sm="6" md="4" v-if="!isProducteur"> <!--si producteur affiche pas le select grâce au v-if-->
                 <v-select
                   :items="producteurs"
                   item-value="id"
@@ -37,6 +37,7 @@
                 ></v-select>
 
               </v-col>
+
               <v-col cols="12" sm="6" md="4">
                 <v-text-field color="light-blue lighten-4" v-model="price" label="Prix*" required></v-text-field>
               </v-col>

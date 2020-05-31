@@ -113,14 +113,18 @@ export default {
 
 
         //Todo à modifier getProducteur (la route c'est plus api/producteur)
+        //function qui gère les données du selectProducteur
         getProducteur() {
-            apiServices.get("/api/produits").then(({ data }) => {
-                data.data.forEach(_produit => {
-                    this.producteurs.push(_produit.producteur)
-                    
-                })
+            // si le role n'est pas producteur, ne vas pas faire la requête
+            if(!this.isProducteur){ 
+                apiServices.get("/api/produits").then(({ data }) => {
+                    data.data.forEach(_produit => {
+                        this.producteurs.push(_produit.producteur)  
+                        })
+                    }
+                );
             }
-            );
+            
         },
 
     },

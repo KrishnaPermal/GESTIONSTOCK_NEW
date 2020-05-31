@@ -14,7 +14,7 @@ class ProducteursResource extends JsonResource
      */
     public function toArray($request)
     {
-        $user = new UsersResource($this->user);
+        //$user = new UsersResource($this->users);
 
         return [
             'id' =>$this->id,

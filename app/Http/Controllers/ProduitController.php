@@ -8,6 +8,7 @@ use App\Http\Resources\ProduitResource;
 use App\PhotosModel;
 use App\Producteurs;
 use App\Produits;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -134,13 +135,32 @@ class ProduitController extends Controller
         } 
 
        
-        return new ProduitResource($addToDb); 
-    }
+        }
+
+    return new ProduitResource($addToDb); 
+
     }
 
     /* withPivot, if exist detach else attach
         $pivot = Produits::wherePivotIn('id_fruit', '=', '1')->get();
         return ($pivot);*/
+
+
+
+
+
+        //Remonte tout les produits qui appartiennent aux producteurs, qui a pour id_users  notre id_users connecté
+
+        public function getOfProducteur(Request $request)
+        {
+            $user = $request->user();
+            $produits = Produits::with(['fruits'])->whereHas('producteur', function (Builder $query) use ($user) {
+                $query->where('id_users', '=', $user->id);
+            })->get();
+    
+            return ProduitResource::collection($produits);
+        }
+
 
 
 }

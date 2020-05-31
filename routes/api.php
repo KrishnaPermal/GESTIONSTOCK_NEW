@@ -30,6 +30,13 @@ Route::middleware(['auth:api','roles:Admin|Producteur'])->prefix('produits')->gr
     Route::post('/', 'ProduitController@createOrUpdate'); 
 }); 
 
+// Récupère les produits du Producteur (accessible qu'au producteur)
+Route::middleware(['auth:api','roles:Producteur'])->prefix('producteurs')->group(function () {
+    Route::get('produits', 'ProduitController@getOfProducteur');
+    Route::post('produits', 'ProduitController@createOrUpdate'); 
+}); 
+
+
 
 Route::get('fruits', 'FruitsController@index');
 

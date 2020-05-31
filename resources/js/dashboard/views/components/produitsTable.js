@@ -1,6 +1,6 @@
 import Axios from "axios";
-import {apiServices} from '../_services/api.services'
-import addProduit from '../views/components/addProduit.vue';
+import {apiServices} from '../../_services/api.services'
+import addProduit from './addProduit.vue';
 
 
 export default {

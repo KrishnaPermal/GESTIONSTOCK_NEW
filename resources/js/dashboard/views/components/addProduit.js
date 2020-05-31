@@ -132,10 +132,10 @@ export default {
         this.getProducteur();
 
         if(this.isProducteur){
-            console.log(this.isProducteur)
+            //console.log(this.isProducteur)
             console.log('PRODUCTok')
         }else{
             console.log('ADMINOK')
-        }
+        } 
     },
 }

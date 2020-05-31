@@ -36,6 +36,12 @@ Route::middleware(['auth:api','roles:Producteur'])->prefix('producteurs')->group
     Route::post('produits', 'ProduitController@createOrUpdate'); 
 }); 
 
+/****route currentUser****/
+
+Route::post('/currentUser', 'UsersController@getCurrentUserDB');
+
+/****route currentUser****/
+
 
 
 Route::get('fruits', 'FruitsController@index');

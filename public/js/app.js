@@ -2237,13 +2237,38 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _services_authentication_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../_services/authentication.service */ "./resources/js/dashboard/_services/authentication.service.js");
+/* harmony import */ var _services_api_services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../_services/api.services */ "./resources/js/dashboard/_services/api.services.js");
 //
 //
 //
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      user: JSON.parse(_services_authentication_service__WEBPACK_IMPORTED_MODULE_0__["authenticationService"].getCurrentUser()),
+      // fait référence dans le authenticationservice
+      token: this.user.token
+    };
+  },
+  methods: {
+    getCurrentUserDB: function getCurrentUserDB() {
+      _services_api_services__WEBPACK_IMPORTED_MODULE_1__["apiServices"].post('/api/currentUser', token) //envoie sur une route avec token
+      .then(function (_ref) {
+        var response = _ref.response;
+        console.log(response);
+      });
+    }
+  },
+  created: function created() {
+    console.log(this.user.token);
+    this.getCurrentUserDB();
+  }
+});
 
 /***/ }),
 
@@ -2595,7 +2620,7 @@ __webpack_require__.r(__webpack_exports__);
     this.getProducteur();
 
     if (this.isProducteur) {
-      console.log(this.isProducteur);
+      //console.log(this.isProducteur)
       console.log('PRODUCTok');
     } else {
       console.log('ADMINOK');
@@ -85697,6 +85722,7 @@ var authenticationService = {
   logout: logout,
   isAdmin: isAdmin,
   isProducteur: isProducteur,
+  getCurrentUser: getCurrentUser,
   currentUser: currentUserSubject.asObservable(),
 
   get currentUserValue() {
@@ -85704,6 +85730,13 @@ var authenticationService = {
   }
 
 };
+
+function getCurrentUser() {
+  var user = localStorage.getItem("currentUser");
+  /* user = JSON.parse(user) */
+
+  return user;
+}
 
 function connected() {
   var user = localStorage.getItem("currentUser");
@@ -85732,7 +85765,8 @@ function role() {
 
   if (!user) {
     return null;
-  }
+  } //console.log(user)
+
 
   user = JSON.parse(user);
   return user.role.name;
@@ -85740,12 +85774,12 @@ function role() {
 
 
 function isAdmin() {
-  console.log(role());
+  //console.log(role())
   return role() === _helpers_role__WEBPACK_IMPORTED_MODULE_1__["Role"].Admin;
 }
 
 function isProducteur() {
-  console.log(role());
+  //console.log(role())
   return role() === _helpers_role__WEBPACK_IMPORTED_MODULE_1__["Role"].Producteur;
 }
 

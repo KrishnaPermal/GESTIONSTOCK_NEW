@@ -17,6 +17,7 @@ export const authenticationService = {
     logout,
     isAdmin,
     isProducteur,
+    getCurrentUser,
 
 
 
@@ -25,6 +26,13 @@ export const authenticationService = {
         return currentUserSubject.value;
     }
 };
+
+function getCurrentUser(){
+    const user = localStorage.getItem("currentUser");
+    /* user = JSON.parse(user) */
+    return user
+
+}
 
 function connected() {
     const user = localStorage.getItem("currentUser");
@@ -60,6 +68,7 @@ function role() {
     if (!user) {
         return null
     }
+    //console.log(user)
     user = JSON.parse(user)
     return user.role.name
 }
@@ -68,12 +77,13 @@ function role() {
 //Function qui vérifie le role retourné dans le currentUser appartient bien aux roles dans role.js
 
 function isAdmin() {
-    console.log(role())
+    //console.log(role())
     return role() === Role.Admin
 }
 
 function isProducteur() {
-    console.log(role())
+    //console.log(role())
     return role() === Role.Producteur
 }
+
 

@@ -54,12 +54,12 @@ function storeBasket(basket){
 }
 
 function emitBasketSize(basket){ 
-    var basketSize = _.toPairs(basket).length
+    let basketSize = _.toPairs(basket).length
     EventBus.$emit('basketSize', basketSize)
 }
 
 function  quantityBasketSize(){ // quand on actualise permet de garder la quantité à jour 
-    var quantity = getBasket()
+    let quantity = getBasket()
     quantity = _.toPairsIn(quantity).length
     return quantity
 } 

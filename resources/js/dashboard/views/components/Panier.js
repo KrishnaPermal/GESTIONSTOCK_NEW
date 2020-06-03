@@ -5,13 +5,41 @@ export default {
     data(){
         return{
             quantity: 0,
+            itemPanier:[],
         }
+    },
+    methods:{
+        initTable(itemPanier){ 
+            this.itemPanier = []
+            let counter = 0 
+            let breakException = {} 
+            try {
+                for (let key in itemPanier){ // chaque confiture sera dans itemPanier
+                    let item = itemPanier[key]
+                    this.itemPanier.push(item)
+                    counter ++
+                    if (counter === 3) {
+                        throw breakException
+                    }
+
+                }
+                
+            }
+            catch(e){
+                if(e !==breakException){
+                    throw e
+                }
+            }
+        },
     },
     created(){
         this.quantity = basketService.quantityBasketSize()
+        this.initTable(basketService.getBasket()) // pour le emit 
         EventBus.$on('basketSize', basketSize => {
             this.quantity = basketSize
-            console.log(basketSize)
+            this.initTable(basketService.getBasket()) // quand ont actualise
+            
         } )
     },
+
 }

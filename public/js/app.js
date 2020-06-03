@@ -2530,16 +2530,45 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      quantity: 0
+      quantity: 0,
+      itemPanier: []
     };
+  },
+  methods: {
+    initTable: function initTable(itemPanier) {
+      this.itemPanier = [];
+      var counter = 0;
+      var breakException = {};
+
+      try {
+        for (var key in itemPanier) {
+          // chaque confiture sera dans itemPanier
+          var item = itemPanier[key];
+          this.itemPanier.push(item);
+          counter++;
+
+          if (counter === 3) {
+            throw breakException;
+          }
+        }
+      } catch (e) {
+        if (e !== breakException) {
+          throw e;
+        }
+      }
+    }
   },
   created: function created() {
     var _this = this;
 
     this.quantity = _services_basket_service__WEBPACK_IMPORTED_MODULE_1__["basketService"].quantityBasketSize();
+    this.initTable(_services_basket_service__WEBPACK_IMPORTED_MODULE_1__["basketService"].getBasket()); // pour le emit 
+
     _helpers_event_bus__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('basketSize', function (basketSize) {
       _this.quantity = basketSize;
-      console.log(basketSize);
+
+      _this.initTable(_services_basket_service__WEBPACK_IMPORTED_MODULE_1__["basketService"].getBasket()); // quand ont actualise
+
     });
   }
 });
@@ -28038,9 +28067,95 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-badge",
-    { attrs: { color: "red", content: _vm.quantity } },
-    [_c("v-icon", [_vm._v("mdi-cart")])],
+    "v-menu",
+    {
+      attrs: {
+        "offset-y": "",
+        "open-on-hover": "",
+        "close-on-content-click": false
+      },
+      scopedSlots: _vm._u([
+        {
+          key: "activator",
+          fn: function(ref) {
+            var on = ref.on
+            return [
+              _c(
+                "v-btn",
+                _vm._g({}, on),
+                [
+                  _c(
+                    "v-badge",
+                    { attrs: { color: "red", content: _vm.quantity } },
+                    [_c("v-icon", [_vm._v("mdi-cart")])],
+                    1
+                  )
+                ],
+                1
+              )
+            ]
+          }
+        }
+      ])
+    },
+    [
+      _vm._v(" "),
+      _c(
+        "v-list",
+        _vm._l(_vm.itemPanier, function(produit, key) {
+          return _c(
+            "v-list-item",
+            { key: key },
+            [
+              _c(
+                "v-list-item-title",
+                [
+                  _c(
+                    "v-card",
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "d-flex flex-no-wrap justify-space-between"
+                        },
+                        [
+                          _c("v-card-title", { staticClass: "headline" }, [
+                            _vm._v(_vm._s(produit.name))
+                          ])
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-card-subtitle",
+                        [
+                          _c("v-text-field", {
+                            attrs: { type: "number", min: "0" },
+                            model: {
+                              value: produit.quantite,
+                              callback: function($$v) {
+                                _vm.$set(produit, "quantite", $$v)
+                              },
+                              expression: "produit.quantite"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        }),
+        1
+      )
+    ],
     1
   )
 }

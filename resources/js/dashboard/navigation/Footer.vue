@@ -25,7 +25,7 @@
 
 
       <v-card-text class="py-2 flex white--text text-center">
-        {{ new Date().getFullYear() }} — <strong>© S.N.INFORMATIQUE : By KRISHNA</strong>
+        {{ new Date().getFullYear() }} — <strong>© CONFIPEI : By KRISHNA</strong>
       </v-card-text>
       
     </v-card>

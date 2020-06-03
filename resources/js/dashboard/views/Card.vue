@@ -51,6 +51,9 @@
                 <v-card-subtitle>Prix: {{produit.price}} €</v-card-subtitle>
                 <v-spacer />
               </v-card-actions>
+              <!--ajout component addPanier-->
+              <addPanier :produit='produit'></addPanier>
+              <!--ajout component addPanier--> 
             </v-col>
           </v-row>
           <v-row></v-row>

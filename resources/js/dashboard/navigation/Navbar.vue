@@ -2,16 +2,17 @@
   <div>
 
 <!--  Navbar -->
-    <v-app-bar color="cyan darken-1" dense dark>
+    <v-app-bar color="cyan darken-1" dense dark >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
      <v-toolbar-title>
           <h1>CONFIPEI</h1>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-<!--ajout login a revoir-->
-      <v-btn v-if="!ischeck" class="mr-4 deep-orange" to="/login">Log In</v-btn>
-      <v-btn v-if="ischeck" class="mr-4 deep-orange" @click="logout">Log Out</v-btn>
-<!--ajout login a revoir-->
+       <!--ajout component Panier-->
+        <Panier></Panier>
+      <!--ajout component Panier--> 
+      <v-spacer></v-spacer>
+     
     </v-app-bar>
 
 
@@ -101,9 +102,9 @@
 
 <v-divider></v-divider>
 
-         <!-- <v-list-item link>
+         <v-list-item link>
           <v-list-item-icon>
-            <v-icon>mdi-shopping</v-icon>
+            <v-icon>mdi-login-variant</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
@@ -111,7 +112,7 @@
               <router-link :to="{name:'login'}">Login</router-link>
             </v-list-item-title>
           </v-list-item-content>
-         </v-list-item> -->
+         </v-list-item>
 
 
       </v-list>
@@ -124,12 +125,17 @@
 
 
 <script>
-import { authenticationService } from '../../_services/authentication.service';
-import router from '../routes'
+import { authenticationService } from '../_services/authentication.service';
+import Panier from '../views/components/Panier.vue';
+import router from '../routes';
 export default {
+
+  components:{
+    Panier
+  },
+
   data() {
     return {
-      currentUser:null,
       drawer: null,
       items: [
         { title: "Accueil", icon: "mdi-home" },
@@ -137,26 +143,9 @@ export default {
         { title: "Confitures", icon: "mdi-shopping" },
         { title: "Producteurs", icon: "mdi-account" },
         { title: "Client", icon: "mdi-account" },
-        //{ title: "Login", icon: "mdi-login-variant" },
-      ],
-      computed:{
-        ischeck(){
-          return this.currentUser
-        }
-      },
-      methods:{
-        logout(){
-          authenticationService.logout();
-          router.push('/login')
-        }
-      },
-      created(){
-        authenticationService.currentUser.subscribe(x => (this.currentUser =x));
-      }
-
-      
+        { title: "Login", icon: "mdi-login-variant" },
+      ], 
     };
   }
 };
 </script>
-

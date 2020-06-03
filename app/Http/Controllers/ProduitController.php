@@ -41,8 +41,9 @@ class ProduitController extends Controller
                 "name" => "required",
                 "price" => "required",
                 "quantity" => "required",
-                "id_producteur" => "required|numeric",
+                "id_producteur" => "numeric",
                 "fruits" => "",
+                'photo'=>""
               
             ],
             [
@@ -63,14 +64,23 @@ class ProduitController extends Controller
         $addToDb->price = $datasToAdd['price'];
         $addToDb->quantity = $datasToAdd['quantity'];
  
-        
+        if(isset($datasToAdd['id_producteur'])){
             $producteur = Producteurs::find($datasToAdd['id_producteur']);
             if (!$producteur) {
                 return 'err';
         
             }
             $addToDb->producteur()->associate($producteur);
-
+        } else{
+            if(!isset($datasToAdd['id'])){
+                    $user = $request->user();
+                    $producteur = Producteurs::where('id_users', '=', $user->id)->first();
+                    if(!$producteur){
+                        return "err";
+                    }
+                    $addToDb->producteur()->associate($producteur);
+            }
+        }
             if (isset($addToDb->photo)) { //Si ceci est vrai, alors on save dans la base
                 $addToDb->save();
             } else {

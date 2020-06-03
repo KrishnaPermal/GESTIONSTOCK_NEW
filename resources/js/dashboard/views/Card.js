@@ -1,7 +1,9 @@
-
-import Axios from 'axios';
-
+import {apiServices} from '../_services/api.services'
+import addPanier from './components/addPanier.vue';
 export default {
+    components:{
+        addPanier,
+    },
    
     data:() => ({
         produits: [],
@@ -18,7 +20,7 @@ export default {
         search: function (val) {
             if (val && val.length > 2) { //Si la valeur plus grand que 2 alors il fait ce qu'il a dedans;
                 this.loading = true
-                Axios.get('/api/produits/fruits', { params: { query: val } })
+                apiServices.get('/api/fruits',  { query: val } )
                     .then(({ data }) => {
                         this.loading = false
 
@@ -33,7 +35,7 @@ export default {
 
     methods: {
         produitDisplay() {
-            Axios.get('/api/produits')
+            apiServices.get('/api/produits')
                 .then(({ data }) => {
                     data.data.forEach(_data => {
                         this.produits.push(_data)
@@ -114,6 +116,7 @@ export default {
         }, */
         
     },
+    
 
     created() {
         this.produitDisplay();

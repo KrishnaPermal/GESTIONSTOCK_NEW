@@ -56,17 +56,19 @@ export default {
 
         addDatas() {
            //console.log(this.produit)
-            apiServices.post('/api/produits/', {
-                name: this.produit,
-                id_producteur: this.id_producteur,
-                price: this.price,
-                quantity: this.quantity,
-                fruits: this.fruits,
-                photo: this.photo,
-                id: this.id,
-            
-
-            }).then(response => {
+           let datasToAdd ={
+            name: this.produit,
+            price: this.price,
+            quantity: this.quantity,
+            fruits: this.fruits,
+            photo: this.photo,
+            id: this.id,
+           }
+           if(!this.isProducteur){
+               datasToAdd['id_producteur'] = this.produit.id_producteur
+           }
+           let url = this.isProducteur ? "/api/producteurs/produits" : "/api/produits"
+            apiServices.post(url, datasToAdd).then(response => {
                  
                     console.log("Données enregistrée")
                     this.$emit('addProduit', response.data)
@@ -85,7 +87,9 @@ export default {
         },
 
         modifierProduit(product) {
-            this.id_producteur = this.product.id_producteur
+            if(!this.isProducteur){
+                this.id_producteur = this.product.id_producteur
+            }
             this.produit = product.name
             this.quantity = product.quantity
             this.fruits = product.fruits
@@ -130,12 +134,6 @@ export default {
     },
     created() {
         this.getProducteur();
-
-        if(this.isProducteur){
-            //console.log(this.isProducteur)
-            console.log('PRODUCTok')
-        }else{
-            console.log('ADMINOK')
-        } 
+        console.log(this.produit)
     },
 }

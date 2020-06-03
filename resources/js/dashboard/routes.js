@@ -4,8 +4,8 @@ import Home from "./views/Home.vue";
 import Dashboard from './views/Dashboard.vue';
 import Card from "./views/Card.vue";
 import dashboardProducteur from './views/dashboardProducteur.vue';
-import dashboardClient from './views/dashboardClient.vue';
-import Panierproduit from './views/Panierproduit.vue';
+//import dashboardClient from './views/dashboardClient.vue';
+import Basket from './views/Basket.vue';
 import Login from "./login/Login.vue";
 import { Role } from './_helpers/role';
 import { authenticationService } from '../dashboard/_services/authentication.service'
@@ -45,16 +45,16 @@ const router = new VueRouter({
             component: dashboardProducteur,
             meta: { authorize: [Role.Producteur] }
         },
-        {
+        /* {
             path: '/dashboardClient',
             name: 'client',
             component: dashboardClient,
-            //meta: { authorize: [Role.Producteur] }
-        },
+            meta: { authorize: [Role.Producteur] }
+        }, */
         {
-            path:'/panier',
-            name: 'panierProduit',
-            component: Panierproduit,
+            path:'/basket',
+            name: 'basket',
+            component: Basket,
         },
     ]
 })

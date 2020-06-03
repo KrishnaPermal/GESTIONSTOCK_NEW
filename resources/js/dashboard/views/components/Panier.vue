@@ -1,3 +1,4 @@
+<!--ICI C'EST LA VUE POUR ICON PANIER ET VOIR LE PANIER-->
 <template>
 <v-menu offset-y open-on-hover :close-on-content-click="false">
     <template v-slot:activator='{on}'>

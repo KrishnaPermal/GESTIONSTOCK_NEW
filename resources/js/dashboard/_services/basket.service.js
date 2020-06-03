@@ -3,6 +3,7 @@ export const basketService = {
     addPanier,
     getBasket,
     quantityBasketSize,
+    updateBasket,
 }
 
 
@@ -50,6 +51,7 @@ function getBasket(){  //update
 
 function storeBasket(basket){
     localStorage.setItem("currentBasket", JSON.stringify(basket))
+    EventBus.$emit('updateBasket', basket)
     emitBasketSize(basket)
 }
 
@@ -63,3 +65,17 @@ function  quantityBasketSize(){ // quand on actualise permet de garder la quanti
     quantity = _.toPairsIn(quantity).length
     return quantity
 } 
+
+function updateBasket(produit){
+    let basket = getBasket();
+    if (_.hasIn(basket, buildKey(produit))){
+        basket[buildKey(produit)] = produit;
+        if((basket[buildKey(produit)].quantity)==0){
+            _.unset(basket, buildKey(produit))
+        }
+
+    } else {
+        throw 'error'
+    }
+    storeBasket(basket);
+}

@@ -11,20 +11,21 @@
         <v-list-item v-for="(produit, key) in itemPanier" :key='key'>
             <v-list-item-title>
                <v-card>
-    <div class="d-flex flex-no-wrap justify-space-between">
+            <div class="d-flex flex-no-wrap justify-space-between">
               <v-card-title class="headline">{{produit.name}}</v-card-title>
             </div>
             <v-card-subtitle>
               <v-text-field
                 type="number"
                 min="0"
-                v-model="produit.quantite">
+                v-model="produit.quantity" @input="updateQuantity(produit)">
          </v-text-field>
           </v-card-subtitle>
-
                 </v-card>
-
             </v-list-item-title>
+        </v-list-item>
+        <v-list-item>
+            <v-btn to="/panier">Voir le panier</v-btn>
         </v-list-item>
     </v-list>
 </v-menu>

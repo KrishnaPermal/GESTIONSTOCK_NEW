@@ -2,20 +2,17 @@
   <div>
 
 <!--  Navbar -->
-    <v-app-bar color="cyan darken-1" dense dark >
+    <v-app-bar color="cyan darken-1" dark fullscreen>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
      <v-toolbar-title>
           <h1>CONFIPEI</h1>
       </v-toolbar-title>
+
       <v-spacer></v-spacer>
        <!--ajout component Panier-->
         <Panier></Panier>
       <!--ajout component Panier--> 
-      <v-spacer></v-spacer>
-     
     </v-app-bar>
-
-
 
      <v-divider></v-divider>
 

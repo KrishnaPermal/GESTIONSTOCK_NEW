@@ -5,6 +5,7 @@ import Dashboard from './views/Dashboard.vue';
 import Card from "./views/Card.vue";
 import dashboardProducteur from './views/dashboardProducteur.vue';
 import dashboardClient from './views/dashboardClient.vue';
+import Panierproduit from './views/Panierproduit.vue';
 import Login from "./login/Login.vue";
 import { Role } from './_helpers/role';
 import { authenticationService } from '../dashboard/_services/authentication.service'
@@ -49,6 +50,11 @@ const router = new VueRouter({
             name: 'client',
             component: dashboardClient,
             //meta: { authorize: [Role.Producteur] }
+        },
+        {
+            path:'/panier',
+            name: 'panierProduit',
+            component: Panierproduit,
         },
     ]
 })

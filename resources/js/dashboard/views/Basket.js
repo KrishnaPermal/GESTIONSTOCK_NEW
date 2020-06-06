@@ -10,21 +10,21 @@ export default {
     },
    
     data:() => ({
-        produits: [],
+        articles: [],
         price: [],
-        produitsDisplay: [],
+        articlesDisplay: [],
         quantity: 0,
     }),
 
     methods: {
 
-        updateQuantity(produit){
-            console.log(produit.quantity)
-            if (produit.quantity == 0) {
-                if(confirm("Êtes vous sur de vouloir supprimer? " + produit.name + "?")){
-                    basketService.updateBasket(produit);
+        updateQuantity(article){
+            console.log(article.quantity)
+            if (article.quantity == 0) {
+                if(confirm("Êtes vous sur de vouloir supprimer? " + article.mark + "?")){
+                    basketService.updateBasket(article);
                 } else {
-                    produit.quantity = 1;
+                    article.quantity = 1;
                 }
             }
         
@@ -51,21 +51,21 @@ export default {
             }
         },
 
-        produitDisplay() {
-            apiServices.get('/api/produits')
+        articleDisplay() {
+            apiServices.get('/api/articles')
                 .then(({ data }) => {
                     data.data.forEach(_data => {
-                        this.produits.push(_data)
+                        this.articles.push(_data)
                     })
                 })
-            this.produitsDisplay = this.produits;
+            this.articlesDisplay = this.articles;
         },
         
     },
     
 
     created() {
-        this.produitDisplay();
+        this.articleDisplay();
 
         this.quantity = basketService.quantityBasketSize()
         this.initTable(basketService.getBasket()) // pour le emit 

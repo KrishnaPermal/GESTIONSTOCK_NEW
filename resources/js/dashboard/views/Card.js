@@ -6,12 +6,12 @@ export default {
     },
    
     data:() => ({
-        produits: [],
-        fruits: [],
+        articles: [],
+        categories: [],
         price: [],
         photo: [],
-        fruitList: [],
-        produitsDisplay: [],
+        categoryList: [],
+        articlesDisplay: [],
         search: null,
         loading: false,
     }),
@@ -20,61 +20,61 @@ export default {
         search: function (val) {
             if (val && val.length > 2) { //Si la valeur plus grand que 2 alors il fait ce qu'il a dedans;
                 this.loading = true
-                apiServices.get('/api/fruits',  { query: val } )
+                apiServices.get('/api/categories',  { query: val } )
                     .then(({ data }) => {
                         this.loading = false
 
-                        data.forEach(fruit => {
-                            this.fruitList.push(fruit)
+                        data.forEach(categorie => {
+                            this.categoryList.push(categorie)
                         })
                     })
             }
-            //console.log(this.fruitList)
+            //console.log(this.categoryList)
         },
     },
 
     methods: {
-        produitDisplay() {
-            apiServices.get('/api/produits')
+        articleDisplay() {
+            apiServices.get('/api/articles')
                 .then(({ data }) => {
                     data.data.forEach(_data => {
-                        this.produits.push(_data)
+                        this.articles.push(_data)
                     })
                 })
-            this.produitsDisplay = this.produits;
+            this.articlesDisplay = this.articles;
         },
         
-        displayFruits(_fruits){
-            var fruits=[];
-            _fruits.forEach(_fruit=>{
-                fruits.push((_fruit.name))
+        displayCategories(_categories){
+            var categories=[];
+            _categories.forEach(_categorie=>{
+                categories.push((_categorie.mark))
             })
-            return fruits.join(', ');
+            return categories.join(', ');
         },
 
 
-        filterFruit() {
-            this.produitsDisplay = []
+        filterCategorie() {
+            this.articlesDisplay = []
 
-            let _produitsDisplay = []
+            let _articlesDisplay = []
 
-            if (_.isEmpty(this.fruits)) {
-                this.produitsDisplay = this.produits
+            if (_.isEmpty(this.categories)) {
+                this.articlesDisplay = this.articles
             } else {
-                this.produits.forEach(produit => {
-                    if (produit) {
+                this.articles.forEach(article => {
+                    if (article) {
 
-                        let _produit = produit
-                        produit.fruits.forEach(_fruit => {
+                        let _article = article
+                        article.categories.forEach(_categorie => {
 
-                            if (_fruit) {
-                                this.fruits.forEach(fruits => {
+                            if (_categorie) {
+                                this.categories.forEach(categories => {
 
-                                    if (_.includes(fruits, _fruit.name)) {
+                                    if (_.includes(categories, _categorie.mark)) {
 
-                                        _produitsDisplay[produit.id] = _produit
-                                        this.produitsDisplay.push(_produit)
-                                        //console.log(this.produitsDisplay)
+                                        _articlesDisplay[article.id] = _article
+                                        this.articlesDisplay.push(_article)
+                                        //console.log(this.articlesDisplay)
                                     }
                                 })
                             }
@@ -86,39 +86,11 @@ export default {
                 })
             }
         },
-
-        /**A revoir pourquoi cette méthode ne fonctionne pas*/
-        /* filterFruit() {
-            this.produitsDisplay = []
-        
-            let _produitsDisplay = []
-            if (_.isEmpty(this.fruits)) {
-                this.produitsDisplay = this.produits
-            }
-            else {
-                this.produits.forEach(produit => {
-                    if (produit) {
-                        let _produit = produit
-                        produit.fruits.forEach(_fruit => {
-                          
-                            if (_.includes(this.fruits, _fruit.name)) {
-                                _produitsDisplay[_produit.id] = _produit
-                            }
-                        })
-                    
-                    }
-                })
-                _produitsDisplay.forEach(_produit => {
-                    this.produitsDisplay.push(_produit)
-        
-                })
-            }
-        }, */
-        
+    
     },
     
 
     created() {
-        this.produitDisplay();
+        this.articleDisplay();
     }
 }

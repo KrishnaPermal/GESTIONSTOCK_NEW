@@ -3,8 +3,7 @@ import VueRouter from 'vue-router';
 import Home from "./views/Home.vue";
 import Dashboard from './views/Dashboard.vue';
 import Card from "./views/Card.vue";
-import dashboardProducteur from './views/dashboardProducteur.vue';
-//import dashboardClient from './views/dashboardClient.vue';
+import dashboardFournisseur from './views/dashboardFournisseur.vue';
 import Basket from './views/Basket.vue';
 import Login from "./login/Login.vue";
 import { Role } from './_helpers/role';
@@ -20,8 +19,8 @@ const router = new VueRouter({
             component: Home,
         },
         {
-            path: '/confitures',
-            name: 'confitures',
+            path: '/articles',
+            name: 'articles',
             component: Card,
         },
 
@@ -40,17 +39,12 @@ const router = new VueRouter({
         },
 
         {
-            path: '/dashboardProducteur',
-            name: 'producteur',
-            component: dashboardProducteur,
-            meta: { authorize: [Role.Producteur] }
+            path: '/dashboardFournisseur',
+            name: 'fournisseur',
+            component: dashboardFournisseur,
+            meta: { authorize: [Role.Fournisseur] }
         },
-        /* {
-            path: '/dashboardClient',
-            name: 'client',
-            component: dashboardClient,
-            meta: { authorize: [Role.Producteur] }
-        }, */
+        
         {
             path:'/basket',
             name: 'basket',

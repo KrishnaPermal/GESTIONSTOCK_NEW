@@ -2,16 +2,16 @@
 <div>
 
     <v-card-title class="text-center justify-center py-6">
-      <h1 class="font-italic font-weight-bold display-1 cyan--text">BIENVENUE SUR NOTRE SITE</h1>
+      <h1 class="font-italic font-weight-bold display-1 cyan--text">GESTION DE STOCK</h1>
     </v-card-title>
     
 
     <template>
     <v-carousel>
         <v-carousel-item
-        v-for="(produit,i) in produitsDisplay"
+        v-for="(article,i) in articlesDisplay"
         :key="i"
-        :src="produit.photo.photo" :aspect-ratio="1.7"
+        :src="article.photo.photo" :aspect-ratio="1.7"
         reverse-transition="fade-transition"
         transition="fade-transition"
         ></v-carousel-item>
@@ -28,28 +28,28 @@ import Axios from 'axios';
 export default {
    
     data:() => ({
-        produits: [],
+        articles: [],
         photo: [],
-        produitsDisplay: [],
+        articlesDisplay: [],
     }),
     
 
     methods: {
-        produitDisplay() {
-            Axios.get('/api/produits')
+        articleDisplay() {
+            Axios.get('/api/articles')
                 .then(({ data }) => {
-                    data.data.forEach(_produit => {
-                        this.produits.push(_produit)
+                    data.data.forEach(_article => {
+                        this.articles.push(_article)
                     })
                 })
-            this.produitsDisplay = this.produits;
+            this.articlesDisplay = this.articles;
         }, 
     },
 
     
 
     created() {
-        this.produitDisplay();
+        this.articleDisplay();
     }
 }
 

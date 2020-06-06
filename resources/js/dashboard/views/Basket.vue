@@ -7,17 +7,17 @@
             <h1 class="font-weight-regular display-2 ">MON PANIER</h1>
         </v-row>
         <v-row>
-        <v-card v-for="(produit,key) in itemPanier" :key="key" class="mx-auto my-5" max-width="500">
+        <v-card v-for="(article,key) in itemPanier" :key="key" class="mx-auto my-5" max-width="500">
         <v-container fluid>
           <v-row dense>
             <v-col class="md-4">
               <v-card-actions>
-                <v-card-title>{{produit.name}}</v-card-title>
-                <v-card-subtitle>Prix: {{produit.price}} €</v-card-subtitle>
+                <v-card-title>{{article.mark}}</v-card-title>
+                <v-card-subtitle>Prix: {{article.price}} €</v-card-subtitle>
                 <v-text-field
                   type="number"
                   min="0"
-                  v-model="produit.quantity" @input="updateQuantity(produit)">
+                  v-model="article.quantity" @input="updateQuantity(article)">
                 </v-text-field>
                 <v-spacer/>
               </v-card-actions>

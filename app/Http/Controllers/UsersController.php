@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ProduitResource;
-use App\Produits;
+use App\Articles;
+use App\Http\Resources\ArticleResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -11,12 +11,12 @@ class UsersController extends Controller
 {
     function index()
     {
-        $produits =  Produits::with([
-            'fruits',
-            'producteurs',
+        $articles =  Articles::with([
+            'categories',
+            'fournisseurs',
             'recompenses', 
         ])->get();
-        return  ProduitResource::collection($produits);
+        return  ArticleResource::collection($articles);
     
     }
 

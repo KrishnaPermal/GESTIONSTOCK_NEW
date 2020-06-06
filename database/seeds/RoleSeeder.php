@@ -24,7 +24,7 @@ class RoleSeeder extends Seeder
             ],
             [
                 "id" => 3,
-                "name" => "Producteur",
+                "name" => "Fournisseur",
             ],
         ];
 

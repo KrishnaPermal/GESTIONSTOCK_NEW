@@ -9,9 +9,9 @@ class Commandes extends Model
     protected $table = "commande";
     public $timestamps = false;
     
-    function produit()
+    function article()
     {
-        return $this->belongsToMany('App\Produits', 'commande_has_produit', 'id_commande','id_produit');
+        return $this->belongsToMany('App\Articles', 'commande_has_article', 'id_commande','id_article');
     }
     function users()
     {

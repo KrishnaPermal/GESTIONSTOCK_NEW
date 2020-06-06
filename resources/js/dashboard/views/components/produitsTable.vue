@@ -5,7 +5,7 @@
 <v-card color="basil">
    
     <v-card-title class="text-center justify-center py-4">
-      <h1 class="font-weight-bold display-2 basil--text">LISTES DES CONFITURES</h1>
+      <h1 class="font-weight-bold display-2 basil--text">LISTES DES ARTICLES</h1>
     </v-card-title>
   </v-card>
 

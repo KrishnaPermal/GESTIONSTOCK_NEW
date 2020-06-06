@@ -7,20 +7,22 @@ export const basketService = {
 }
 
 
-function addPanier(produit, quantity) {
+function addPanier(article, quantity) {
 
     let basket = getBasket()
 
-    if (!_.hasIn(basket, buildKey(produit))) {
-        basket[buildKey(produit)] = {
-            id: produit.id,
-            name: produit.name,
+    if (!_.hasIn(basket, buildKey(article))) {
+        basket[buildKey(article)] = {
+            id: article.id,
+            article_ref: article.article_ref,
+            description: article.description,
+            provider: article.provider,
             quantity: parseInt(quantity),
-            price: produit.price
+            price: article.price
         }
     } else {
             
-    basket[buildKey(produit)].quantity += parseInt(quantity)
+    basket[buildKey(article)].quantity += parseInt(quantity)
 }  
 
 // on appelle ensuite la fonction store pour l'ajouté au local storage
@@ -29,8 +31,8 @@ console.log(basket)
 
 }
 
-function buildKey(produit){
-    return 'produit_' + produit.id
+function buildKey(article){
+    return 'article_' + article.id
 }
 
 
@@ -66,12 +68,12 @@ function  quantityBasketSize(){ // quand on actualise permet de garder la quanti
     return quantity
 } 
 
-function updateBasket(produit){
+function updateBasket(article){
     let basket = getBasket();
-    if (_.hasIn(basket, buildKey(produit))){
-        basket[buildKey(produit)] = produit;
-        if((basket[buildKey(produit)].quantity)==0){
-            _.unset(basket, buildKey(produit))
+    if (_.hasIn(basket, buildKey(article))){
+        basket[buildKey(article)] = article;
+        if((basket[buildKey(article)].quantity)==0){
+            _.unset(basket, buildKey(article))
         }
 
     } else {

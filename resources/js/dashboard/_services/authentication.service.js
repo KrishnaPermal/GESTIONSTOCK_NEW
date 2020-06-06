@@ -16,7 +16,7 @@ export const authenticationService = {
     login,
     logout,
     isAdmin,
-    isProducteur,
+    isFournisseur,
     getCurrentUser,
 
 
@@ -81,9 +81,9 @@ function isAdmin() {
     return role() === Role.Admin
 }
 
-function isProducteur() {
+function isFournisseur() {
     //console.log(role())
-    return role() === Role.Producteur
+    return role() === Role.Fournisseur
 }
 
 

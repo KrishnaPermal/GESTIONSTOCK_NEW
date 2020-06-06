@@ -5,7 +5,7 @@
     <v-app-bar color="cyan darken-1" dark fullscreen>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
      <v-toolbar-title>
-          <h1>CONFIPEI</h1>
+          <h1>S.N.INFORMATIQUE</h1>
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
@@ -21,8 +21,8 @@
      <v-img :aspect-ratio="16/9" src="https://www.mycuisine.com/wp-content/uploads/2017/06/pots_de_confiture-768x461.jpg"></v-img>
       <v-list-item>
         <v-list-item-content color="black">
-          <v-list-item-title class="font-italic">CONFIPEI</v-list-item-title>
-          <v-list-item-subtitle class="font-italic">BIENVENUE SUR NOTRE SITE</v-list-item-subtitle>
+          <v-list-item-title class="font-italic">S.N.INFORMATIQUE</v-list-item-title>
+          <v-list-item-subtitle class="font-italic">GESTION DE STOCK INFORMATIQUE</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
 
@@ -64,7 +64,7 @@
 
           <v-list-item-content>
             <v-list-item-title class="font-weight-bold">
-              <router-link :to="{name:'confitures'}">Confitures</router-link>
+              <router-link :to="{name:'articles'}">Articles</router-link>
             </v-list-item-title>
           </v-list-item-content>
          </v-list-item>
@@ -78,7 +78,7 @@
 
           <v-list-item-content>
             <v-list-item-title class="font-weight-bold">
-              <router-link :to="{name:'producteur'}">Producteurs</router-link>
+              <router-link :to="{name:'fournisseur'}">Fournisseurs</router-link>
             </v-list-item-title>
           </v-list-item-content>
          </v-list-item>
@@ -137,8 +137,8 @@ export default {
       items: [
         { title: "Accueil", icon: "mdi-home" },
         { title: "Dashboard", icon: "mdi-view-dashboard" },
-        { title: "Confitures", icon: "mdi-shopping" },
-        { title: "Producteurs", icon: "mdi-account" },
+        { title: "Articles", icon: "mdi-shopping" },
+        { title: "Fournisseurs", icon: "mdi-account" },
         { title: "Client", icon: "mdi-account" },
         { title: "Login", icon: "mdi-login-variant" },
       ], 

@@ -26,29 +26,31 @@ Route::get('/logout','AuthController@logout')->middleware('auth:api');
 /*LOGIN/LOGOUT*/
 
 // Sécurisation de la route
-Route::middleware(['auth:api','roles:Admin|Producteur'])->prefix('produits')->group(function () {
-    Route::post('/', 'ProduitController@createOrUpdate'); 
+Route::middleware(['auth:api','roles:Admin|Fournisseur'])->prefix('articles')->group(function () {
+    Route::post('/', 'ArticleController@createOrUpdate'); 
 }); 
 
-// Récupère les produits du Producteur (accessible qu'au producteur)
-Route::middleware(['auth:api','roles:Producteur'])->prefix('producteurs')->group(function () {
-    Route::get('produits', 'ProduitController@getOfProducteur');
-    Route::post('produits', 'ProduitController@createOrUpdate'); 
+// Récupère les articles du Fournisseur (accessible qu'au fournisseur)
+Route::middleware(['auth:api','roles:Fournisseur'])->prefix('fournisseurs')->group(function () {
+    Route::get('articles', 'ArticleController@getOfFournisseur');
+    Route::post('articles', 'ArticleController@createOrUpdate'); 
 }); 
+
+
+
+
+Route::get('categories', 'CategoriesController@index');
+
+Route::get('articles', 'ArticleController@index');
+
+
+
 
 /****route currentUser****/
 
-Route::post('/currentUser', 'UsersController@getCurrentUserDB');
+//Route::post('/currentUser', 'UsersController@getCurrentUserDB');
 
 /****route currentUser****/
-
-
-
-Route::get('fruits', 'FruitsController@index');
-
-Route::get('produits', 'ProduitController@index');
-
-
 
 //Route::get('Fruits', 'FruitsController@index');
 

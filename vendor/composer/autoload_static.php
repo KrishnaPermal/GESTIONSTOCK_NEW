@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit97ee208f59ba1edf0321e29771ff20ce
+class ComposerStaticInit7b137dc9f3925cc46cc17baad9078502
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -542,10 +542,12 @@ class ComposerStaticInit97ee208f59ba1edf0321e29771ff20ce
     );
 
     public static $classMap = array (
+        'App\\Articles' => __DIR__ . '/../..' . '/app/Articles.php',
+        'App\\Categories' => __DIR__ . '/../..' . '/app/Categories.php',
         'App\\Commandes' => __DIR__ . '/../..' . '/app/Commandes.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
-        'App\\Fruits' => __DIR__ . '/../..' . '/app/Fruits.php',
+        'App\\Fournisseurs' => __DIR__ . '/../..' . '/app/Fournisseurs.php',
         'App\\Http\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController.php',
         'App\\Http\\Controllers\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/AuthController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
@@ -563,23 +565,21 @@ class ComposerStaticInit97ee208f59ba1edf0321e29771ff20ce
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
-        'App\\Http\\Resources\\FruitsResource' => __DIR__ . '/../..' . '/app/Http/Resources/FruitsResource.php',
-        'App\\Http\\Resources\\ProducteursResource' => __DIR__ . '/../..' . '/app/Http/Resources/ProducteursResource.php',
-        'App\\Http\\Resources\\ProduitResource' => __DIR__ . '/../..' . '/app/Http/Resources/ProduitResource.php',
+        'App\\Http\\Resources\\ArticleResource' => __DIR__ . '/../..' . '/app/Http/Resources/ArticleResource.php',
+        'App\\Http\\Resources\\CategoriesResource' => __DIR__ . '/../..' . '/app/Http/Resources/CategoriesResource.php',
+        'App\\Http\\Resources\\FournisseursResource' => __DIR__ . '/../..' . '/app/Http/Resources/FournisseursResource.php',
         'App\\Http\\Resources\\RecompensesResource' => __DIR__ . '/../..' . '/app/Http/Resources/RecompensesResource.php',
         'App\\Http\\Resources\\RoleResource' => __DIR__ . '/../..' . '/app/Http/Resources/RoleResource.php',
         'App\\Http\\Resources\\UsersResource' => __DIR__ . '/../..' . '/app/Http/Resources/UsersResource.php',
         'App\\Http\\Resources\\addProduitResource' => __DIR__ . '/../..' . '/app/Http/Resources/addProduitResource.php',
-        'App\\Producteurs' => __DIR__ . '/../..' . '/app/Producteurs.php',
-        'App\\Produits' => __DIR__ . '/../..' . '/app/Produits.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
-        'App\\Recompenses' => __DIR__ . '/../..' . '/app/Recompenses.php',
         'App\\Role' => __DIR__ . '/../..' . '/app/Role.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
+        'ArticlesSeeder' => __DIR__ . '/../..' . '/database/seeds/ArticlesSeeder.php',
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack/Cors.php',
         'Asm89\\Stack\\CorsService' => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack/CorsService.php',
         'Brick\\Math\\BigDecimal' => __DIR__ . '/..' . '/brick/math/src/BigDecimal.php',
@@ -1439,6 +1439,7 @@ class ComposerStaticInit97ee208f59ba1edf0321e29771ff20ce
         'Firebase\\JWT\\JWK' => __DIR__ . '/..' . '/firebase/php-jwt/src/JWK.php',
         'Firebase\\JWT\\JWT' => __DIR__ . '/..' . '/firebase/php-jwt/src/JWT.php',
         'Firebase\\JWT\\SignatureInvalidException' => __DIR__ . '/..' . '/firebase/php-jwt/src/SignatureInvalidException.php',
+        'FournisseurSeeder' => __DIR__ . '/../..' . '/database/seeds/FournisseurSeeder.php',
         'Fruitcake\\Cors\\CorsServiceProvider' => __DIR__ . '/..' . '/fruitcake/laravel-cors/src/CorsServiceProvider.php',
         'Fruitcake\\Cors\\HandleCors' => __DIR__ . '/..' . '/fruitcake/laravel-cors/src/HandleCors.php',
         'GuzzleHttp\\Client' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Client.php',
@@ -3846,8 +3847,6 @@ class ComposerStaticInit97ee208f59ba1edf0321e29771ff20ce
         'PhpParser\\Parser\\Tokens' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Parser/Tokens.php',
         'PhpParser\\PrettyPrinterAbstract' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/PrettyPrinterAbstract.php',
         'PhpParser\\PrettyPrinter\\Standard' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/PrettyPrinter/Standard.php',
-        'ProducteurSeeder' => __DIR__ . '/../..' . '/database/seeds/ProducteurSeeder.php',
-        'ProduitsSeeder' => __DIR__ . '/../..' . '/database/seeds/ProduitsSeeder.php',
         'Prophecy\\Argument' => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy/Argument.php',
         'Prophecy\\Argument\\ArgumentsWildcard' => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy/Argument/ArgumentsWildcard.php',
         'Prophecy\\Argument\\Token\\AnyValueToken' => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy/Argument/Token/AnyValueToken.php',
@@ -5178,10 +5177,10 @@ class ComposerStaticInit97ee208f59ba1edf0321e29771ff20ce
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit97ee208f59ba1edf0321e29771ff20ce::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit97ee208f59ba1edf0321e29771ff20ce::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit97ee208f59ba1edf0321e29771ff20ce::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit97ee208f59ba1edf0321e29771ff20ce::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit7b137dc9f3925cc46cc17baad9078502::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit7b137dc9f3925cc46cc17baad9078502::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit7b137dc9f3925cc46cc17baad9078502::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit7b137dc9f3925cc46cc17baad9078502::$classMap;
 
         }, null, ClassLoader::class);
     }

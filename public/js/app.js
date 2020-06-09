@@ -2469,7 +2469,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    product: {
+    articles: {
       "default": function _default() {
         return {};
       }
@@ -2522,7 +2522,6 @@ __webpack_require__.r(__webpack_exports__);
     addDatas: function addDatas() {
       var _this2 = this;
 
-      //console.log(this.produit)
       var datasToAdd = {
         mark: this.article,
         article_ref: this.article_ref,
@@ -2532,18 +2531,12 @@ __webpack_require__.r(__webpack_exports__);
         quantity: this.quantity,
         categories: this.categories,
         photo: this.photo,
-        id: this.id
+        id: this.id,
+        id_fournisseur: this.id_fournisseur
       };
-
-      if (!this.isFournisseur) {
-        datasToAdd['id_fournisseur'] = this.article.id_fournisseur;
-      }
-
       var url = this.isFournisseur ? "/api/fournisseurs/articles" : "/api/articles";
       _services_api_services__WEBPACK_IMPORTED_MODULE_0__["apiServices"].post(url, datasToAdd).then(function (response) {
-        console.log("Données enregistrée");
-
-        _this2.$emit('addArticle', response.data);
+        _this2.$emit('addArticle', response.data.data);
 
         _this2.dialog = false;
         _this2.dialog = false;
@@ -2551,17 +2544,17 @@ __webpack_require__.r(__webpack_exports__);
         _this2.text = 'L\'Article à bien été ajoutée';
       })["catch"]();
     },
-    modifierArticle: function modifierArticle(product) {
+    modifierArticle: function modifierArticle(articles) {
       if (!this.isFournisseur) {
-        this.id_fournisseur = this.product.id_fournisseur;
+        this.id_fournisseur = this.articles.id_fournisseur;
       }
 
-      this.article = product.name;
-      this.quantity = product.quantity;
-      this.categories = product.categories;
-      this.price = product.price;
-      this.id = product.id;
-      this.photo = this.product.photo;
+      this.article = articles.mark;
+      this.quantity = articles.quantity;
+      this.categories = articles.categories;
+      this.price = articles.price;
+      this.id = articles.id;
+      this.photo = this.articles.photo;
 
       _.merge(this.categories, this.categoryList); // sert à fusionner
 
@@ -2613,18 +2606,15 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _services_api_services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../_services/api.services */ "./resources/js/dashboard/_services/api.services.js");
-/* harmony import */ var _services_authentication_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../_services/authentication.service */ "./resources/js/dashboard/_services/authentication.service.js");
-/* harmony import */ var _addArticle_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./addArticle.vue */ "./resources/js/dashboard/views/components/addArticle.vue");
-
+/* harmony import */ var _services_api_services__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../_services/api.services */ "./resources/js/dashboard/_services/api.services.js");
+/* harmony import */ var _services_authentication_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../_services/authentication.service */ "./resources/js/dashboard/_services/authentication.service.js");
+/* harmony import */ var _addArticle_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./addArticle.vue */ "./resources/js/dashboard/views/components/addArticle.vue");
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    addArticle: _addArticle_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+    addArticle: _addArticle_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
@@ -2674,9 +2664,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       // Si isFournisseur est vrai alors utilise api/fournisseurs/articles sinon la route api/articles (retourne tous les articles)         
-      var url = _services_authentication_service__WEBPACK_IMPORTED_MODULE_2__["authenticationService"].isFournisseur() ? "/api/fournisseurs/articles" : "/api/articles"; //let....() forme ternaire = condition ? (si la condition est vrai ont execute) : (si elle est fausse ont execute l'autre)
+      var url = _services_authentication_service__WEBPACK_IMPORTED_MODULE_1__["authenticationService"].isFournisseur() ? "/api/fournisseurs/articles" : "/api/articles"; //let....() forme ternaire = condition ? (si la condition est vrai ont execute) : (si elle est fausse ont execute l'autre)
 
-      _services_api_services__WEBPACK_IMPORTED_MODULE_1__["apiServices"].get(url).then(function (_ref) {
+      _services_api_services__WEBPACK_IMPORTED_MODULE_0__["apiServices"].get(url).then(function (_ref) {
         var data = _ref.data;
         return (//test avec url ok sinon avec la route api/fournisseurs/articles = forbidden
           data.data.forEach(function (data) {
@@ -2687,7 +2677,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     //Function pour set le headers  si ont est fournisseur ou pas dans le tableau
     setHeaders: function setHeaders() {
-      if (_services_authentication_service__WEBPACK_IMPORTED_MODULE_2__["authenticationService"].isFournisseur()) {
+      if (_services_authentication_service__WEBPACK_IMPORTED_MODULE_1__["authenticationService"].isFournisseur()) {
         //si nous sommes fournisseur pas besoin du id_fournisseur
         this.headers = [this.availableHeaders.article, this.availableHeaders.categories, this.availableHeaders.quantite, this.availableHeaders.price, this.availableHeaders.photo, this.availableHeaders.actions];
       } else {

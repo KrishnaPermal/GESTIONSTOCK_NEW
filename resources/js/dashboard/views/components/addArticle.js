@@ -3,7 +3,7 @@ import { authenticationService } from '../../_services/authentication.service';
 export default {
 
     props: {
-        product: {
+        articles: {
             default: function () {
                 return {
 
@@ -56,8 +56,8 @@ export default {
     methods: {
 
         addDatas() {
-           //console.log(this.produit)
-           let datasToAdd ={
+
+           let datasToAdd = {
             mark: this.article,
             article_ref: this.article_ref,
             description: this.description,
@@ -67,15 +67,12 @@ export default {
             categories: this.categories,
             photo: this.photo,
             id: this.id,
-           }
-           if(!this.isFournisseur){
-               datasToAdd['id_fournisseur'] = this.article.id_fournisseur
+            id_fournisseur: this.id_fournisseur
            }
            let url = this.isFournisseur ? "/api/fournisseurs/articles" : "/api/articles"
             apiServices.post(url, datasToAdd).then(response => {
                  
-                    console.log("Données enregistrée")
-                    this.$emit('addArticle', response.data)
+                    this.$emit('addArticle', response.data.data)
                     this.dialog = false;
                     this.dialog = false
                     this.snackbar = true
@@ -90,16 +87,16 @@ export default {
                 )  
         },
 
-        modifierArticle(product) {
+        modifierArticle(articles) {
             if(!this.isFournisseur){
-                this.id_fournisseur = this.product.id_fournisseur
+                this.id_fournisseur = this.articles.id_fournisseur
             }
-            this.article = product.name
-            this.quantity = product.quantity
-            this.categories = product.categories
-            this.price = product.price
-            this.id = product.id
-            this.photo = this.product.photo
+            this.article = articles.mark
+            this.quantity = articles.quantity
+            this.categories = articles.categories
+            this.price = articles.price
+            this.id = articles.id
+            this.photo = this.articles.photo
 
 
             _.merge(this.categories, this.categoryList) // sert à fusionner

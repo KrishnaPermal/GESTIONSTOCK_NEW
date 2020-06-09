@@ -44,7 +44,7 @@ class ArticleController extends Controller
                 'provider' => "required",
                 'quantity' => "required",
                 'price' => "required",
-                'id_fournisseur' => "numeric",
+                'id_fournisseur' => "required",
                 "categories" => "",
                 'photo' => "",
             ],
@@ -68,7 +68,7 @@ class ArticleController extends Controller
         $addToDb->provider = $datasToAdd['provider'];
         $addToDb->quantity = $datasToAdd['quantity'];
         $addToDb->price = $datasToAdd['price'];
- 
+
         if(isset($datasToAdd['id_fournisseur'])){
             $fournisseur = Fournisseurs::find($datasToAdd['id_fournisseur']);
             if (!$fournisseur) {
@@ -81,12 +81,13 @@ class ArticleController extends Controller
                     $user = $request->user();
                     $fournisseur = Fournisseurs::where('id_users', '=', $user->id)->first();
                     if(!$fournisseur){
-                        return $datasToAdd;
                         return "err";
                     }
                     $addToDb->fournisseur()->associate($fournisseur);
             }
         }
+
+        
             if (isset($addToDb->photo)) { //Si ceci est vrai, alors on save dans la base
                 $addToDb->save();
             } else {
@@ -112,7 +113,6 @@ class ArticleController extends Controller
                 }
             }
 
-        
         $addToDb->save(); // on save
 
         

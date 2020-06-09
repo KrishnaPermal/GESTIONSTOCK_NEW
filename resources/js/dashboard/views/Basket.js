@@ -1,4 +1,4 @@
-import { EventBus } from "../_helpers/event.bus";
+/* import { EventBus } from "../_helpers/event.bus";
 import {basketService} from  "../_services/basket.service";
 
 import {apiServices} from '../_services/api.services'
@@ -77,3 +77,4 @@ export default {
         console.log(this.itemPanier)
     }
 }
+ */

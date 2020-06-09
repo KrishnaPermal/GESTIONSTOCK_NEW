@@ -10,13 +10,12 @@
     <v-divider></v-divider>
 
    
-      <v-card-text class=" py-0 flex grey darken-3">
+      <v-card-text class=" py-5 flex grey darken-3">
         <v-btn
           v-for="icon in icons"
           :key="icon"
           class="mx-2 white--text"
-          icon
-        >
+          icon>
           <v-icon size="24px">{{ icon }}</v-icon>
         </v-btn>
       </v-card-text>

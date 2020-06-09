@@ -25,7 +25,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Articles::with(['fournisseur','categories','recompenses'])->get();
+        $articles = Articles::with(['fournisseur','categories'])->get();
         return ArticleResource::collection($articles);
     }
 
@@ -81,6 +81,7 @@ class ArticleController extends Controller
                     $user = $request->user();
                     $fournisseur = Fournisseurs::where('id_users', '=', $user->id)->first();
                     if(!$fournisseur){
+                        return $datasToAdd;
                         return "err";
                     }
                     $addToDb->fournisseur()->associate($fournisseur);

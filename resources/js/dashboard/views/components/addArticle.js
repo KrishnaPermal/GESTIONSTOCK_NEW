@@ -1,4 +1,3 @@
-import Axios from "axios"
 import {apiServices} from '../../_services/api.services'
 import { authenticationService } from '../../_services/authentication.service';
 export default {
@@ -20,12 +19,14 @@ export default {
             id: '',
             dialog: false,
             informations: '',
-            fruits: [],
-            id_producteur: {},
-            produit: '',
-            produits: [],
-            producteurs: [],
-            fruitList: [],
+            categories: [],
+            id_fournisseur: {},
+            article: '',
+            article_ref: '',
+            description: '',
+            articles: [],
+            fournisseurs: [],
+            categoryList: [],
             search: null,
             price: '',
             quantity: '',
@@ -33,18 +34,18 @@ export default {
             text: '',
             photo: '',
             loading: false,
-            isProducteur: authenticationService.isProducteur(),
+            isFournisseur: authenticationService.isFournisseur(),
         }
     },
     watch: {
         search: function (val) {
             if (val && val.length > 2) {
-                apiServices.get('/api/fruits',  { query: val } )
+                apiServices.get('/api/categories',  { query: val } )
                     .then(({ data }) => {
                         this.loading = false
 
-                        data.forEach(fruit => {
-                            this.fruitList.push(fruit)
+                        data.forEach(categorie => {
+                            this.categoryList.push(categorie)
                         })
                     })
             }
@@ -57,25 +58,28 @@ export default {
         addDatas() {
            //console.log(this.produit)
            let datasToAdd ={
-            name: this.produit,
+            mark: this.article,
+            article_ref: this.article_ref,
+            description: this.description,
+            provider: this.id_fournisseur,
             price: this.price,
             quantity: this.quantity,
-            fruits: this.fruits,
+            categories: this.categories,
             photo: this.photo,
             id: this.id,
            }
-           if(!this.isProducteur){
-               datasToAdd['id_producteur'] = this.produit.id_producteur
+           if(!this.isFournisseur){
+               datasToAdd['id_fournisseur'] = this.article.id_fournisseur
            }
-           let url = this.isProducteur ? "/api/producteurs/produits" : "/api/produits"
+           let url = this.isFournisseur ? "/api/fournisseurs/articles" : "/api/articles"
             apiServices.post(url, datasToAdd).then(response => {
                  
                     console.log("Données enregistrée")
-                    this.$emit('addProduit', response.data)
+                    this.$emit('addArticle', response.data)
                     this.dialog = false;
                     this.dialog = false
                     this.snackbar = true
-                    this.text = 'le produit à bien été ajoutée'
+                    this.text = 'L\'Article à bien été ajoutée'
             
                 })
             
@@ -86,19 +90,19 @@ export default {
                 )  
         },
 
-        modifierProduit(product) {
-            if(!this.isProducteur){
-                this.id_producteur = this.product.id_producteur
+        modifierArticle(product) {
+            if(!this.isFournisseur){
+                this.id_fournisseur = this.product.id_fournisseur
             }
-            this.produit = product.name
+            this.article = product.name
             this.quantity = product.quantity
-            this.fruits = product.fruits
+            this.categories = product.categories
             this.price = product.price
             this.id = product.id
             this.photo = this.product.photo
 
 
-            _.merge(this.fruits, this.fruitList) // sert à fusionner
+            _.merge(this.categories, this.categoryList) // sert à fusionner
 
         },
         
@@ -111,19 +115,19 @@ export default {
             reader.readAsDataURL(file);
         },
 
-        createFruit(val) {
+        createCategorie(val) {
             console.log(val)
         },
 
 
-        //Todo à modifier getProducteur (la route c'est plus api/producteur)
-        //function qui gère les données du selectProducteur
-        getProducteur() {
-            // si le role n'est pas producteur, ne vas pas faire la requête
-            if(!this.isProducteur){ 
-                apiServices.get("/api/produits").then(({ data }) => {
-                    data.data.forEach(_produit => {
-                        this.producteurs.push(_produit.producteur)  
+        //Todo à modifier getFournisseur (la route c'est plus api/fournisseur)
+        //function qui gère les données du selectFournisseur
+        getFournisseur() {
+            // si le role n'est pas fournisseur, ne vas pas faire la requête
+            if(!this.isFournisseur){ 
+                apiServices.get("/api/articles").then(({ data }) => {
+                    data.data.forEach(_article => {
+                        this.fournisseurs.push(_article.fournisseur)  
                         })
                     }
                 );
@@ -133,7 +137,7 @@ export default {
 
     },
     created() {
-        this.getProducteur();
-        console.log(this.produit)
+        this.getFournisseur();
+        console.log(this.article)
     },
 }

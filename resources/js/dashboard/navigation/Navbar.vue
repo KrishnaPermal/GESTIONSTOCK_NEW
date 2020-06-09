@@ -10,7 +10,7 @@
 
       <v-spacer></v-spacer>
        <!--ajout component Panier-->
-        <Panier></Panier>
+        <!--<Panier></Panier>-->
       <!--ajout component Panier--> 
     </v-app-bar>
 
@@ -18,7 +18,7 @@
 
  <!-- Navigation vertical -->
     <v-navigation-drawer v-model="drawer" absolute temporary>
-     <v-img :aspect-ratio="16/9" src="https://www.mycuisine.com/wp-content/uploads/2017/06/pots_de_confiture-768x461.jpg"></v-img>
+     <v-img :aspect-ratio="16/9" src="https://www.universite-rose-croix.org/wp-content/uploads/2018/12/video-informatique-et-spiritualit%C3%A9.jpg"></v-img>
       <v-list-item>
         <v-list-item-content color="black">
           <v-list-item-title class="font-italic">S.N.INFORMATIQUE</v-list-item-title>
@@ -87,20 +87,6 @@
 
          <v-list-item link>
           <v-list-item-icon>
-            <v-icon>mdi-shopping</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title class="font-weight-bold">
-              <router-link :to="{name:'client'}">Client</router-link>
-            </v-list-item-title>
-          </v-list-item-content>
-         </v-list-item>
-
-<v-divider></v-divider>
-
-         <v-list-item link>
-          <v-list-item-icon>
             <v-icon>mdi-login-variant</v-icon>
           </v-list-item-icon>
 
@@ -139,7 +125,6 @@ export default {
         { title: "Dashboard", icon: "mdi-view-dashboard" },
         { title: "Articles", icon: "mdi-shopping" },
         { title: "Fournisseurs", icon: "mdi-account" },
-        { title: "Client", icon: "mdi-account" },
         { title: "Login", icon: "mdi-login-variant" },
       ], 
     };

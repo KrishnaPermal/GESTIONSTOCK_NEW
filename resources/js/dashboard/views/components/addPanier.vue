@@ -1,4 +1,4 @@
-<template>
+<!--<template>
     <v-row>
         <v-col cols="6">
             <v-text-field type="number" min="0" v-model="quantity"

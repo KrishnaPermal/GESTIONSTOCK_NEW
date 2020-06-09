@@ -1,4 +1,5 @@
-<!--ICI C'EST LA VUE POUR ICON PANIER ET VOIR LE PANIER-->
+<!--
+<!--ICI C'EST LA VUE POUR ICON PANIER ET VOIR LE PANIER-
 <template>
 <v-menu offset-y open-on-hover :close-on-content-click="false">
     <template v-slot:activator='{on}'>
@@ -9,17 +10,17 @@
     </v-btn>
     </template>
     <v-list>
-        <v-list-item v-for="(produit, key) in itemPanier" :key='key'>
+        <v-list-item v-for="(article, key) in itemPanier" :key='key'>
             <v-list-item-title>
                <v-card>
             <div class="d-flex flex-no-wrap justify-space-between">
-              <v-card-title class="headline">{{produit.name}}</v-card-title>
+              <v-card-title class="headline">{{article.name}}</v-card-title>
             </div>
             <v-card-subtitle>
               <v-text-field
                 type="number"
                 min="0"
-                v-model="produit.quantity" @input="updateQuantity(produit)">
+                v-model="article.quantity" @input="updateQuantity(article)">
          </v-text-field>
           </v-card-subtitle>
                 </v-card>
@@ -33,6 +34,6 @@
 </template>
 
 <script src="./Panier.js"></script>
-
+-->
 
    

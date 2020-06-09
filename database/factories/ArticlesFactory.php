@@ -19,7 +19,7 @@ $factory->define(Articles::class, function (Faker $faker) {
         "quantity" => $faker->numberBetween($min = 3, $max = 800),
         "price" => $faker->numberBetween($min = 3, $max = 100),
         "id_fournisseur" => $id_fournisseur,
-        //"photo" => '/storage/images/test2.jpeg',
+        "photo" => '/storage/images/test2.jpeg',
         //"id_producteur" => factory(Producteurs::class),
         //"id_photo" => PhotosModel::all()->random()->id,
     ];

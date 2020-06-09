@@ -1,4 +1,4 @@
-<!--ICI C'EST LA VUE POUR MON PANIER-->
+<!--ICI C'EST LA VUE POUR MON PANIER
 <template>
 <v-container>
   <div class="container">
@@ -12,7 +12,7 @@
           <v-row dense>
             <v-col class="md-4">
               <v-card-actions>
-                <v-card-title>{{article.mark}}</v-card-title>
+                <v-card-title>{{article.name}}</v-card-title>
                 <v-card-subtitle>Prix: {{article.price}} €</v-card-subtitle>
                 <v-text-field
                   type="number"

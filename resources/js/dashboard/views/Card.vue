@@ -40,7 +40,7 @@
           <v-row dense>
             <v-col class="md-4">
               <v-img
-                :src="article.photo.photo"
+                :src="article.photo"
                 class="white--text align-end"
                 gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
                 height="200px"
@@ -52,7 +52,7 @@
                 <v-spacer />
               </v-card-actions>
               <!--ajout component addPanier-->
-              <addPanier :article='article'></addPanier>
+              <!--<addPanier :article='article'></addPanier>-->
               <!--ajout component addPanier--> 
             </v-col>
           </v-row>

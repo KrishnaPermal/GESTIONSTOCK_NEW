@@ -21,7 +21,7 @@ class CreateArticleTable extends Migration
             $table->string('provider',255);
             $table->string('quantity',255);
             $table->string('price',255);
-            //$table->string('photo');
+            $table->string('photo');
         });
 
         Schema::table('article', function (Blueprint $table) {

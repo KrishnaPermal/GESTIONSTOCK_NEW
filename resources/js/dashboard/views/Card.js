@@ -23,9 +23,11 @@ export default {
                 apiServices.get('/api/categories',  { query: val } )
                     .then(({ data }) => {
                         this.loading = false
+                        
 
                         data.forEach(categorie => {
-                            this.categoryList.push(categorie)
+                            this.categoryList.push(categorie.name)
+                            
                         })
                     })
             }
@@ -47,7 +49,7 @@ export default {
         displayCategories(_categories){
             var categories=[];
             _categories.forEach(_categorie=>{
-                categories.push((_categorie.mark))
+                categories.push((_categorie.name))
             })
             return categories.join(', ');
         },
@@ -70,11 +72,11 @@ export default {
                             if (_categorie) {
                                 this.categories.forEach(categories => {
 
-                                    if (_.includes(categories, _categorie.mark)) {
+                                    if (_.includes(categories, _categorie.name)) {
 
                                         _articlesDisplay[article.id] = _article
                                         this.articlesDisplay.push(_article)
-                                        //console.log(this.articlesDisplay)
+                                       
                                     }
                                 })
                             }

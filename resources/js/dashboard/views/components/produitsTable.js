@@ -1,12 +1,12 @@
 import Axios from "axios";
 import {apiServices} from '../../_services/api.services'
 import { authenticationService } from "../../_services/authentication.service";
-import addProduit from './addProduit.vue';
+import addArticle from './addArticle.vue';
 
 
 export default {
     components: {
-        addProduit,
+        addArticle,
        
     },
     data: () => ({
@@ -14,16 +14,16 @@ export default {
         headers: [],
 
         availableHeaders: {
-            produit: { text: "Produit", align: "start", sortable: false,value: "produit"},
-            fruits:  { text: "Fruits", value: "fruits" },
-            id_producteur:  { text: "Producteurs", value: "id_producteur" },
+            article: { text: "Article", align: "start", sortable: false,value: "article"},
+            categories:  { text: "Categories", value: "categories" },
+            id_fournisseur:  { text: "Fournisseurs", value: "id_fournisseur" },
             quantite: { text: "Quantité", value: "quantity"},
             price: { text: "Prix", value: "price" },
             photo: { text: "Photo", value:"photo"},
             actions: { text: "Actions", value:"actions" }, 
         },
         
-        produits: [],
+        articles: [],
         
     }),
     
@@ -37,23 +37,23 @@ export default {
 
     methods: {
         initialize() {
-            // Si isProducteur est vrai alors utilise api/producteurs/produits sinon la route api/produits (retourne tous les produits)         
-            let url = authenticationService.isProducteur() ? "/api/producteurs/produits" : "/api/produits"
+            // Si isFournisseur est vrai alors utilise api/fournisseurs/articles sinon la route api/articles (retourne tous les articles)         
+            let url = authenticationService.isFournisseur() ? "/api/fournisseurs/articles" : "/api/articles"
             //let....() forme ternaire = condition ? (si la condition est vrai ont execute) : (si elle est fausse ont execute l'autre)
-            apiServices.get(url).then(({ data }) => //test avec url ok sinon avec la route api/producteurs/produits = forbidden
+            apiServices.get(url).then(({ data }) => //test avec url ok sinon avec la route api/fournisseurs/articles = forbidden
                 data.data.forEach(data => {
-                    this.produits.push(data);
+                    this.articles.push(data);
                     
                 }),
             );
 
         },
-        //Function pour set le headers  si ont est producteur ou pas dans le tableau
+        //Function pour set le headers  si ont est fournisseur ou pas dans le tableau
         setHeaders(){ 
-            if (authenticationService.isProducteur()) { //si nous sommes producteur pas besoin du id_producteur
+            if (authenticationService.isFournisseur()) { //si nous sommes fournisseur pas besoin du id_fournisseur
                 this.headers = [
-                    this.availableHeaders.produit,
-                    this.availableHeaders.fruits,
+                    this.availableHeaders.article,
+                    this.availableHeaders.categories,
                     this.availableHeaders.quantite,
                     this.availableHeaders.price,
                     this.availableHeaders.photo,
@@ -62,9 +62,9 @@ export default {
             }
             else { //sinon ont affiche tout !!!
                 this.headers = [
-                    this.availableHeaders.produit,
-                    this.availableHeaders.fruits,
-                    this.availableHeaders.id_producteur,
+                    this.availableHeaders.article,
+                    this.availableHeaders.categories,
+                    this.availableHeaders.id_fournisseur,
                     this.availableHeaders.quantite,
                     this.availableHeaders.price,
                     this.availableHeaders.photo,
@@ -72,20 +72,13 @@ export default {
                 ]
             }
         },
-        displayFruits(items){
-            var fruits=[];
+        displayCategories(items){
+            var categories=[];
             items.forEach(item=>{
-                fruits.push((item.name))
+                categories.push((item.name))
             })
-            return fruits.join(', ');
+            return categories.join(', ');
         },
 
-        /* displayProducteurs(items){
-            var producteur=[];
-            items.forEach(item=>{
-                producteur.push((item.name))
-            })
-            return producteur.join(', ');
-        } */
     }
 };

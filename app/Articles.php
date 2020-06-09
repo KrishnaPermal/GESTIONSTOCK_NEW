@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Articles extends Model
 {
     protected $table = "article";
-    protected $fillable = ['article_ref','mark','description','provider', 'quantity','price', 'id_fournisseur'];
+    protected $fillable = ['article_ref','mark','description','provider','photo' ,'quantity','price', 'id_fournisseur'];
     public $timestamps = false;
 
     function fournisseur()

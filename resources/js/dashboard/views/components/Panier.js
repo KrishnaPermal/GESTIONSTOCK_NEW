@@ -1,4 +1,4 @@
-import { EventBus } from "../../_helpers/event.bus";
+/* import { EventBus } from "../../_helpers/event.bus";
 import {basketService} from  "../../_services/basket.service";
 
 export default {
@@ -10,13 +10,13 @@ export default {
     },
     methods:{
 
-        updateQuantity(produit){
-            console.log(produit.quantity)
-            if (produit.quantity == 0) {
-                if(confirm("Êtes vous sur de vouloir supprimer? " + produit.name + "?")){
-                    basketService.updateBasket(produit);
+        updateQuantity(article){
+            console.log(article.quantity)
+            if (article.quantity == 0) {
+                if(confirm("Êtes vous sur de vouloir supprimer? " + article.name + "?")){
+                    basketService.updateBasket(article);
                 } else {
-                    produit.quantity = 1;
+                    article.quantity = 1;
                 }
             }
         
@@ -58,3 +58,4 @@ export default {
 
 }
 
+ */

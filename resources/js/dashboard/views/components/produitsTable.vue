@@ -13,7 +13,7 @@
         <v-img :src="item.photo" aspect-ratio="1.7"></v-img> 
       </template> 
 
-      <template v-slot:item.actions="{ item }"><addArticle :product="item" :isModification='true'></addArticle></template>
+      <template v-slot:item.actions="{ item }"><addArticle :articles="item" :isModification='true'></addArticle></template>
     </v-data-table>
 </template>
 

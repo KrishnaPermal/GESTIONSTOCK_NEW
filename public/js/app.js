@@ -2544,18 +2544,18 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"]();
     },
     modifierArticle: function modifierArticle(articles) {
-      if (!this.isFournisseur) {
-        this.id_fournisseur = this.articles.id_fournisseur;
-      }
-
-      this.article = articles.mark;
-      this.quantity = articles.quantity;
-      this.categories = articles.categories;
-      this.price = articles.price;
-      this.id = articles.id;
+      console.log(this.articles);
+      this.id_fournisseur = this.articles.id_fournisseur;
+      this.article = this.articles.mark;
+      this.description = this.articles.description;
+      this.article_ref = this.articles.article_ref;
+      this.quantity = this.articles.quantity;
+      this.categories = this.articles.categories;
+      this.price = this.articles.price;
+      this.id = this.articles.id;
       this.photo = this.articles.photo;
 
-      _.merge(this.categories, this.categoryList); // sert à fusionner
+      _.merge(this.articles.categories, this.categories); // sert à fusionner
 
     },
     onFileChange: function onFileChange(file) {
@@ -2656,7 +2656,6 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.initialize();
     this.setHeaders();
-    console.log(this.articles);
   },
   methods: {
     initialize: function initialize() {
@@ -27959,23 +27958,19 @@ var render = function() {
                               color: "light-blue lighten-3",
                               dark: "",
                               small: ""
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.modifierArticle(_vm.articles)
+                              }
                             }
                           },
                           on
                         ),
                         [
-                          _c(
-                            "v-icon",
-                            {
-                              attrs: { left: "" },
-                              on: {
-                                click: function($event) {
-                                  return _vm.modifierArticle(_vm.product)
-                                }
-                              }
-                            },
-                            [_vm._v("mdi-pencil")]
-                          )
+                          _c("v-icon", { attrs: { left: "" } }, [
+                            _vm._v("mdi-pencil")
+                          ])
                         ],
                         1
                       )
@@ -28414,7 +28409,9 @@ var render = function() {
         fn: function(ref) {
           var item = ref.item
           return [
-            _c("addArticle", { attrs: { product: item, isModification: true } })
+            _c("addArticle", {
+              attrs: { articles: item, isModification: true }
+            })
           ]
         }
       }

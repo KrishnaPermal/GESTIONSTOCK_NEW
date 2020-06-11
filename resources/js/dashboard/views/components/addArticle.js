@@ -75,27 +75,24 @@ export default {
                 this.text = 'L\'Article à bien été ajoutée'
             
                 })
-            
-             
-
-            
+ 
                 .catch(
                 )  
         },
 
         modifierArticle(articles) {
-            if(!this.isFournisseur){
-                this.id_fournisseur = this.articles.id_fournisseur
-            }
-            this.article = articles.mark
-            this.quantity = articles.quantity
-            this.categories = articles.categories
-            this.price = articles.price
-            this.id = articles.id
+            console.log(this.articles)
+            this.id_fournisseur = this.articles.id_fournisseur
+            this.article = this.articles.mark
+            this.description = this.articles.description
+            this.article_ref = this.articles.article_ref
+            this.quantity = this.articles.quantity
+            this.categories = this.articles.categories
+            this.price = this.articles.price
+            this.id = this.articles.id
             this.photo = this.articles.photo
 
-
-            _.merge(this.categories, this.categoryList) // sert à fusionner
+            _.merge(this.articles.categories, this.categories) // sert à fusionner
 
         },
         

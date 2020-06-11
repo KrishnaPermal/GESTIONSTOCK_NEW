@@ -5,8 +5,8 @@
         <v-btn v-if="!isModification" color="light-blue lighten-3" dark small v-on="on">
           <v-icon>mdi-plus</v-icon>
         </v-btn>
-        <v-btn v-if="isModification" color="light-blue lighten-3" dark small v-on="on">
-         <v-icon @click="modifierArticle(product)" left>mdi-pencil</v-icon>
+        <v-btn @click="modifierArticle(articles)" v-if="isModification" color="light-blue lighten-3" dark small v-on="on">
+         <v-icon left>mdi-pencil</v-icon>
          </v-btn>
       </template>
 

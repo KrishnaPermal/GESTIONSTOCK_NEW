@@ -29,7 +29,6 @@ export default {
     created() {
         this.initialize();
         this.setHeaders();
-        console.log(this.articles)
 
     },
 

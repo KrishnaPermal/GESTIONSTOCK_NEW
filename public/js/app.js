@@ -2488,7 +2488,6 @@ __webpack_require__.r(__webpack_exports__);
       article: '',
       article_ref: '',
       description: '',
-      articles: [],
       fournisseurs: [],
       categoryList: [],
       search: null,
@@ -2536,10 +2535,10 @@ __webpack_require__.r(__webpack_exports__);
       };
       var url = this.isFournisseur ? "/api/fournisseurs/articles" : "/api/articles";
       _services_api_services__WEBPACK_IMPORTED_MODULE_0__["apiServices"].post(url, datasToAdd).then(function (response) {
-        _this2.$emit('addArticle', response.data.data);
+        _this2.dialog = false;
 
-        _this2.dialog = false;
-        _this2.dialog = false;
+        _this2.$emit('addArticles', response.data.data);
+
         _this2.snackbar = true;
         _this2.text = 'L\'Article à bien été ajoutée';
       })["catch"]();
@@ -2591,7 +2590,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.getFournisseur();
-    console.log(this.article);
   }
 });
 
@@ -2658,6 +2656,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     this.initialize();
     this.setHeaders();
+    console.log(this.articles);
   },
   methods: {
     initialize: function initialize() {
@@ -2669,8 +2668,8 @@ __webpack_require__.r(__webpack_exports__);
       _services_api_services__WEBPACK_IMPORTED_MODULE_0__["apiServices"].get(url).then(function (_ref) {
         var data = _ref.data;
         return (//test avec url ok sinon avec la route api/fournisseurs/articles = forbidden
-          data.data.forEach(function (data) {
-            _this.articles.push(data);
+          data.data.forEach(function (_data) {
+            _this.articles.push(_data);
           })
         );
       });
@@ -27837,7 +27836,7 @@ var render = function() {
         _vm._v(" "),
         _c("v-divider"),
         _vm._v(" "),
-        _c("v-subtitle", { staticClass: "text-center" }, [
+        _c("h2", { staticClass: "text-center" }, [
           _vm._v("NOS MEILLEURS VENTES")
         ]),
         _c("br"),
@@ -28355,45 +28354,13 @@ var render = function() {
         key: "top",
         fn: function() {
           return [
-            _c(
-              "v-card",
-              { attrs: { color: "basil" } },
-              [
-                _c(
-                  "v-card-title",
-                  { staticClass: "text-center justify-center py-4" },
-                  [
-                    _c(
-                      "h1",
-                      { staticClass: "font-weight-bold display-2 basil--text" },
-                      [_vm._v("LISTES DES ARTICLES")]
-                    )
-                  ]
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("v-spacer"),
-            _vm._v(" "),
-            _c("v-divider"),
-            _vm._v(" "),
-            _c(
-              "v-toolbar",
-              { attrs: { flat: "", color: "blue-grey lighten-4" } },
-              [
-                _c("v-spacer"),
-                _vm._v(" "),
-                _c("addArticle", {
-                  on: {
-                    addArticle: function($event) {
-                      return _vm.articles.push($event)
-                    }
-                  }
-                })
-              ],
-              1
-            )
+            _c("addArticle", {
+              on: {
+                addArticles: function($event) {
+                  return _vm.articles.push($event)
+                }
+              }
+            })
           ]
         },
         proxy: true

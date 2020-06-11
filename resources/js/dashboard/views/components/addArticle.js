@@ -5,9 +5,7 @@ export default {
     props: {
         articles: {
             default: function () {
-                return {
-
-                }
+                return {}
             }
         },
         isModification: {
@@ -24,7 +22,6 @@ export default {
             article: '',
             article_ref: '',
             description: '',
-            articles: [],
             fournisseurs: [],
             categoryList: [],
             search: null,
@@ -72,11 +69,10 @@ export default {
            let url = this.isFournisseur ? "/api/fournisseurs/articles" : "/api/articles"
             apiServices.post(url, datasToAdd).then(response => {
                  
-                    this.$emit('addArticle', response.data.data)
-                    this.dialog = false;
-                    this.dialog = false
-                    this.snackbar = true
-                    this.text = 'L\'Article à bien été ajoutée'
+                this.dialog = false;
+                this.$emit('addArticles', response.data.data)
+                this.snackbar = true
+                this.text = 'L\'Article à bien été ajoutée'
             
                 })
             
@@ -135,6 +131,5 @@ export default {
     },
     created() {
         this.getFournisseur();
-        console.log(this.article)
     },
 }

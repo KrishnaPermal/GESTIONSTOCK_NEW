@@ -29,6 +29,7 @@ export default {
     created() {
         this.initialize();
         this.setHeaders();
+        console.log(this.articles)
 
     },
 
@@ -40,8 +41,8 @@ export default {
             let url = authenticationService.isFournisseur() ? "/api/fournisseurs/articles" : "/api/articles"
             //let....() forme ternaire = condition ? (si la condition est vrai ont execute) : (si elle est fausse ont execute l'autre)
             apiServices.get(url).then(({ data }) => //test avec url ok sinon avec la route api/fournisseurs/articles = forbidden
-                data.data.forEach(data => {
-                    this.articles.push(data);
+                data.data.forEach(_data => {
+                    this.articles.push(_data);
                     
                 }),
             );

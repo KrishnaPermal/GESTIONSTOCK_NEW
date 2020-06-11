@@ -15,9 +15,8 @@ class ArticleResource extends JsonResource
     public function toArray($request)
     {
         
-        $fournisseur = new FournisseursResource($this->whenLoaded('fournisseur'));
-        $categories = CategoriesResource::collection($this->whenLoaded('categories'));
-      //$recompenses = RecompensesResource::collection($this->whenLoaded('recompenses'));
+        $fournisseur = new FournisseursResource($this->fournisseur);
+        $categories = CategoriesResource::collection($this->categories);
       
         return [
             'id' =>$this->id,

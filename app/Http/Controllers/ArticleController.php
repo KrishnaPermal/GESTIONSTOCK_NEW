@@ -86,7 +86,6 @@ class ArticleController extends Controller
                     $addToDb->fournisseur()->associate($fournisseur);
             }
         }
-
         
             if (isset($addToDb->photo)) { //Si ceci est vrai, alors on save dans la base
                 $addToDb->save();
@@ -112,11 +111,11 @@ class ArticleController extends Controller
                     $addToDb->photo = "/storage/images/" . $filename; // ajout photo dans /storage/images/
                 }
             }
-
+            
         $addToDb->save(); // on save
 
         
-        /**Fruits*/
+    //     /**Fruits*/
 
         $articleCategories = [];
         $clientCategories = $datasToAdd['categories'];
@@ -152,7 +151,6 @@ class ArticleController extends Controller
 
        
         }
-
     return new ArticleResource($addToDb); 
 
     }

@@ -16,7 +16,7 @@
 
 <v-divider></v-divider>
 
- <v-subtitle class="text-center">NOS MEILLEURS VENTES</v-subtitle><br>
+ <h2 class="text-center">NOS MEILLEURS VENTES</h2><br>
     <!--Carte-->
     
       <v-card v-for="(article,key) in articlesDisplay" :key="key"  class="mx-auto my-4 d-flex pa-2" max-width="400" >

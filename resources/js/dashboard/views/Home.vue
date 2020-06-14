@@ -5,8 +5,10 @@
       <h1 class="font-italic font-weight-bold display-1 cyan--text">GESTION DE STOCK</h1>
     </v-card-title>
 
-    <h1 class="text-center justify-center py-6">Presentation</h1>
+   
         <v-container class="text-center justify-center py-6">
+          <img src="storage/images/logo1.png" width="150px" height="150px">
+           <h1 class="text-center justify-center py-6">Presentation</h1>
           <p> 
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
             Tempore officia officiis veritatis, tempora velit adipisci architecto consectetur enim modi quaerat doloremque placeat nulla! 

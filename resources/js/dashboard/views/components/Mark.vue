@@ -5,9 +5,10 @@
   >
     <v-slide-group multiple show-arrows>
       <v-slide-item
-        v-for="n in 25"
+        v-for="n in mark"
         :key="n"
         v-slot:default="{ active, toggle }"
+        
       >
         <v-btn
           class="mx-2"
@@ -17,7 +18,7 @@
           rounded
           @click="toggle"
         >
-          Options {{ n }}
+         {{ n }}
         </v-btn>
       </v-slide-item>
     </v-slide-group>

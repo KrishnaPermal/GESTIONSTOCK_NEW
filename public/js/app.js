@@ -1983,10 +1983,127 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      icons: ['mdi-facebook', 'mdi-instagram']
+      icons: ['mdi-facebook', 'mdi-instagram', 'mdi-twitter-circle', 'mdi-linkedin']
     };
   }
 });
@@ -2183,6 +2300,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_api_services__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../_services/api.services */ "./resources/js/dashboard/_services/api.services.js");
 /* harmony import */ var _components_BestSeller_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/BestSeller.vue */ "./resources/js/dashboard/views/components/BestSeller.vue");
 /* harmony import */ var _components_Mark_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Mark.vue */ "./resources/js/dashboard/views/components/Mark.vue");
+//
+//
 //
 //
 //
@@ -2530,7 +2649,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       model: null,
-      articles: []
+      articles: [],
+      mark: ['MSI', 'Asus', 'Hp', 'Intel', 'Samsung', 'Acer', 'Western Digital', 'Dell', 'LG', 'Lenovo']
     };
   }
 });
@@ -27346,24 +27466,336 @@ var render = function() {
               _c("v-divider"),
               _vm._v(" "),
               _c(
-                "v-card-text",
-                { staticClass: " py-5 flex grey darken-3" },
-                _vm._l(_vm.icons, function(icon) {
-                  return _c(
-                    "v-btn",
-                    {
-                      key: icon,
-                      staticClass: "mx-2 white--text",
-                      attrs: { icon: "" }
-                    },
+                "v-row",
+                { staticClass: "grey darken-1 white--text text-center" },
+                [
+                  _c(
+                    "v-col",
                     [
-                      _c("v-icon", { attrs: { size: "24px" } }, [
-                        _vm._v(_vm._s(icon))
-                      ])
+                      _c("v-icon", [_vm._v("mdi-credit-card")]),
+                      _vm._v("Débit à l'expédition")
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    [
+                      _c("v-icon", [_vm._v("mdi-truck-fast")]),
+                      _vm._v("Livraison Express")
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    [
+                      _c("v-icon", [_vm._v("mdi-map-marker-outline")]),
+                      _vm._v("Réseau National de Magasins")
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    [
+                      _c("v-icon", [_vm._v("mdi-credit-card")]),
+                      _vm._v("Paiement en 3X")
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    [_c("v-icon", [_vm._v("mdi-restore")]), _vm._v("S.A.V")],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-row",
+                { staticClass: "justify-center", attrs: { dense: "" } },
+                [
+                  _c(
+                    "v-col",
+                    { staticClass: "pa-0", attrs: { cols: "12", md: "4" } },
+                    [
+                      _c(
+                        "v-card-text",
+                        { staticClass: "flex grey darken-1" },
+                        [
+                          _c(
+                            "v-card",
+                            {
+                              staticClass: "mx-auto",
+                              attrs: { "min-height": "100px", outlined: "" }
+                            },
+                            [
+                              _c(
+                                "v-list-item",
+                                [
+                                  _c(
+                                    "v-list-item-content",
+                                    [
+                                      _c("v-list-item-subtitle", [
+                                        _vm._v("Moyens de paiement acceptées")
+                                      ])
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                { staticClass: "pa-0" },
+                                [
+                                  _c("v-img", {
+                                    attrs: {
+                                      src:
+                                        "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Old_Visa_Logo.svg/1200px-Old_Visa_Logo.svg.png",
+                                      "aspect-ratio": "1.4"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                { staticClass: "pa-0" },
+                                [
+                                  _c("v-img", {
+                                    attrs: {
+                                      src:
+                                        "https://dashnews.org/wp-content/uploads/2019/05/MasterCard-Pressured-to-Monitor-Far-Right-Payments.jpg",
+                                      "aspect-ratio": "1.4"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                { staticClass: "pa-0" },
+                                [
+                                  _c("v-img", {
+                                    attrs: {
+                                      src:
+                                        "https://upload.wikimedia.org/wikipedia/fr/thumb/7/72/Logo_GIE-CB.jpg/1200px-Logo_GIE-CB.jpg",
+                                      "aspect-ratio": "1.4"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                { staticClass: "pa-0" },
+                                [
+                                  _c("v-img", {
+                                    attrs: {
+                                      src:
+                                        "https://logo-marque.com/wp-content/uploads/2020/04/PayPal-Logo-2007%E2%80%932014.jpg",
+                                      "aspect-ratio": "1.4"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                { staticClass: "pa-0" },
+                                [
+                                  _c("v-img", {
+                                    attrs: {
+                                      src:
+                                        "https://clubpwc.ca/wp-content/uploads/2020/02/virement-bancaire.jpg",
+                                      "aspect-ratio": "1.4"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    { staticClass: "pa-0", attrs: { cols: "12", md: "4" } },
+                    [
+                      _c(
+                        "v-card-text",
+                        { staticClass: "flex grey darken-1" },
+                        [
+                          _c(
+                            "v-card",
+                            {
+                              staticClass: "mx-auto",
+                              attrs: { "min-height": "100px", outlined: "" }
+                            },
+                            [
+                              _c(
+                                "v-list-item",
+                                [
+                                  _c(
+                                    "v-list-item-content",
+                                    [
+                                      _c("v-list-item-subtitle", [
+                                        _vm._v(
+                                          "Retrouvez-nous aussi sur les réseaux sociaux"
+                                        )
+                                      ])
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _vm._l(_vm.icons, function(icon) {
+                                return _c(
+                                  "v-btn",
+                                  {
+                                    key: icon,
+                                    staticClass: "mx-2 white--text",
+                                    attrs: { icon: "" }
+                                  },
+                                  [
+                                    _c(
+                                      "v-icon",
+                                      {
+                                        attrs: { size: "20px", color: "cyan" }
+                                      },
+                                      [_vm._v(_vm._s(icon))]
+                                    )
+                                  ],
+                                  1
+                                )
+                              })
+                            ],
+                            2
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "v-col",
+                    { staticClass: "pa-0", attrs: { cols: "12", md: "4" } },
+                    [
+                      _c(
+                        "v-card-text",
+                        { staticClass: " flex grey darken-1" },
+                        [
+                          _c(
+                            "v-card",
+                            {
+                              staticClass: "mx-auto",
+                              attrs: { "min-height": "100px", outlined: "" }
+                            },
+                            [
+                              _c(
+                                "v-list-item",
+                                [
+                                  _c(
+                                    "v-list-item-content",
+                                    [
+                                      _c("v-list-item-subtitle", [
+                                        _vm._v("Nos transporteurs")
+                                      ])
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                { staticClass: "pa-0" },
+                                [
+                                  _c("v-img", {
+                                    attrs: {
+                                      src:
+                                        "https://apps.oxatis.com/Files/112496/Img/11/Apps-Chronopost.jpg",
+                                      "aspect-ratio": "1.4"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                { staticClass: "pa-0" },
+                                [
+                                  _c("v-img", {
+                                    attrs: {
+                                      src:
+                                        "https://cdn.shopify.com/s/files/1/0304/0172/4555/t/9/assets/Logo_Colissimo.jpg",
+                                      "aspect-ratio": "1.4"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                { staticClass: "pa-0" },
+                                [
+                                  _c("v-img", {
+                                    attrs: {
+                                      src:
+                                        "https://4bnd0r4d1imo370lqu9t0tb1-wpengine.netdna-ssl.com/wp-content/uploads/2020/03/top-transporteurs-logistiques-ecommerce-relais-colis.png",
+                                      "aspect-ratio": "1.4"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "v-btn",
+                                { staticClass: "pa-0" },
+                                [
+                                  _c("v-img", {
+                                    attrs: {
+                                      src:
+                                        "https://www.mybijouterie.com/img/cms/RETRAIT%20BOUTIQUE.jpg",
+                                      "aspect-ratio": "1.4"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
                     ],
                     1
                   )
-                }),
+                ],
                 1
               ),
               _vm._v(" "),
@@ -27425,7 +27857,11 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("v-toolbar-title", [_c("h1", [_vm._v("S.N.INFORMATIQUE")])]),
+          _c("v-toolbar-title", [
+            _c("h1", { staticClass: "headline font-weight-medium" }, [
+              _vm._v("S.N & INFORMATIQUE")
+            ])
+          ]),
           _vm._v(" "),
           _c("v-spacer")
         ],
@@ -27463,7 +27899,7 @@ var render = function() {
                 { attrs: { color: "black" } },
                 [
                   _c("v-list-item-title", { staticClass: "font-italic" }, [
-                    _vm._v("S.N.INFORMATIQUE")
+                    _vm._v("S.N&INFORMATIQUE")
                   ]),
                   _vm._v(" "),
                   _c("v-list-item-subtitle", { staticClass: "font-italic" }, [
@@ -27900,11 +28336,19 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("h1", { staticClass: "text-center justify-center py-6" }, [
-          _vm._v("Presentation")
-        ]),
-        _vm._v(" "),
         _c("v-container", { staticClass: "text-center justify-center py-6" }, [
+          _c("img", {
+            attrs: {
+              src: "storage/images/logo1.png",
+              width: "150px",
+              height: "150px"
+            }
+          }),
+          _vm._v(" "),
+          _c("h1", { staticClass: "text-center justify-center py-6" }, [
+            _vm._v("Presentation")
+          ]),
+          _vm._v(" "),
           _c("p", [
             _vm._v(
               " \n            Lorem ipsum dolor, sit amet consectetur adipisicing elit. \n            Tempore officia officiis veritatis, tempora velit adipisci architecto consectetur enim modi quaerat doloremque placeat nulla! \n            Voluptatibus ab itaque adipisci quibusdam nostrum perspiciatis.\n            Lorem ipsum dolor sit amet, consectetur adipisicing elit. \n            Fuga, eos ad! Assumenda incidunt cum rem unde laboriosam fugiat consequuntur enim, a saepe libero omnis? \n            Omnis asperiores quos inventore corrupti aperiam.\n            Lorem ipsum dolor sit amet consectetur adipisicing elit. \n            Repellat, perspiciatis dicta! Qui earum corrupti saepe doloribus inventore harum neque in nemo laudantium voluptate, reiciendis asperiores, alias illo quisquam cumque mollitia.\n          "
@@ -28121,7 +28565,7 @@ var render = function() {
       _c(
         "v-slide-group",
         { attrs: { multiple: "", "show-arrows": "" } },
-        _vm._l(25, function(n) {
+        _vm._l(_vm.mark, function(n) {
           return _c("v-slide-item", {
             key: n,
             scopedSlots: _vm._u(
@@ -28144,7 +28588,7 @@ var render = function() {
                           },
                           on: { click: toggle }
                         },
-                        [_vm._v("\n        Options " + _vm._s(n) + "\n      ")]
+                        [_vm._v("\n       " + _vm._s(n) + "\n      ")]
                       )
                     ]
                   }
@@ -86778,7 +87222,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!**********************************************************************************!*\
   !*** ./resources/js/dashboard/views/components/Mark.js?vue&type=script&lang=js& ***!
   \**********************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -86792,15 +87236,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!**********************************************************!*\
   !*** ./resources/js/dashboard/views/components/Mark.vue ***!
   \**********************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Mark_vue_vue_type_template_id_7043aa5c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Mark.vue?vue&type=template&id=7043aa5c& */ "./resources/js/dashboard/views/components/Mark.vue?vue&type=template&id=7043aa5c&");
 /* harmony import */ var _Mark_js_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Mark.js?vue&type=script&lang=js& */ "./resources/js/dashboard/views/components/Mark.js?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Mark_js_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Mark_js_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 

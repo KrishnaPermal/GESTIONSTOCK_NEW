@@ -5,7 +5,7 @@
     <v-app-bar color="cyan darken-1" dark fullscreen>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
      <v-toolbar-title>
-          <h1>S.N.INFORMATIQUE</h1>
+          <h1 class="headline font-weight-medium">S.N & INFORMATIQUE</h1>
       </v-toolbar-title>
 
       <v-spacer></v-spacer>
@@ -21,7 +21,7 @@
      <v-img :aspect-ratio="16/9" src="https://www.universite-rose-croix.org/wp-content/uploads/2018/12/video-informatique-et-spiritualit%C3%A9.jpg"></v-img>
       <v-list-item>
         <v-list-item-content color="black">
-          <v-list-item-title class="font-italic">S.N.INFORMATIQUE</v-list-item-title>
+          <v-list-item-title class="font-italic">S.N&INFORMATIQUE</v-list-item-title>
           <v-list-item-subtitle class="font-italic">GESTION DE STOCK INFORMATIQUE</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>

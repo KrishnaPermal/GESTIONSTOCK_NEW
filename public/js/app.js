@@ -2405,6 +2405,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
  //import addPanier from './components/addPanier.vue';
 
 
@@ -2650,7 +2655,6 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       model: null,
-      articles: [],
       photo: [],
       articlesDisplay: []
     };
@@ -2662,10 +2666,9 @@ __webpack_require__.r(__webpack_exports__);
       _services_api_services__WEBPACK_IMPORTED_MODULE_0__["apiServices"].get('/api/articles').then(function (_ref) {
         var data = _ref.data;
         data.data.forEach(function (_data) {
-          _this.articles.push(_data);
+          _this.articlesDisplay.push(_data);
         });
       });
-      this.articlesDisplay = this.articles;
     }
   },
   created: function created() {
@@ -28452,8 +28455,8 @@ var render = function() {
                   "v-card",
                   {
                     key: key,
-                    staticClass: "mx-2 my-4 d-flex pa-2",
-                    attrs: { "max-width": "400" }
+                    staticClass: "mx-2 my-4 d-flex py-2",
+                    attrs: { "max-width": "600" }
                   },
                   [
                     _c(
@@ -28468,7 +28471,30 @@ var render = function() {
                               "to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)",
                             height: "200px"
                           }
-                        })
+                        }),
+                        _vm._v(" "),
+                        _c("v-card-title", [_vm._v(_vm._s(article.mark))]),
+                        _vm._v(" "),
+                        _c(
+                          "v-card-actions",
+                          [
+                            _c("v-card-subtitle", [
+                              _vm._v(
+                                "Categorie: " +
+                                  _vm._s(
+                                    _vm.displayCategories(article.categories)
+                                  )
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c("v-card-subtitle", [
+                              _vm._v("Prix: " + _vm._s(article.price) + " €")
+                            ]),
+                            _vm._v(" "),
+                            _c("v-spacer")
+                          ],
+                          1
+                        )
                       ],
                       1
                     )
@@ -28559,9 +28585,9 @@ var render = function() {
             expression: "model"
           }
         },
-        _vm._l(_vm.articlesDisplay, function(n) {
+        _vm._l(_vm.articlesDisplay, function(n, key) {
           return _c("v-slide-item", {
-            key: n,
+            key: key,
             scopedSlots: _vm._u(
               [
                 {

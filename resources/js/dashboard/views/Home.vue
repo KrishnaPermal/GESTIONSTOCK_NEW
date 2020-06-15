@@ -28,14 +28,21 @@
     
     <v-container fluid>
           <v-row dense class="justify-center">
-      <v-card v-for="(article,key) in articlesDisplay" :key="key"  class="mx-2 my-4 d-flex pa-2" max-width="400" >
+      <v-card v-for="(article,key) in articlesDisplay" :key="key"  class="mx-2 my-4 d-flex py-2" max-width="600" >
             <v-col class="">
               <v-img
                 :src="article.photo"
                 class="white--text align-end"
                 gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                height="200px"
+                height="200px" 
               ></v-img>
+                <v-card-title>{{article.mark}}</v-card-title>
+                  <v-card-actions>
+                <!-- <v-card-title>{{article.mark}}</v-card-title> -->
+               <v-card-subtitle>Categorie: {{displayCategories(article.categories)}}</v-card-subtitle> 
+                <v-card-subtitle>Prix: {{article.price}} €</v-card-subtitle>
+                <v-spacer/>
+              </v-card-actions>
             </v-col>
       </v-card>
           </v-row>
@@ -61,8 +68,6 @@
       </v-container>
 </template>
 
-
-    
 
 <script>
 import {apiServices} from '../_services/api.services'

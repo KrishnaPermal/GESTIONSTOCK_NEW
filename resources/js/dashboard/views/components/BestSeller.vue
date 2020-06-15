@@ -11,8 +11,8 @@
       show-arrows
     >
       <v-slide-item
-        v-for="n in articlesDisplay"
-        :key="n" 
+        v-for="(n,key) in articlesDisplay"
+        :key="key" 
         v-slot:default="{ active, toggle }"
       >
         <v-card

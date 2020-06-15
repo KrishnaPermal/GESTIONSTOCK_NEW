@@ -85,7 +85,7 @@
 
 <v-divider></v-divider>
 
-          <v-list-item link v-if="isChecked">
+       <v-list-item link v-if="isChecked">
             <v-list-item-icon>
               <v-icon>mdi-logout</v-icon>
             </v-list-item-icon>
@@ -97,7 +97,6 @@
           </v-list-item-content>
         </v-list-item>
 
-<v-divider></v-divider>
 
          <v-list-item link v-if="!isChecked">
           <v-list-item-icon>
@@ -110,6 +109,23 @@
             </v-list-item-title>
           </v-list-item-content>
          </v-list-item>
+
+
+<v-divider></v-divider>
+
+ <v-list-item link v-if="!isChecked" small>
+          <v-list-item-icon>
+            <v-icon>mdi-account-plus</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title class="font-weight-bold">
+              <router-link :to="{name:'register'}">Inscription</router-link>
+            </v-list-item-title>
+          </v-list-item-content>
+         </v-list-item>
+         
+<v-divider></v-divider>
 
 
 
@@ -143,6 +159,7 @@ export default {
         { title: "Articles", icon: "mdi-shopping" },
         { title: "Fournisseurs", icon: "mdi-account" },
         { title: "Login", icon: "mdi-login-variant" },
+        { title: "Inscription", icon: "mdi-account-plus"},
       ], 
     };
   },

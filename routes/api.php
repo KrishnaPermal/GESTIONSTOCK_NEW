@@ -18,12 +18,12 @@ use Illuminate\Support\Facades\Route;
     return $request->user();
 });  */
 
-/*LOGIN/LOGOUT*/
+/*LOGIN/LOGOUT/REGISTER*/
 
 Route::post('/login','AuthController@login');
 Route::get('/logout','AuthController@logout')->middleware('auth:api');
-
-/*LOGIN/LOGOUT*/
+Route::post('/register', 'AuthController@register');
+/*LOGIN/LOGOUT/REGISTER*/
 
 // Sécurisation de la route
 Route::middleware(['auth:api','roles:Admin|Fournisseur'])->prefix('articles')->group(function () {
@@ -35,7 +35,6 @@ Route::middleware(['auth:api','roles:Fournisseur'])->prefix('fournisseurs')->gro
     Route::get('articles', 'ArticleController@getOfFournisseur');
     Route::post('articles', 'ArticleController@createOrUpdate'); 
 }); 
-
 
 
 

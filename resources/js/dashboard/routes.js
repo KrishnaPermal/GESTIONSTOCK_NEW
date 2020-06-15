@@ -6,6 +6,7 @@ import Card from "./views/Card.vue";
 import dashboardFournisseur from './views/dashboardFournisseur.vue';
 import Basket from './views/Basket.vue';
 import Login from "./login/Login.vue";
+import Register from "./views/Register.vue";
 import { Role } from './_helpers/role';
 import { authenticationService } from '../dashboard/_services/authentication.service'
 
@@ -17,6 +18,7 @@ const router = new VueRouter({
             path: '/',
             name: 'home',
             component: Home,
+            //meta: { authorize: [] }
         },
         {
             path: '/articles',
@@ -24,11 +26,17 @@ const router = new VueRouter({
             component: Card,
         },
 
-         {
+        {
             path: '/login',
             name: 'login',
             component: Login,
-       
+            meta: { authorize: [] }
+        },
+        {
+            path: '/register',
+            name: 'register',
+            component: Register,
+            meta: { authorize: [] }
         },
 
         {

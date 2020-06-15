@@ -13,8 +13,8 @@ $factory->define(Articles::class, function (Faker $faker) {
 
     return [
         "article_ref" => $faker->ean8,
-        "mark" => $faker->word,
-        "description" => $faker->word,
+        "mark" => $faker->words,
+        "description" => $faker->text,
         "provider" => $faker->firstNameMale,
         "quantity" => $faker->numberBetween($min = 3, $max = 800),
         "price" => $faker->numberBetween($min = 3, $max = 100),

@@ -2410,6 +2410,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
  //import addPanier from './components/addPanier.vue';
 
 
@@ -28440,7 +28441,16 @@ var render = function() {
         _vm._v(" "),
         _c("v-divider"),
         _vm._v(" "),
-        _c("h1", { staticClass: "text-center" }, [_vm._v("Nouveautés")]),
+        _c("h2", { staticClass: "text-center py-6" }, [
+          _vm._v("Meilleurs ventes")
+        ]),
+        _c("br"),
+        _vm._v(" "),
+        _c("BestSeller"),
+        _vm._v(" "),
+        _c("v-divider"),
+        _vm._v(" "),
+        _c("h1", { staticClass: "text-center py-6" }, [_vm._v("Nouveautés")]),
         _c("br"),
         _vm._v(" "),
         _c(
@@ -28456,7 +28466,7 @@ var render = function() {
                   {
                     key: key,
                     staticClass: "mx-2 my-4 d-flex py-2",
-                    attrs: { "max-width": "600" }
+                    attrs: { "max-width": "500", "max-height": "400" }
                   },
                   [
                     _c(
@@ -28475,18 +28485,16 @@ var render = function() {
                         _vm._v(" "),
                         _c("v-card-title", [_vm._v(_vm._s(article.mark))]),
                         _vm._v(" "),
+                        _c("v-card-subtitle", [
+                          _vm._v(
+                            "Categorie: " +
+                              _vm._s(_vm.displayCategories(article.categories))
+                          )
+                        ]),
+                        _vm._v(" "),
                         _c(
                           "v-card-actions",
                           [
-                            _c("v-card-subtitle", [
-                              _vm._v(
-                                "Categorie: " +
-                                  _vm._s(
-                                    _vm.displayCategories(article.categories)
-                                  )
-                              )
-                            ]),
-                            _vm._v(" "),
                             _c("v-card-subtitle", [
                               _vm._v("Prix: " + _vm._s(article.price) + " €")
                             ]),
@@ -28507,13 +28515,6 @@ var render = function() {
           ],
           1
         ),
-        _vm._v(" "),
-        _c("v-divider"),
-        _vm._v(" "),
-        _c("h2", { staticClass: "text-center" }, [_vm._v("Meilleurs ventes")]),
-        _c("br"),
-        _vm._v(" "),
-        _c("BestSeller"),
         _vm._v(" "),
         _c("v-divider"),
         _vm._v(" "),
@@ -28593,13 +28594,12 @@ var render = function() {
                 {
                   key: "default",
                   fn: function(ref) {
-                    var active = ref.active
                     var toggle = ref.toggle
                     return [
                       _c(
                         "v-card",
                         {
-                          staticClass: "ma-4",
+                          staticClass: "ma-5",
                           attrs: { height: "200", width: "200" },
                           on: { click: toggle }
                         },
@@ -28619,7 +28619,13 @@ var render = function() {
                                     "to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)",
                                   height: "200px"
                                 }
-                              })
+                              }),
+                              _vm._v(" "),
+                              _c("p", [
+                                _vm._v(
+                                  _vm._s(n.mark) + " " + _vm._s(n.price) + " €"
+                                )
+                              ])
                             ],
                             1
                           )

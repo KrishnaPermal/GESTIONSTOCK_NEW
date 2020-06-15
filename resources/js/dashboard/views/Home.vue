@@ -23,12 +23,16 @@
 
 <v-divider></v-divider>
 
- <h1 class="text-center">Nouveautés</h1><br>
+      <h2 class="text-center py-6">Meilleurs ventes</h2><br>
+      <BestSeller></BestSeller>
+
+<v-divider></v-divider>
+ <h1 class="text-center py-6">Nouveautés</h1><br>
     <!--Carte-->
     
     <v-container fluid>
           <v-row dense class="justify-center">
-      <v-card v-for="(article,key) in articlesDisplay" :key="key"  class="mx-2 my-4 d-flex py-2" max-width="600" >
+      <v-card v-for="(article,key) in articlesDisplay" :key="key"  class="mx-2 my-4 d-flex py-2" max-width="500" max-height="400" >
             <v-col class="">
               <v-img
                 :src="article.photo"
@@ -37,9 +41,9 @@
                 height="200px" 
               ></v-img>
                 <v-card-title>{{article.mark}}</v-card-title>
+                <v-card-subtitle>Categorie: {{displayCategories(article.categories)}}</v-card-subtitle>
                   <v-card-actions>
                 <!-- <v-card-title>{{article.mark}}</v-card-title> -->
-               <v-card-subtitle>Categorie: {{displayCategories(article.categories)}}</v-card-subtitle> 
                 <v-card-subtitle>Prix: {{article.price}} €</v-card-subtitle>
                 <v-spacer/>
               </v-card-actions>
@@ -48,9 +52,6 @@
           </v-row>
     </v-container>
 
-<v-divider></v-divider>
-      <h2 class="text-center">Meilleurs ventes</h2><br>
-      <BestSeller></BestSeller>
 <v-divider></v-divider>
     <h1 class="text-center justify-center py-6">Nos Marques</h1>
         <v-container class="text-center justify-center py-6">

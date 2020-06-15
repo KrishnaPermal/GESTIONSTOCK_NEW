@@ -85,7 +85,21 @@
 
 <v-divider></v-divider>
 
-         <v-list-item link>
+          <v-list-item link v-if="isChecked">
+            <v-list-item-icon>
+              <v-icon>mdi-logout</v-icon>
+            </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title class="font-weight-bold">
+              <a @click="logout" class="nav-item nav-link">Se deconnecter</a>
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+<v-divider></v-divider>
+
+         <v-list-item link v-if="!isChecked">
           <v-list-item-icon>
             <v-icon>mdi-login-variant</v-icon>
           </v-list-item-icon>
@@ -96,6 +110,7 @@
             </v-list-item-title>
           </v-list-item-content>
          </v-list-item>
+
 
 
       </v-list>
@@ -110,6 +125,7 @@
 <script>
 import { authenticationService } from '../_services/authentication.service';
 import Panier from '../views/components/Panier.vue';
+import { Role } from '../_helpers/role'; 
 import router from '../routes';
 export default {
 
@@ -119,6 +135,7 @@ export default {
 
   data() {
     return {
+      currentUser: null,
       drawer: null,
       items: [
         { title: "Accueil", icon: "mdi-home" },
@@ -128,6 +145,23 @@ export default {
         { title: "Login", icon: "mdi-login-variant" },
       ], 
     };
+  },
+   computed: {
+    isAdmin() {
+      return this.currentUser && this.currentUser.role.role === Role.Admin;
+    },
+    isChecked() {
+      return this.currentUser;
+    }
+  },
+  created() {
+    authenticationService.currentUser.subscribe(x => (this.currentUser = x));
+  },
+  methods: {
+    logout() {
+      authenticationService.logout();
+      router.push("/login");
+    }
   }
 };
 </script>

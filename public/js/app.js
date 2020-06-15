@@ -2121,7 +2121,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_authentication_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../_services/authentication.service */ "./resources/js/dashboard/_services/authentication.service.js");
 /* harmony import */ var _views_components_Panier_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../views/components/Panier.vue */ "./resources/js/dashboard/views/components/Panier.vue");
-/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../routes */ "./resources/js/dashboard/routes.js");
+/* harmony import */ var _helpers_role__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../_helpers/role */ "./resources/js/dashboard/_helpers/role.js");
+/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../routes */ "./resources/js/dashboard/routes.js");
 //
 //
 //
@@ -2231,6 +2232,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
@@ -2240,6 +2257,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      currentUser: null,
       drawer: null,
       items: [{
         title: "Accueil",
@@ -2258,6 +2276,27 @@ __webpack_require__.r(__webpack_exports__);
         icon: "mdi-login-variant"
       }]
     };
+  },
+  computed: {
+    isAdmin: function isAdmin() {
+      return this.currentUser && this.currentUser.role.role === _helpers_role__WEBPACK_IMPORTED_MODULE_2__["Role"].Admin;
+    },
+    isChecked: function isChecked() {
+      return this.currentUser;
+    }
+  },
+  created: function created() {
+    var _this = this;
+
+    _services_authentication_service__WEBPACK_IMPORTED_MODULE_0__["authenticationService"].currentUser.subscribe(function (x) {
+      return _this.currentUser = x;
+    });
+  },
+  methods: {
+    logout: function logout() {
+      _services_authentication_service__WEBPACK_IMPORTED_MODULE_0__["authenticationService"].logout();
+      _routes__WEBPACK_IMPORTED_MODULE_3__["default"].push("/login");
+    }
   }
 });
 
@@ -28054,27 +28093,33 @@ var render = function() {
               _vm._v(" "),
               _c("v-divider"),
               _vm._v(" "),
-              _c(
-                "v-list-item",
-                { attrs: { link: "" } },
-                [
-                  _c(
-                    "v-list-item-icon",
-                    [_c("v-icon", [_vm._v("mdi-login-variant")])],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "v-list-item-content",
+              _vm.isChecked
+                ? _c(
+                    "v-list-item",
+                    { attrs: { link: "" } },
                     [
                       _c(
-                        "v-list-item-title",
-                        { staticClass: "font-weight-bold" },
+                        "v-list-item-icon",
+                        [_c("v-icon", [_vm._v("mdi-logout")])],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-list-item-content",
                         [
                           _c(
-                            "router-link",
-                            { attrs: { to: { name: "login" } } },
-                            [_vm._v("Login")]
+                            "v-list-item-title",
+                            { staticClass: "font-weight-bold" },
+                            [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "nav-item nav-link",
+                                  on: { click: _vm.logout }
+                                },
+                                [_vm._v("Se deconnecter")]
+                              )
+                            ]
                           )
                         ],
                         1
@@ -28082,9 +28127,43 @@ var render = function() {
                     ],
                     1
                   )
-                ],
-                1
-              )
+                : _vm._e(),
+              _vm._v(" "),
+              _c("v-divider"),
+              _vm._v(" "),
+              !_vm.isChecked
+                ? _c(
+                    "v-list-item",
+                    { attrs: { link: "" } },
+                    [
+                      _c(
+                        "v-list-item-icon",
+                        [_c("v-icon", [_vm._v("mdi-login-variant")])],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-list-item-content",
+                        [
+                          _c(
+                            "v-list-item-title",
+                            { staticClass: "font-weight-bold" },
+                            [
+                              _c(
+                                "router-link",
+                                { attrs: { to: { name: "login" } } },
+                                [_vm._v("Login")]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                : _vm._e()
             ],
             1
           )

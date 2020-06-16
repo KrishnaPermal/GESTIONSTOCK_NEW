@@ -7,19 +7,12 @@
       <v-slide-item
         v-for="n in mark"
         :key="n"
-        v-slot:default="{ active, toggle }"
         
       >
-        <v-btn
-          class="mx-2"
-          :input-value="active"
-          active-class="purple white--text"
-          depressed
-          rounded
-          @click="toggle"
-        >
-         {{ n }}
-        </v-btn>
+      <v-img
+      :src="n.src" aspect-ratio="1.5"
+      >
+      </v-img>
       </v-slide-item>
     </v-slide-group>
   </v-sheet>

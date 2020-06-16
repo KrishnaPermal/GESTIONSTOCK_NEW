@@ -25,7 +25,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Articles::with(['fournisseur','categories'])->get();
+        //$articles = Articles::with(['fournisseur','categories'])->get();
+        $articles = Articles::with(['fournisseur','categories'])->take(8)->get();
         return ArticleResource::collection($articles);
     }
 

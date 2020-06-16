@@ -2079,27 +2079,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2762,7 +2741,34 @@ __webpack_require__.r(__webpack_exports__);
     return {
       model: null,
       articles: [],
-      mark: ['MSI', 'Asus', 'Hp', 'Intel', 'Samsung', 'Acer', 'Western Digital', 'Dell', 'LG', 'Lenovo']
+      mark: [{
+        markList: 'MSI',
+        src: 'storage/images/Msi.png'
+      }, {
+        markList: 'Asus',
+        src: 'storage/images/asus.png'
+      }, {
+        markList: 'Hp',
+        src: 'storage/images/hp.png'
+      }, {
+        markList: 'Intel',
+        src: 'storage/images/intel.png'
+      }, {
+        markList: 'Samsung',
+        src: 'storage/images/samsung.png'
+      }, {
+        markList: 'Acer',
+        src: 'storage/images/acer.png'
+      }, {
+        markList: 'WesternDigital',
+        src: 'storage/images/WesternDigital.png'
+      }, {
+        markList: 'Dell',
+        src: 'storage/images/dell.png'
+      }, {
+        markList: 'LG',
+        src: 'storage/images/LG.png'
+      }]
     };
   }
 });
@@ -27438,7 +27444,7 @@ var render = function() {
                     [
                       _c(
                         "v-toolbar",
-                        { attrs: { color: "success", dark: "", flat: "" } },
+                        { attrs: { color: "cyan", dark: "", flat: "" } },
                         [
                           _c("v-toolbar-title", [_vm._v("Indentifiez-vous")]),
                           _vm._v(" "),
@@ -27603,7 +27609,7 @@ var render = function() {
                     "v-col",
                     [
                       _c("v-icon", [_vm._v("mdi-map-marker-outline")]),
-                      _vm._v("Réseau National de Magasins")
+                      _vm._v("1 Magasin")
                     ],
                     1
                   ),
@@ -27830,56 +27836,11 @@ var render = function() {
                                     "v-list-item-content",
                                     [
                                       _c("v-list-item-subtitle", [
-                                        _vm._v("Nos transporteurs")
+                                        _vm._v("Retrait en Magasin")
                                       ])
                                     ],
                                     1
                                   )
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-btn",
-                                { staticClass: "pa-0" },
-                                [
-                                  _c("v-img", {
-                                    attrs: {
-                                      src:
-                                        "https://apps.oxatis.com/Files/112496/Img/11/Apps-Chronopost.jpg",
-                                      "aspect-ratio": "1.4"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-btn",
-                                { staticClass: "pa-0" },
-                                [
-                                  _c("v-img", {
-                                    attrs: {
-                                      src:
-                                        "https://cdn.shopify.com/s/files/1/0304/0172/4555/t/9/assets/Logo_Colissimo.jpg",
-                                      "aspect-ratio": "1.4"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "v-btn",
-                                { staticClass: "pa-0" },
-                                [
-                                  _c("v-img", {
-                                    attrs: {
-                                      src:
-                                        "https://4bnd0r4d1imo370lqu9t0tb1-wpengine.netdna-ssl.com/wp-content/uploads/2020/03/top-transporteurs-logistiques-ecommerce-relais-colis.png",
-                                      "aspect-ratio": "1.4"
-                                    }
-                                  })
                                 ],
                                 1
                               ),
@@ -28941,38 +28902,12 @@ var render = function() {
         "v-slide-group",
         { attrs: { multiple: "", "show-arrows": "" } },
         _vm._l(_vm.mark, function(n) {
-          return _c("v-slide-item", {
-            key: n,
-            scopedSlots: _vm._u(
-              [
-                {
-                  key: "default",
-                  fn: function(ref) {
-                    var active = ref.active
-                    var toggle = ref.toggle
-                    return [
-                      _c(
-                        "v-btn",
-                        {
-                          staticClass: "mx-2",
-                          attrs: {
-                            "input-value": active,
-                            "active-class": "purple white--text",
-                            depressed: "",
-                            rounded: ""
-                          },
-                          on: { click: toggle }
-                        },
-                        [_vm._v("\n       " + _vm._s(n) + "\n      ")]
-                      )
-                    ]
-                  }
-                }
-              ],
-              null,
-              true
-            )
-          })
+          return _c(
+            "v-slide-item",
+            { key: n },
+            [_c("v-img", { attrs: { src: n.src, "aspect-ratio": "1.5" } })],
+            1
+          )
         }),
         1
       )
@@ -87679,7 +87614,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!**********************************************************************************!*\
   !*** ./resources/js/dashboard/views/components/Mark.js?vue&type=script&lang=js& ***!
   \**********************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -87693,14 +87628,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!**********************************************************!*\
   !*** ./resources/js/dashboard/views/components/Mark.vue ***!
   \**********************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Mark_vue_vue_type_template_id_7043aa5c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Mark.vue?vue&type=template&id=7043aa5c& */ "./resources/js/dashboard/views/components/Mark.vue?vue&type=template&id=7043aa5c&");
 /* harmony import */ var _Mark_js_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Mark.js?vue&type=script&lang=js& */ "./resources/js/dashboard/views/components/Mark.js?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Mark_js_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Mark_js_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 

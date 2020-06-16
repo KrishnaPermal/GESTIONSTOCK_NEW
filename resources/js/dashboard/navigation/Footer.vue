@@ -12,7 +12,7 @@
     <v-row class="grey darken-1 white--text text-center">
       <v-col><v-icon>mdi-credit-card</v-icon>Débit à l'expédition</v-col>
       <v-col><v-icon>mdi-truck-fast</v-icon>Livraison Express</v-col>
-      <v-col><v-icon>mdi-map-marker-outline</v-icon>Réseau National de Magasins</v-col>
+      <v-col><v-icon>mdi-map-marker-outline</v-icon>1 Magasin</v-col>
       <v-col><v-icon>mdi-credit-card</v-icon>Paiement en 3X</v-col>
       <v-col><v-icon>mdi-restore</v-icon>S.A.V</v-col>
     </v-row>
@@ -102,30 +102,9 @@
           >
             <v-list-item>
               <v-list-item-content>
-                <v-list-item-subtitle>Nos transporteurs</v-list-item-subtitle>
+                <v-list-item-subtitle>Retrait en Magasin</v-list-item-subtitle>
               </v-list-item-content>
             </v-list-item>
-
-             <v-btn class="pa-0">
-                <v-img 
-                src="https://apps.oxatis.com/Files/112496/Img/11/Apps-Chronopost.jpg" 
-                aspect-ratio="1.4">
-                </v-img>
-              </v-btn>
-
-              <v-btn class="pa-0"> 
-                <v-img 
-                src="https://cdn.shopify.com/s/files/1/0304/0172/4555/t/9/assets/Logo_Colissimo.jpg" 
-                aspect-ratio="1.4">
-                </v-img>
-              </v-btn>
-
-              <v-btn class="pa-0"> 
-                <v-img 
-                src="https://4bnd0r4d1imo370lqu9t0tb1-wpengine.netdna-ssl.com/wp-content/uploads/2020/03/top-transporteurs-logistiques-ecommerce-relais-colis.png" 
-                aspect-ratio="1.4">
-                </v-img>
-              </v-btn>
 
               <v-btn class="pa-0"> 
                 <v-img 

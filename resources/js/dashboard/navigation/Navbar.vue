@@ -5,10 +5,14 @@
     <v-app-bar color="cyan darken-1" dark fullscreen>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
      <v-toolbar-title>
-          <h1 class="headline font-weight-medium">S.N & INFORMATIQUE</h1>
+          <h1 class="headline font-weight-medium d-inline">S.N & INFORMATIQUE</h1>
       </v-toolbar-title>
+       <v-spacer></v-spacer>
 
-      <v-spacer></v-spacer>
+       <v-toolbar-items>
+          <Menu></Menu>
+         </v-toolbar-items>    
+
        <!--ajout component Panier-->
         <!--<Panier></Panier>-->
       <!--ajout component Panier--> 
@@ -109,7 +113,8 @@
             </v-list-item-title>
           </v-list-item-content>
          </v-list-item>
-
+    
+        
 
 <v-divider></v-divider>
 
@@ -127,8 +132,6 @@
          
 <v-divider></v-divider>
 
-
-
       </v-list>
     </v-navigation-drawer>
 <!-- Navigation vertical -->
@@ -143,10 +146,12 @@ import { authenticationService } from '../_services/authentication.service';
 import Panier from '../views/components/Panier.vue';
 import { Role } from '../_helpers/role'; 
 import router from '../routes';
+import Menu from './menu.vue';
 export default {
 
   components:{
-    Panier
+    Panier,
+    Menu
   },
 
   data() {

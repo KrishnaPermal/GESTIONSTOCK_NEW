@@ -1,5 +1,7 @@
 import {apiServices} from '../_services/api.services';
 
+import router from '../routes';
+
 export default {
     data() {
         return {
@@ -31,6 +33,8 @@ export default {
                         console.log("ok")
                     }
                 })
+
+            router.push("/")
         }
     }
 };

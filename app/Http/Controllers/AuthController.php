@@ -46,6 +46,7 @@ class AuthController extends Controller
         return response('Vous etes bien deconnectee',200);
     }
     
+    
     public function register(Request $request)
     {
         $user = $request->validate([

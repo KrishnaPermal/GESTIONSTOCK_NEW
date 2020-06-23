@@ -2554,6 +2554,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      currentUser: null
+    };
+  },
   created: function created() {
     var _this = this;
 
@@ -28331,18 +28336,41 @@ var render = function() {
               fn: function(ref) {
                 var on = ref.on
                 return [
-                  _c(
-                    "v-btn",
-                    _vm._g(
-                      {
-                        staticClass: "mx-2 my-auto",
-                        attrs: { text: "", small: "" }
-                      },
-                      on
-                    ),
-                    [_c("v-icon", [_vm._v("mdi-account")])],
-                    1
-                  )
+                  !_vm.isCheck
+                    ? _c(
+                        "v-btn",
+                        _vm._g(
+                          {
+                            staticClass: "mx-2 my-auto",
+                            attrs: { text: "", small: "" }
+                          },
+                          on
+                        ),
+                        [
+                          _c("v-icon", [_vm._v("mdi-account")]),
+                          _vm._v(" Me connecter\n      ")
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.isCheck
+                    ? _c(
+                        "v-btn",
+                        _vm._g(
+                          {
+                            staticClass: "mx-2 my-auto",
+                            attrs: { text: "", small: "" }
+                          },
+                          on
+                        ),
+                        [
+                          _c("v-icon", [_vm._v("mdi-account")]),
+                          _vm._v(" Se déconnecter\n      ")
+                        ],
+                        1
+                      )
+                    : _vm._e()
                 ]
               }
             }
@@ -28357,9 +28385,11 @@ var render = function() {
                 "div",
                 { staticClass: "d-flex flex-no-wrap justify-space-between" },
                 [
-                  _c("v-card-title", { staticClass: "headline" }, [
-                    _vm._v(_vm._s(_vm.currentUser.name))
-                  ])
+                  _vm.isCheck
+                    ? _c("v-card-title", { staticClass: "headline" }, [
+                        _vm._v(_vm._s(_vm.currentUser.name))
+                      ])
+                    : _vm._e()
                 ],
                 1
               ),

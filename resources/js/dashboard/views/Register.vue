@@ -14,7 +14,7 @@
                 <v-text-field
                   label="Nom"
                   v-model="user.name"
-                  name="login"
+                  name="Name"
                   prepend-icon="mdi-account"
                   type="text"
                 />
@@ -41,6 +41,8 @@
             </v-card-text>
             <v-card-actions>
               <v-btn outlined color="success" :disabled="!valid" @click="connexion">S'enregistrer</v-btn>
+              <v-spacer></v-spacer>
+              <a color="blue" dark href="/login">Déjà inscrit?</a>
             </v-card-actions>
           </v-card>
         </v-col>

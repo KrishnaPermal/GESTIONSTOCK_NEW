@@ -32,6 +32,8 @@
             </v-card-text>
             <v-card-actions>
               <v-btn outlined color="success" :disabled="!valid" @click="connection">Connexion</v-btn>
+              <v-spacer></v-spacer>
+              <v-btn color="blue" dark :to="{ path: '/register'}">S'inscrire</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>

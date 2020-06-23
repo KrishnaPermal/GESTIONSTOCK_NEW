@@ -27575,6 +27575,20 @@ var render = function() {
                               on: { click: _vm.connection }
                             },
                             [_vm._v("Connexion")]
+                          ),
+                          _vm._v(" "),
+                          _c("v-spacer"),
+                          _vm._v(" "),
+                          _c(
+                            "v-btn",
+                            {
+                              attrs: {
+                                color: "blue",
+                                dark: "",
+                                to: { path: "/register" }
+                              }
+                            },
+                            [_vm._v("S'inscrire")]
                           )
                         ],
                         1
@@ -28872,7 +28886,7 @@ var render = function() {
                               _c("v-text-field", {
                                 attrs: {
                                   label: "Nom",
-                                  name: "login",
+                                  name: "Name",
                                   "prepend-icon": "mdi-account",
                                   type: "text"
                                 },
@@ -28940,6 +28954,16 @@ var render = function() {
                               on: { click: _vm.connexion }
                             },
                             [_vm._v("S'enregistrer")]
+                          ),
+                          _vm._v(" "),
+                          _c("v-spacer"),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              attrs: { color: "blue", dark: "", href: "/login" }
+                            },
+                            [_vm._v("Déjà inscrit?")]
                           )
                         ],
                         1

@@ -2283,7 +2283,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     isAdmin: function isAdmin() {
-      return this.currentUser && this.currentUser.role.role === _helpers_role__WEBPACK_IMPORTED_MODULE_2__["Role"].Admin;
+      return this.currentUser && this.currentUser.role.name === _helpers_role__WEBPACK_IMPORTED_MODULE_2__["Role"].Admin;
     },
     isChecked: function isChecked() {
       return this.currentUser;
@@ -2564,10 +2564,11 @@ __webpack_require__.r(__webpack_exports__);
 
     _services_authentication_service__WEBPACK_IMPORTED_MODULE_0__["authenticationService"].currentUser.subscribe(function (x) {
       return _this.currentUser = x;
-    });
+    }); // faire subscribre sur le eventbus ici
+    // faut faire un emit également dans authenticationService
   },
   computed: {
-    isCheck: function isCheck() {
+    isChecked: function isChecked() {
       return this.currentUser;
     }
   },
@@ -2865,10 +2866,34 @@ __webpack_require__.r(__webpack_exports__);
       price: '',
       quantity: '',
       snackbar: false,
+      timeout: 3000,
       text: '',
       photo: '',
       loading: false,
-      isFournisseur: _services_authentication_service__WEBPACK_IMPORTED_MODULE_1__["authenticationService"].isFournisseur()
+      isFournisseur: _services_authentication_service__WEBPACK_IMPORTED_MODULE_1__["authenticationService"].isFournisseur(),
+      articleRules: [function (v) {
+        return !!v || 'Une marque est requise';
+      }],
+      id_fournisseurRules: [function (v) {
+        return !!v || 'Un fournisseur est requis';
+      }],
+      priceRules: [function (v) {
+        return !!v || 'Un prix est requis';
+      }],
+      article_refRules: [function (v) {
+        return !!v || 'Une référence est requise';
+      }],
+      descriptionRules: [function (v) {
+        return !!v || 'Une description est requise';
+      }, function (v) {
+        return v && v.length <= 50 || 'La description ne doit pas être supérieure à 50 Caractères';
+      }],
+      quantityRules: [function (v) {
+        return !!v || 'Une quantité est requise';
+      }],
+      photoRules: [function (v) {
+        return !!v || 'Une photo est requise';
+      }]
     };
   },
   watch: {
@@ -28350,41 +28375,39 @@ var render = function() {
               fn: function(ref) {
                 var on = ref.on
                 return [
-                  !_vm.isCheck
-                    ? _c(
-                        "v-btn",
-                        _vm._g(
-                          {
-                            staticClass: "mx-2 my-auto",
-                            attrs: { text: "", small: "" }
-                          },
-                          on
-                        ),
-                        [
-                          _c("v-icon", [_vm._v("mdi-account")]),
-                          _vm._v(" Me connecter\n      ")
-                        ],
-                        1
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.isCheck
-                    ? _c(
-                        "v-btn",
-                        _vm._g(
-                          {
-                            staticClass: "mx-2 my-auto",
-                            attrs: { text: "", small: "" }
-                          },
-                          on
-                        ),
-                        [
-                          _c("v-icon", [_vm._v("mdi-account")]),
-                          _vm._v(" Se déconnecter\n      ")
-                        ],
-                        1
-                      )
-                    : _vm._e()
+                  _c(
+                    "v-btn",
+                    _vm._g(
+                      {
+                        staticClass: "mx-2 my-auto",
+                        attrs: { text: "", small: "" }
+                      },
+                      on
+                    ),
+                    [
+                      !_vm.isChecked
+                        ? _c(
+                            "div",
+                            [
+                              _c("v-icon", [_vm._v("mdi-account")]),
+                              _vm._v(" Me connecter\n       ")
+                            ],
+                            1
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.isChecked
+                        ? _c(
+                            "div",
+                            [
+                              _c("v-icon", [_vm._v("mdi-account")]),
+                              _vm._v(" Se déconnecter\n       ")
+                            ],
+                            1
+                          )
+                        : _vm._e()
+                    ]
+                  )
                 ]
               }
             }
@@ -28399,7 +28422,7 @@ var render = function() {
                 "div",
                 { staticClass: "d-flex flex-no-wrap justify-space-between" },
                 [
-                  _vm.isCheck
+                  _vm.isChecked
                     ? _c("v-card-title", { staticClass: "headline" }, [
                         _vm._v(_vm._s(_vm.currentUser.name))
                       ])
@@ -28411,23 +28434,19 @@ var render = function() {
               _c(
                 "v-list-item-group",
                 [
-                  _vm.isCheck
+                  _vm.isChecked
                     ? _c(
                         "v-btn",
                         {
                           staticClass: "padding d-flex",
                           attrs: { text: "", block: "" },
-                          on: {
-                            click: function($event) {
-                              return _vm.logout()
-                            }
-                          }
+                          on: { click: _vm.logout }
                         },
                         [_vm._v("Déconnexion")]
                       )
                     : _vm._e(),
                   _vm._v(" "),
-                  !_vm.isCheck
+                  !_vm.isChecked
                     ? _c(
                         "v-btn",
                         {
@@ -28886,7 +28905,7 @@ var render = function() {
                               _c("v-text-field", {
                                 attrs: {
                                   label: "Nom",
-                                  name: "Name",
+                                  name: "name",
                                   "prepend-icon": "mdi-account",
                                   type: "text"
                                 },
@@ -28959,9 +28978,13 @@ var render = function() {
                           _c("v-spacer"),
                           _vm._v(" "),
                           _c(
-                            "a",
+                            "v-btn",
                             {
-                              attrs: { color: "blue", dark: "", href: "/login" }
+                              attrs: {
+                                color: "blue",
+                                dark: "",
+                                to: { path: "/login" }
+                              }
                             },
                             [_vm._v("Déjà inscrit?")]
                           )
@@ -29117,7 +29140,7 @@ var render = function() {
       _c(
         "v-slide-group",
         { attrs: { multiple: "", "show-arrows": "" } },
-        _vm._l(_vm.mark, function(n) {
+        _vm._l(_vm.mark.id, function(n) {
           return _c(
             "v-slide-item",
             { key: n },
@@ -29257,7 +29280,8 @@ var render = function() {
                               _c("v-text-field", {
                                 attrs: {
                                   color: "light-blue lighten-4",
-                                  label: "Nom*",
+                                  rules: _vm.articleRules,
+                                  label: "Marque*",
                                   required: ""
                                 },
                                 model: {
@@ -29281,8 +29305,10 @@ var render = function() {
                                     attrs: {
                                       items: _vm.fournisseurs,
                                       "item-value": "id",
+                                      rules: _vm.id_fournisseurRules,
                                       "item-text": "name",
-                                      label: "Fournisseur"
+                                      label: "Fournisseur",
+                                      required: ""
                                     },
                                     model: {
                                       value: _vm.id_fournisseur,
@@ -29304,6 +29330,7 @@ var render = function() {
                               _c("v-text-field", {
                                 attrs: {
                                   color: "light-blue lighten-4",
+                                  rules: _vm.priceRules,
                                   label: "Prix*",
                                   required: ""
                                 },
@@ -29326,6 +29353,7 @@ var render = function() {
                               _c("v-text-field", {
                                 attrs: {
                                   color: "light-blue lighten-4",
+                                  rules: _vm.article_refRules,
                                   label: "article_ref*",
                                   required: ""
                                 },
@@ -29350,6 +29378,7 @@ var render = function() {
                                   filled: "",
                                   name: "input-7-4",
                                   color: "light-blue lighten-4",
+                                  rules: _vm.descriptionRules,
                                   label: "description*",
                                   required: ""
                                 },
@@ -29372,6 +29401,7 @@ var render = function() {
                               _c("v-text-field", {
                                 attrs: {
                                   color: "light-blue lighten-4",
+                                  rules: _vm.quantityRules,
                                   label: "Quantité*",
                                   required: ""
                                 },
@@ -29525,6 +29555,7 @@ var render = function() {
       _c(
         "v-snackbar",
         {
+          attrs: { timeout: _vm.timeout },
           model: {
             value: _vm.snackbar,
             callback: function($$v) {
@@ -29534,7 +29565,7 @@ var render = function() {
           }
         },
         [
-          _vm._v(_vm._s(_vm.text) + " "),
+          _vm._v(_vm._s(_vm.text)),
           _c(
             "v-btn",
             {
@@ -29545,7 +29576,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("Fermer")]
+            [_vm._v("Close")]
           )
         ],
         1

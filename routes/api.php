@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login','AuthController@login');
 Route::get('/logout','AuthController@logout')->middleware('auth:api');
 Route::post('/register', 'AuthController@register');
+
 /*LOGIN/LOGOUT/REGISTER*/
 
 // Sécurisation de la route

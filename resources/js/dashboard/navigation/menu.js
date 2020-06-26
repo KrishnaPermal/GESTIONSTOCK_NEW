@@ -10,11 +10,13 @@ export default {
 
   created() {
     authenticationService.currentUser.subscribe(x => (this.currentUser = x));
+    // faire subscribre sur le eventbus ici
+    // faut faire un emit également dans authenticationService
   },
 
   computed: {
       
-    isCheck() {
+    isChecked() {
       return this.currentUser;
     },
   },

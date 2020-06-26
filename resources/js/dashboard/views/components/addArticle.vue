@@ -21,8 +21,9 @@
             <v-row>
               <v-col cols="12" sm="6" md="4">
                 <v-text-field color="light-blue lighten-4" 
-                v-model="article" 
-                label="Nom*" 
+                v-model="article"
+                :rules="articleRules" 
+                label="Marque*" 
                 required>
                 </v-text-field>
               </v-col>
@@ -32,17 +33,19 @@
                   :items="fournisseurs"
                   item-value="id"
                   v-model="id_fournisseur"
+                  :rules="id_fournisseurRules" 
                   item-text="name"
                   label="Fournisseur"
+                  required
                 ></v-select>
 
               </v-col>
 
               <v-col cols="12" sm="6" md="4">
-                <v-text-field color="light-blue lighten-4" v-model="price" label="Prix*" required></v-text-field>
+                <v-text-field color="light-blue lighten-4" v-model="price" :rules="priceRules"  label="Prix*" required></v-text-field>
               </v-col>
                <v-col cols="12" sm="6" md="4">
-                <v-text-field color="light-blue lighten-4" v-model="article_ref" label="article_ref*" required></v-text-field>
+                <v-text-field color="light-blue lighten-4" v-model="article_ref" :rules="article_refRules"  label="article_ref*" required></v-text-field>
               </v-col>
               <v-col cols="12" sm="12" md="12">
                  <v-textarea   
@@ -50,6 +53,7 @@
                   name="input-7-4"
                   color="light-blue lighten-4"
                   v-model="description"
+                  :rules="descriptionRules" 
                   label="description*" required 
                 ></v-textarea>
               </v-col>
@@ -57,6 +61,7 @@
                 <v-text-field
                   color="light-blue lighten-4"
                   v-model="quantity"
+                  :rules="quantityRules" 
                   label="Quantité*"
                   required
                 ></v-text-field>
@@ -65,7 +70,7 @@
             <!--autocomplete-->
               <v-col cols="12" sm="6" md="6">
                 <v-autocomplete
-                  v-model="categories"
+                  v-model="categories" 
                   :loading="loading"
                   :items="categoryList"
                   :search-input.sync="search"
@@ -102,7 +107,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-snackbar v-model="snackbar">{{ text }} <v-btn color="cyan" text @click="snackbar=false">Fermer</v-btn></v-snackbar>
+    <v-snackbar v-model="snackbar" :timeout="timeout">{{ text }}<v-btn color="cyan" text @click="snackbar=false">Close</v-btn></v-snackbar>
   </v-row>
 </template>
 <script src="./addArticle.js">

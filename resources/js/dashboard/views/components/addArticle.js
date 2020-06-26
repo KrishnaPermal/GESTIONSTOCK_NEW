@@ -28,10 +28,40 @@ export default {
             price: '',
             quantity: '',
             snackbar: false,
+            timeout: 3000,
             text: '',
             photo: '',
             loading: false,
             isFournisseur: authenticationService.isFournisseur(),
+
+            articleRules: [
+                v => !!v || 'Une marque est requise',
+              ],
+
+              id_fournisseurRules: [
+                v => !!v || 'Un fournisseur est requis',
+              ],
+
+              priceRules: [
+                v => !!v || 'Un prix est requis',
+              ],
+
+              article_refRules: [
+                v => !!v || 'Une référence est requise',
+              ],
+
+              descriptionRules: [
+                v => !!v || 'Une description est requise',
+                v => (v && v.length <= 50) || 'La description ne doit pas être supérieure à 50 Caractères',
+              ],
+
+              quantityRules: [
+                v => !!v || 'Une quantité est requise',
+              ],
+
+              photoRules: [
+                v => !!v || 'Une photo est requise',
+              ],
         }
     },
     watch: {

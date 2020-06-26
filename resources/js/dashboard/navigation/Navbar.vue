@@ -170,7 +170,7 @@ export default {
   },
    computed: {
     isAdmin() {
-      return this.currentUser && this.currentUser.role.role === Role.Admin;
+      return this.currentUser && this.currentUser.role.name === Role.Admin;
     },
     isChecked() {
       return this.currentUser;

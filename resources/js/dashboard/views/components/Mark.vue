@@ -5,7 +5,7 @@
   >
     <v-slide-group multiple show-arrows>
       <v-slide-item
-        v-for="n in mark"
+        v-for="n in mark.id"
         :key="n"
         
       >

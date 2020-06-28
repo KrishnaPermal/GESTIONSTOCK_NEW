@@ -1,19 +1,21 @@
 <template>
-  <v-row>
+<div class="d-inline">
     <v-dialog v-model="dialog" persistent max-width="600px">
-      <template v-slot:activator="{ on }">
-        <v-btn v-if="!isModification" color="light-blue lighten-3" dark small v-on="on">
-          <v-icon>mdi-plus</v-icon>
+      <template v-slot:activator="{ on }" class="d-inline">
+        <div class="text-center">
+        <v-btn v-if="!isModification" color="light-blue lighten-3" class="ma-2" dark small rounded v-on="on">
+          <v-icon>mdi-plus</v-icon>Ajouter un article
         </v-btn>
-        <v-btn @click="modifierArticle(articles)" v-if="isModification" color="light-blue lighten-3" dark small v-on="on">
-         <v-icon left>mdi-pencil</v-icon>
-         </v-btn>
+        </div>
+        <v-btn @click="modifierArticle(articles)" v-if="isModification" class="ma-2" color="light-blue lighten-3" dark small rounded v-on="on">
+          <v-icon center>mdi-pencil</v-icon>
+        </v-btn>     
       </template>
 
       <v-card>
         <v-card-title>
-          <span v-if="!isModification" class="headline">Ajouter</span>
-          <span v-if="isModification" class="headline">Modifier</span>
+          <span v-if="!isModification" class="headline">Ajouter un article</span>
+          <span v-if="isModification"  class="headline">Modifier l'article</span>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -108,7 +110,7 @@
       </v-card>
     </v-dialog>
     <v-snackbar v-model="snackbar" :timeout="timeout">{{ text }}<v-btn color="cyan" text @click="snackbar=false">Close</v-btn></v-snackbar>
-  </v-row>
+  </div>
 </template>
 <script src="./addArticle.js">
 

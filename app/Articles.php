@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Articles extends Model
 {
+    use SoftDeletes;
+
     protected $table = "article";
     protected $fillable = ['article_ref','mark','description','provider','photo' ,'quantity','price', 'id_fournisseur'];
     public $timestamps = false;
@@ -17,7 +20,7 @@ class Articles extends Model
 
     function categories()
     {
-        return $this->belongsToMany('App\Categories', 'article_has_categorie', 'id_article', 'id_categorie');
+        return $this->belongsToMany(Categories::class, 'article_has_categorie', 'id_article', 'id_categorie');
     }
     function user()
     {

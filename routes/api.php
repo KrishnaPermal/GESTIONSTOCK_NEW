@@ -29,6 +29,7 @@ Route::post('/register', 'AuthController@register');
 // Sécurisation de la route
 Route::middleware(['auth:api','roles:Admin|Fournisseur'])->prefix('articles')->group(function () {
     Route::post('/', 'ArticleController@createOrUpdate'); 
+    Route::delete('/{id}', 'ArticleController@delete')->where('id', "[0-9]+");
 }); 
 
 // Récupère les articles du Fournisseur (accessible qu'au fournisseur)
@@ -42,6 +43,8 @@ Route::middleware(['auth:api','roles:Fournisseur'])->prefix('fournisseurs')->gro
 Route::get('categories', 'CategoriesController@index');
 
 Route::get('articles', 'ArticleController@index');
+
+
 
 
 

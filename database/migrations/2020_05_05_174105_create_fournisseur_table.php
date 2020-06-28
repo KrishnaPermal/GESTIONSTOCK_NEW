@@ -22,6 +22,8 @@ class CreateFournisseurTable extends Migration
             $table->string('address',255);
         
         });
+
+        
     }
 
     /**

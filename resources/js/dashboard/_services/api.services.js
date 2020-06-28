@@ -23,7 +23,15 @@ export const apiServices = {
             data:data,
             headers:headers(),
         })
-    }
+    },
+    delete(url,data={}){
+        return Axios({
+            method: 'delete',
+            url:url,
+            data:data,
+            headers:headers(),
+        })
+    },
 }
 
 

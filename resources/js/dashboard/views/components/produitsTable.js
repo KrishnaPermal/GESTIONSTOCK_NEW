@@ -1,11 +1,14 @@
 import {apiServices} from '../../_services/api.services'
 import { authenticationService } from "../../_services/authentication.service";
 import addArticle from './addArticle.vue';
+import Delete from '../components/deleteArticles.vue';
 
 
 export default {
     components: {
         addArticle,
+        Delete,
+      
        
     },
     data: () => ({

@@ -1,5 +1,6 @@
 <?php
 
+use App\Articles;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,6 +18,7 @@ class DatabaseSeeder extends Seeder
             UsersSeeder::class,
             FournisseurSeeder::class,
             CommandeSeeder::class,
+            
             
         ]);
 

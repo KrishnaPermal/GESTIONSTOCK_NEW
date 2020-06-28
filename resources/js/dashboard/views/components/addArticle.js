@@ -1,7 +1,8 @@
 import {apiServices} from '../../_services/api.services'
 import { authenticationService } from '../../_services/authentication.service';
-export default {
 
+export default {
+ 
     props: {
         articles: {
             default: function () {

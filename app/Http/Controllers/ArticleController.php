@@ -176,6 +176,12 @@ class ArticleController extends Controller
             return ArticleResource::collection($articles);
         }
 
+        public function delete($id)
+        {
+        $status = Articles::destroy($id) ? "ok" : "nok";
+        return $status;
+        }
+
 
 
 }

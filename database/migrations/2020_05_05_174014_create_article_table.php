@@ -22,12 +22,15 @@ class CreateArticleTable extends Migration
             $table->string('quantity',255);
             $table->string('price',255);
             $table->string('photo');
+            $table->softDeletes();
+
         });
 
         Schema::table('article', function (Blueprint $table) {
             $table->unsignedBigInteger('id_fournisseur');
             $table->foreign('id_fournisseur')->references('id')->on('fournisseur');
         });
+
     }
 
     /**
@@ -35,6 +38,7 @@ class CreateArticleTable extends Migration
      *
      * @return void
      */
+    
     public function down()
     {
 
@@ -46,4 +50,6 @@ class CreateArticleTable extends Migration
         
         Schema::dropIfExists('article');
     }
+
+
 }

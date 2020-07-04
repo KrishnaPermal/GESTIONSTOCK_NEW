@@ -26,4 +26,9 @@ class Articles extends Model
     {
         return $this->belongsToMany('App\User', 'users_has_commande', 'id_users', 'id_commande');
     }
+    function commandes()
+    {
+        return $this->belongsToMany(Articles::class, 'commande_has_order', 'id_commande', 'id_article');
+    }
+    
 }

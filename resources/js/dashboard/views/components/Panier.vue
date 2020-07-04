@@ -1,5 +1,4 @@
-<!--
-<!--ICI C'EST LA VUE POUR ICON PANIER ET VOIR LE PANIER-
+<!--ICI C'EST LA VUE POUR ICON PANIER ET VOIR LE PANIER-->
 <template>
 <v-menu offset-y open-on-hover :close-on-content-click="false">
     <template v-slot:activator='{on}'>
@@ -27,13 +26,13 @@
             </v-list-item-title>
         </v-list-item>
         <v-list-item>
-            <v-btn to="/panier">Voir le panier</v-btn>
+            <v-btn to="/basket">Voir le panier</v-btn>
         </v-list-item>
     </v-list>
 </v-menu>
 </template>
 
 <script src="./Panier.js"></script>
--->
+
 
    

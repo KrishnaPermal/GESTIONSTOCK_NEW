@@ -38,6 +38,15 @@ Route::middleware(['auth:api','roles:Fournisseur'])->prefix('fournisseurs')->gro
     Route::post('articles', 'ArticleController@createOrUpdate'); 
 }); 
 
+/*****************************************************************************/
+Route::middleware(['auth:api', 'roles:Producteur|Client'])->group(function(){
+    Route::post('/commandes', 'CommandesController@pushPanier');
+    //Route::get('/commandes', '');
+    //Route::get('/commandes/{id}', '')->where('id','');
+    Route::post('/commandes/{id}/payment','CommandesController@payment')->where('id', '[0-9]+');
+});
+/*****************************************************************************/
+
 
 
 Route::get('categories', 'CategoriesController@index');

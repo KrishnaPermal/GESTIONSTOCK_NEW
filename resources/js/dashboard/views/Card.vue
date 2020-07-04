@@ -52,7 +52,7 @@
                 <v-spacer />
               </v-card-actions>
               <!--ajout component addPanier-->
-              <!--<addPanier :article='article'></addPanier>-->
+              <addPanier :article='article'></addPanier>
               <!--ajout component addPanier--> 
             </v-col>
           </v-row>

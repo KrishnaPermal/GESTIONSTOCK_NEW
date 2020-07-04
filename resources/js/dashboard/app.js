@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuetify from 'vuetify';
 import Routes from './routes.js';
 import Layout from './layouts/Layout';
-import 'vuetify/dist/vuetify.min.css';
+import 'vuetify/dist/vuetify.min.css'
 
 
 Vue.use(Vuetify);

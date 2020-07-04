@@ -15,6 +15,19 @@ class Commandes extends Model
     }
     function users()
     {
-        return $this->belongsToMany('App\User', 'users_has_commande', 'id_users', 'id_commande');
+        return $this->belongsTo(User::class,'id_users');
+    }
+
+    function adresseLivraison()
+    {
+        return $this->belongsTo(Adresses::class, 'id_adresse_livraison');
+    }
+    function adresseFacturation()
+    {
+        return $this->belongsTo(Adresses::class, 'id_adresse_facturation');
+    }
+    function commandeStatus()
+    {
+        return $this->belongsTo(Status::class, 'id_status');
     }
 }

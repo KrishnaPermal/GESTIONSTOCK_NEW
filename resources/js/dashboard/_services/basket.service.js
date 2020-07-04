@@ -1,33 +1,52 @@
 import {EventBus} from "../_helpers/event.bus";
+import {apiServices} from "./api.services";
+
 export const basketService = {
     addPanier,
     getBasket,
     quantityBasketSize,
     updateBasket,
+    sendOrder,
 }
 
 
 function addPanier(article, quantity) {
 
     let basket = getBasket()
+    let qt = 0
 
     if (!_.hasIn(basket, buildKey(article))) {
         basket[buildKey(article)] = {
             id: article.id,
             article_ref: article.article_ref,
-            description: article.description,
-            provider: article.provider,
-            quantity: parseInt(quantity),
+            mark: article.mark,
+            //description: article.description,
+            //provider: article.provider,
             price: article.price
         }
-    } else {
-            
-    basket[buildKey(article)].quantity += parseInt(quantity)
-}  
-
-// on appelle ensuite la fonction store pour l'ajouté au local storage
-storeBasket(basket)
-console.log(basket)
+        
+        qt = parseInt(quantity);
+    } 
+    //si  oui, on incrémente la quantité actuelle 
+    else {
+        
+        qt = basket[buildKey(article)].quantity + parseInt(quantity)
+    }  
+    if (qt > article.quantity) {
+        qt = article.quantity
+        console.log("stock insuffisant")  
+    } 
+    else if (qt > 10) { 
+             qt = 10
+        console.log("pas plus de 10 produits") 
+    } 
+    let snackbar = []
+    snackbar['msg'] = qt + ' Articles ajouté au panier'
+    
+    basket[buildKey(article)].quantity = qt
+    EventBus.$emit('snackError', snackbar);
+    // on appelle ensuite la fonction store pour l'ajouté au local storage
+    storeBasket(basket)  
 
 }
 
@@ -81,3 +100,46 @@ function updateBasket(article){
     }
     storeBasket(basket);
 }
+
+function sendOrder(order){
+    let basket = getBasket();
+    let articleQuantity = [];
+
+    for( let item in basket){
+        let objet = {};
+        objet ['id'] = basket[item].id
+        objet ['articleQuantity'] = basket[item].quantity
+        articleQuantity.push(objet)
+    }  
+
+    return apiServices.post('/api/commandes',{
+        order: order.orderList,
+        adresseLivraison: order.adresseLivraison,
+        adresseFacturation: order.adresseFacturation
+    }) 
+    
+
+}
+
+
+
+
+/* let basket = getBasket()
+
+if (!_.hasIn(basket, buildKey(article))) {
+    basket[buildKey(article)] = {
+        id: article.id,
+        article_ref: article.article_ref,
+        description: article.description,
+        provider: article.provider,
+        quantity: parseInt(quantity),
+        price: article.price
+    }
+} else {
+        
+basket[buildKey(article)].quantity += parseInt(quantity)
+}  
+
+// on appelle ensuite la fonction store pour l'ajouté au local storage
+storeBasket(basket)
+console.log(basket) */

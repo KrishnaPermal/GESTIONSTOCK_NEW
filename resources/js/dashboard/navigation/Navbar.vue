@@ -14,7 +14,7 @@
          </v-toolbar-items>    
 
        <!--ajout component Panier-->
-        <!--<Panier></Panier>-->
+        <Panier></Panier>
       <!--ajout component Panier--> 
     </v-app-bar>
 

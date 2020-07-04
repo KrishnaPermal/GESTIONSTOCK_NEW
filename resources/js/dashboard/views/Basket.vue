@@ -1,4 +1,4 @@
-<!--ICI C'EST LA VUE POUR MON PANIER
+<!--ICI C'EST LA VUE POUR MON PANIER-->
 <template>
 <v-container>
   <div class="container">

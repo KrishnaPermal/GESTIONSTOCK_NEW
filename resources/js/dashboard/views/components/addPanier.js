@@ -1,4 +1,4 @@
-/* import { basketService } from "../../_services/basket.service"
+import { basketService } from "../../_services/basket.service"
 
 export default{
     
@@ -24,4 +24,4 @@ export default{
         }
 
     }
-} */
+} 

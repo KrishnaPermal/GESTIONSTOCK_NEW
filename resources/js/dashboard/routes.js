@@ -5,6 +5,7 @@ import Dashboard from './views/Dashboard.vue';
 import Card from "./views/Card.vue";
 import dashboardFournisseur from './views/dashboardFournisseur.vue';
 import Basket from './views/Basket.vue';
+import Stepper from './views/components/Stepper.vue';
 import Login from "./login/Login.vue";
 import Register from "./views/Register.vue";
 import { Role } from './_helpers/role';
@@ -57,6 +58,13 @@ const router = new VueRouter({
             path:'/basket',
             name: 'basket',
             component: Basket,
+        },
+
+        {
+            path: '/confirmation',
+            name: 'stepper',
+            component: Stepper,
+            meta: { authorize: [Role.Producteur,Role.Admin,Role.Client] }
         },
     ]
 })

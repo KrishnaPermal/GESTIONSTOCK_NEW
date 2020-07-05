@@ -15,15 +15,15 @@
 
     <v-stepper-items>
       <v-stepper-content step="1">
-        <v-row dense v-for="(product, i) in order.orderList" :key="i" cols="12">
+        <v-row dense v-for="(article, i) in order.orderList" :key="i" cols="12">
           <v-col>
             <v-card>
               <div class="d-flex justify-space-between">
                 <div>
-                  <v-card-title class="headline" v-text="product.name"></v-card-title>
-                  <v-card-subtitle v-text="'Prix:'+product.price"></v-card-subtitle>
-                  <v-card-subtitle v-text="'Nombre de produit:'+product.quantity"></v-card-subtitle>
-                  <v-card-subtitle v-text="'Total:'+product.price * product.quantity"></v-card-subtitle>
+                  <v-card-title class="headline" v-text="article.mark"></v-card-title>
+                  <v-card-subtitle v-text="'Prix:'+article.price">€</v-card-subtitle>
+                  <v-card-subtitle v-text="'Nombre de produit:'+article.quantity"></v-card-subtitle>
+                  <v-card-subtitle v-text="'Total:'+article.price * article.quantity"></v-card-subtitle>
                 </div>
               </div>
             </v-card>
@@ -129,14 +129,14 @@
                 </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <v-row dense cols="12">
-                    <v-col v-for="(product, i) in order.orderList" :key="i">
+                    <v-col v-for="(article, i) in order.orderList" :key="i">
                       <v-card max-width="400">
                         <div class="d-flex justify-space-between">
                           <div>
-                            <v-card-title class="headline" v-text="product.name"></v-card-title>
-                            <v-card-subtitle v-text="'Prix:'+product.price"></v-card-subtitle>
-                            <v-card-subtitle v-text="'Nombre de produit:'+product.quantity"></v-card-subtitle>
-                            <v-card-subtitle v-text="'Total:'+product.price * product.quantity"></v-card-subtitle>
+                            <v-card-title class="headline" v-text="article.name"></v-card-title>
+                            <v-card-subtitle v-text="'Prix:'+article.price">€</v-card-subtitle>
+                            <v-card-subtitle v-text="'Nombre de produit:'+article.quantity"></v-card-subtitle>
+                            <v-card-subtitle v-text="'Total:'+article.price * article.quantity"></v-card-subtitle>
                           </div>
                         </div>
                       </v-card>

@@ -1,5 +1,6 @@
-import { EventBus } from "../_helpers/event.bus";
+/* import { EventBus } from "../_helpers/event.bus";
 import {basketService} from  "../_services/basket.service";
+import { authenticationService } from '../_services/authentication.service.js';
 
 import {apiServices} from '../_services/api.services'
 import addPanier from './components/addPanier.vue';
@@ -60,6 +61,16 @@ export default {
                 })
             this.articlesDisplay = this.articles;
         },
+
+        sendOrder() {
+            if (!authenticationService.currentUser) {
+                this.$router.push('/login')
+            }
+            else {
+                this.$router.push('/confirmation')
+            }
+              
+        }
         
     },
     
@@ -77,3 +88,4 @@ export default {
         console.log(this.itemPanier)
     }
 }
+ */

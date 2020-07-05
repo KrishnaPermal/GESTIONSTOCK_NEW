@@ -4,7 +4,7 @@ import Home from "./views/Home.vue";
 import Dashboard from './views/Dashboard.vue';
 import Card from "./views/Card.vue";
 import dashboardFournisseur from './views/dashboardFournisseur.vue';
-import Basket from './views/Basket.vue';
+import Basket from './views/BasketOrder.vue';
 import Stepper from './views/components/Stepper.vue';
 import Login from "./login/Login.vue";
 import Register from "./views/Register.vue";

@@ -13,8 +13,8 @@ export default {
             //console.log(article)
 
         },
-        delete(){
-            //console.log('toto')
+        supprimer(){
+            console.log('toto')
             apiServices.delete('/api/articles/'+ this.article.id).then(response =>{
                 console.log(response)
             })    

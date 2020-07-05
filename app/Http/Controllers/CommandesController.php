@@ -18,7 +18,8 @@ use Illuminate\Support\Facades\Validator;
 
 class CommandesController extends Controller
 {
-    public function pushPanier(Request $request){
+    public function pushPanier(Request $request)
+    {
 
         $commandes = Validator::make(
             $request->all(),
@@ -26,8 +27,16 @@ class CommandesController extends Controller
                 "order" => "required",
                 "adresseLivraison" => 'required',
                 "adresseFacturation" => 'required',
-            ],
+            ]
         )->validate();
+        $prixTotal = [];
+        $i = 0;
+        foreach ($commandes['order'] as $commande) {
+            $i = $i + 1;
+            $prixTotal[$i] = $commande['price'] * $commande['quantity'];
+        }
+        $prixTotal = array_sum($prixTotal);
+        
         $user = $request->user();
         DB::beginTransaction();
         try {
@@ -49,9 +58,13 @@ class CommandesController extends Controller
         }
 
         DB::commit();
-        Mail::to($user->email)->send(new Contact([
+        Mail::to($user->email)
+            ->send(new Contact([
             'name' => $user->name,
             'order' => $createCommande,
+            'adresse_livraison' => $commandes['adresseLivraison'],
+            'adresse_facturation' => $commandes['adresseFacturation'],
+            'prix_total' => $prixTotal, 
         ]));
         return new CommandesResource($createCommande);
 
@@ -114,10 +127,7 @@ class CommandesController extends Controller
             ]
         )->validate();
         $order = Commandes::find($id);
-        $status = Status::with(['commandes'])->find(2);
 
-        $order->commandeStatus()->associate($status);
-        $order->save();
         try {
             $charge = Stripe::charges()->create([
                 'amount' => 20,
@@ -131,9 +141,15 @@ class CommandesController extends Controller
                     'data3' => 'metadata 3'
                 ],
             ]);
-            return $charge;
+            $status = Status::with(['commandes'])->find(2);
+            $order->commandeStatus()->associate($status);
+            $order->save();
+            return ['payment' => $charge, 'status' => $order];
         } catch (Exception $e) {
-            return $e;
+            $status = Status::with(['commandes'])->find(1);
+            $order->commandeStatus()->associate($status);
+            $order->save();
+            return ['error' => $e, 'status' => $order];
         }
     }
 }

@@ -12,10 +12,13 @@ export default{
 
         article:{
             required:true,
-        }
+        },
+    },
+    created(){
+
     },
     methods:{
-        save(){
+        add(){
 
             basketService.addPanier(this.article ,this.quantity);
                 this.quantity=0;
@@ -24,4 +27,4 @@ export default{
         }
 
     }
-} 
+}

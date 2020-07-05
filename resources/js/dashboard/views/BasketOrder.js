@@ -1,8 +1,11 @@
 import { basketService } from './../_services/basket.service.js';
 import {EventBus} from './../_helpers/event.bus';
-import { clientService } from './../_services/clientService.js';
-import { authenticationService } from '../_services/authentication.service.js';
+import { authenticationService } from '../_services/authentication.service';
+
+
 export default {
+
+   
     data: () => ({
         basket: [],
         ordersList: [],

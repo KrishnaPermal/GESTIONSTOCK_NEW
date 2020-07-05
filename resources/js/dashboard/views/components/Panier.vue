@@ -13,7 +13,7 @@
             <v-list-item-title>
                <v-card>
             <div class="d-flex flex-no-wrap justify-space-between">
-              <v-card-title class="headline">{{article.name}}</v-card-title>
+              <v-card-title class="headline">{{article.mark}}</v-card-title>
             </div>
             <v-card-subtitle>
               <v-text-field

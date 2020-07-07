@@ -7,6 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Categories::class, function (Faker $faker) {
     return [
-        "name" => $faker->lastname,
+        //"name" => $faker->lastname,
+        "name" => $faker->randomElement($array = array ('Carte mère','Barette mémoire','Disque','Carte graphique')) // 'b'
     ];
 });

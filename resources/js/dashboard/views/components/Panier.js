@@ -11,7 +11,6 @@ export default {
     methods:{
 
         updateQuantity(article){
-            console.log(article.quantity)
             if (article.quantity == 0) {
                 if(confirm("Êtes vous sur de vouloir supprimer? " + article.name + "?")){
                     basketService.updateBasket(article);
@@ -53,7 +52,6 @@ export default {
             this.initTable(basketService.getBasket()) // quand ont actualise
             
         });
-        console.log(this.itemPanier)
     },
 
 }

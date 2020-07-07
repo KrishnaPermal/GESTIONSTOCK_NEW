@@ -72,7 +72,7 @@ export default {
             apiServices.post('/api/commandes/' + this.orderId + '/payment', {
                 id: this.source.id
             }).then(response => {
-                console.log(response);
+                // console.log(response);
             })
 
            /*  this.order.paiement = this.source

@@ -9,6 +9,11 @@ export default {
                 return {}
             }
         },
+        item: {
+            default: function () {
+                return {}
+            }
+        },
         isModification: {
             default: false
         },
@@ -99,31 +104,41 @@ export default {
            }
            let url = this.isFournisseur ? "/api/fournisseurs/articles" : "/api/articles"
             apiServices.post(url, datasToAdd).then(response => {
+                if (this.isModification){
+                    if(this.id){
+                        const index = this.articles.indexOf(this.article);
+                        this.articles.splice(index,1);
+                        this.articles.push(response.data.data)
+                    
+                }
+                
                  
                 this.dialog = false;
                 this.$emit('addArticles', response.data.data)
                 this.snackbar = true
                 this.text = 'L\'Article à bien été ajoutée'
             
-                })
- 
+                }
+
+            })
+  
                 .catch(
-                )  
+                ) 
         },
 
         modifierArticle(articles) {
-            console.log(this.articles)
-            this.id_fournisseur = this.articles.id_fournisseur
-            this.article = this.articles.mark
-            this.description = this.articles.description
-            this.article_ref = this.articles.article_ref
-            this.quantity = this.articles.quantity
-            this.categories = this.articles.categories
-            this.price = this.articles.price
-            this.id = this.articles.id
-            this.photo = this.articles.photo
+            console.log(this.item)
+            this.id_fournisseur = this.item.id_fournisseur
+            this.article = this.item.mark
+            this.description = this.item.description
+            this.article_ref = this.item.article_ref
+            this.quantity = this.item.quantity
+            this.categories = this.item.categories
+            this.price = this.item.price
+            this.id = this.item.id
+            this.photo = this.item.photo
 
-            _.merge(this.articles.categories, this.categories) // sert à fusionner
+            _.merge(this.item.categories, this.categories) // sert à fusionner
 
         },
         

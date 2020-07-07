@@ -16,7 +16,7 @@
           </v-btn>
         </div>
         <v-btn
-          @click="modifierArticle(articles)"
+          @click="modifierArticle(item)"
           v-if="isModification"
           class="ma-2"
           color="light-blue lighten-3"

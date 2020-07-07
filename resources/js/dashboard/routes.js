@@ -4,6 +4,7 @@ import Home from "./views/Home.vue";
 import Dashboard from './views/Dashboard.vue';
 import Card from "./views/Card.vue";
 import dashboardFournisseur from './views/dashboardFournisseur.vue';
+import managementsClients from './views/managementsClients.vue';
 import Basket from './views/BasketOrder.vue';
 import Stepper from './views/components/Stepper.vue';
 import Login from "./login/Login.vue";
@@ -53,6 +54,12 @@ const router = new VueRouter({
             component: dashboardFournisseur,
             meta: { authorize: [Role.Fournisseur] }
         },
+        {
+            path: '/managementsClients',
+            name: 'managementsClients',
+            component: managementsClients,
+            //meta: { authorize: [Role.Admin] }
+        }, 
         
         {
             path:'/basket',

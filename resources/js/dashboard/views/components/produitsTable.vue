@@ -24,8 +24,8 @@
       </template> 
 
       <template v-slot:item.actions="{ item }">
-        <addArticle :articles="item" :isModification='true'></addArticle>
-        <delete :article="item"></delete>
+        <addArticle :item="item" :articles="articles" :isModification='true'></addArticle>
+        <delete :article="item" :articles="articles"></delete>
       </template>
     </v-data-table>
   </v-container>

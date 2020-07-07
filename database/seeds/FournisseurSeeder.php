@@ -14,6 +14,7 @@ class FournisseurSeeder extends Seeder
      */
     public function run()
     {
+       
         factory(Fournisseurs::class, 5)->create()
         
             ->each(function($t){
@@ -24,7 +25,7 @@ class FournisseurSeeder extends Seeder
                          $a->recompenses()->saveMany(factory(Recompenses::class,1)->make());
                      }) */
                     ->each(function($n){
-                        $n->categories()->saveMany(factory(Categories::class,2)->make());
+                        $n->categories()->saveMany(factory(Categories::class,1)->make());
                     });
         
              });   

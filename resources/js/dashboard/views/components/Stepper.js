@@ -1,13 +1,12 @@
 import { basketService } from "../../_services/basket.service";
 import { apiServices } from "../../_services/api.services";
-//import { clientService } from "../../_services/clientService";
-//import { VStripeCard } from 'v-stripe-elements/lib';
+import { VStripeCard } from 'v-stripe-elements/lib';
 
 export default {
-    /* components: {
+    components: {
         VStripeCard
         
-      }, */
+      },
    
     data() {
         return {
@@ -20,15 +19,6 @@ export default {
             priceTotal:[],
             order: {
                 orderList: {
-                },
-                adresseLivraison: {
-                    name: '',
-                    firstname: '',
-                    city: '',
-                    postal_code: '',
-                    country: '',
-                    address: '',
-                    phone: '',
                 },
                 adresseFacturation: {
                     name: '',
@@ -45,7 +35,6 @@ export default {
             ],
             selectable: false,
             hidden: true,
-            //checkbox: false,
             orderId: '',
             status: '',
         }
@@ -60,12 +49,11 @@ export default {
             this.order.orderList = basketService.getBasket();
         },
         sendOrder() {
-            if (this.checkbox === false) {
-                _.assign(this.order.adresseFacturation, this.order.adresseLivraison)
-            }
+        
             basketService.sendOrder(this.order).then(response => {
-                this.orderId = response.data.data.id
+                this.orderId = response.data.id
             })
+            this.e1 = 3
         },
         process() {
 

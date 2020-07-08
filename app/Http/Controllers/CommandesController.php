@@ -25,7 +25,6 @@ class CommandesController extends Controller
             $request->all(),
             [
                 "order" => "required",
-                "adresseLivraison" => 'required',
                 "adresseFacturation" => 'required',
             ]
         )->validate();
@@ -42,8 +41,8 @@ class CommandesController extends Controller
         try {
             if($user){
                $createCommande = new Commandes;
+               
                $user = $this->addUserToOrder($user, $createCommande);
-               $this->addAdresseLivraison($commandes['adresseLivraison'], $createCommande, $user);
                $this->addAdresseFacturation($commandes['adresseFacturation'], $createCommande, $user);
                $status = Status::with(['commandes'])->find(1);
                
@@ -58,14 +57,14 @@ class CommandesController extends Controller
         }
 
         DB::commit();
-        Mail::to($user->email)
-            ->send(new Contact([
-            'name' => $user->name,
-            'order' => $createCommande,
-            'adresse_livraison' => $commandes['adresseLivraison'],
-            'adresse_facturation' => $commandes['adresseFacturation'],
-            'prix_total' => $prixTotal, 
-        ]));
+        // Mail::to($user->email)
+        //     ->send(new Contact([
+        //     'name' => $user->name,
+        //     'order' => $createCommande,
+        //     'adresse_livraison' => $commandes['adresseLivraison'],
+        //     'adresse_facturation' => $commandes['adresseFacturation'],
+        //     'prix_total' => $prixTotal, 
+        // ]));
         return new CommandesResource($createCommande);
 
     }
@@ -111,11 +110,11 @@ class CommandesController extends Controller
         foreach($basket as $_commande){
             $quantity = $_commande['quantity'];
             $idProduit = $_commande['id'];
-            $produit = Produits::find($idProduit);
+            $produit = Articles::find($idProduit);
             if(!$produit){
                throw new Exception('Produits incorrects');
             }
-            $commande->produit()->attach($produit, ['quantity'=>$quantity]); 
+            $commande->article()->attach($produit, ['quantity'=>$quantity]); 
         }   
     }
     function payment(Request $request, $id)

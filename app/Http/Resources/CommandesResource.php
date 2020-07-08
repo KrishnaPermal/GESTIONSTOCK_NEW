@@ -14,11 +14,11 @@ class CommandesResource extends JsonResource
      */
     public function toArray($request)
     {
-        $user = new UsersResource($this->user);
+        $users = new UsersResource($this->users);
         
         return [
             'id' => $this->id,
-            'user' => $user,
+            'users' => $users,
             
         ];
     }

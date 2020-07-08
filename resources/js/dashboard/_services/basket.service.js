@@ -102,19 +102,9 @@ function updateBasket(article){
 }
 
 function sendOrder(order){
-    let basket = getBasket();
-    let articleQuantity = [];
-
-    for( let item in basket){
-        let objet = {};
-        objet ['id'] = basket[item].id
-        objet ['articleQuantity'] = basket[item].quantity
-        articleQuantity.push(objet)
-    }  
-
+    
     return apiServices.post('/api/commandes',{
         order: order.orderList,
-        adresseLivraison: order.adresseLivraison,
         adresseFacturation: order.adresseFacturation
     }) 
     

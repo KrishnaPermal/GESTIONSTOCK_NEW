@@ -2,7 +2,7 @@
 <div class="d-inline">
         <v-dialog v-model="dialog" persistent max-width="300" class="d-inline">
           <template v-slot:activator="{ on }" class="d-inline">
-            <v-btn color="red lighten-2" class="ma-2" v-on:click="getId(article.id)" dark small rounded v-on="on">
+            <v-btn color="red lighten-2" class="ma-2" v-on:click="getId(article.id)" dark small icon v-on="on">
               <v-icon>mdi-delete</v-icon>
             </v-btn>
           </template>

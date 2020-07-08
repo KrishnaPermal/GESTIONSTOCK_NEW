@@ -113,14 +113,6 @@
                 </v-img>
               </v-btn>
 
-          
-
-              <v-btn class="pa-0"> 
-                <v-img 
-                src="https://www.cocktail-scandinave.fr/Vbeta2018/wp-content/uploads/2018/03/service-livraison.jpg" 
-                aspect-ratio="1.4">
-                </v-img>
-              </v-btn>
           </v-card>
         </v-card-text>
       </v-col>

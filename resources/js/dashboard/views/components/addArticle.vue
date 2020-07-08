@@ -22,7 +22,7 @@
           color="light-blue lighten-3"
           dark
           small
-          rounded
+          icon
           v-on="on"
         >
           <v-icon center>mdi-pencil</v-icon>

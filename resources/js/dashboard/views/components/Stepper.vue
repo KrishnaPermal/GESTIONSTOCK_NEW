@@ -6,7 +6,7 @@
 
       <v-divider></v-divider>
 
-      <v-stepper-step :complete="e1 > 2" step="2">Adresse de livraison</v-stepper-step>
+      <v-stepper-step :complete="e1 > 2" step="2">Adresse de facturation</v-stepper-step>
 
       <v-divider></v-divider>
 
@@ -36,42 +36,6 @@
       </v-stepper-content>
 
       <v-stepper-content step="2" class="text-center">
-        <span>Adresse de livraison</span>
-          <v-row>
-            <v-col col="2" md="4">
-              <v-text-field label="Nom*" :rules="rules" v-model="order.adresseLivraison.name"></v-text-field>
-            </v-col>
-            <v-col col="2" md="4">
-              <v-text-field label="Prenom*" :rules="rules" v-model="order.adresseLivraison.firstname"></v-text-field>
-            </v-col>
-            <v-col col="2" md="4">
-              <v-text-field label="Pays*" :rules="rules" v-model="order.adresseLivraison.country"></v-text-field>
-            </v-col>
-            <v-col col="2" md="4">
-              <v-text-field label="Ville*" :rules="rules" v-model="order.adresseLivraison.city"></v-text-field>
-            </v-col>
-            <v-col col="2" md="4">
-              <v-text-field
-                label="Adresse*"
-                :rules="rules"
-                v-model="order.adresseLivraison.address"
-              ></v-text-field>
-            </v-col>
-            <v-col col="2" md="4">
-              <v-text-field
-                label="Code Postal*"
-                :rules="rules"
-                v-model="order.adresseLivraison.postal_code"
-              ></v-text-field>
-            </v-col>
-            <v-col col="2" md="4">
-              <v-text-field label="Téléphone*" :rules="rules" v-model="order.adresseLivraison.phone"></v-text-field>
-            </v-col>
-          </v-row>
-        <v-switch v-model="selectable" label="Adresse de livraison est la même que l'adresse de facturation"></v-switch>
-        <div v-if="selectable">
-          <v-divider></v-divider>
-
           <span>Adresse de facturation</span>
             <v-row>
               <v-col col="2" md="4">
@@ -109,12 +73,11 @@
                 ></v-text-field>
               </v-col>
               <v-col col="2" md="4">
-              <v-text-field label="Téléphone*" :rules="rules" v-model="order.adresseLivraison.phone"></v-text-field>
+              <v-text-field label="Téléphone*" :rules="rules" v-model="order.adresseFacturation.phone"></v-text-field>
             </v-col>
             </v-row>
-        </div>
-        <v-btn color="primary" :disabled="!valid" @click="e1 = 3,sendOrder() ">Valider</v-btn>
-
+       
+        <v-btn color="primary" :disabled="!valid" @click="sendOrder() ">Valider</v-btn>
         <v-btn text @click="e1 = 1">Retour</v-btn>
       </v-stepper-content>
 

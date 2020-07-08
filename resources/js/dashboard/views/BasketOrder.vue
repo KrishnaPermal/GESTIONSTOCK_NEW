@@ -3,6 +3,12 @@
       <v-row class="text-center justify-center py-2">
             <h1 class="font-weight-regular display-2 ">Mes Commandes</h1>
         </v-row>
+
+
+     <div>
+          {{undefinedPanier}}
+     </div>
+     
     <v-row dense v-for="(article,key) in basket" :key="key" cols="6">
       <v-col>
         <v-card>
@@ -27,7 +33,7 @@
         </v-card>
       </v-col>
     </v-row>
-    <v-btn @click="sendOrder()">Passer la commande</v-btn>
+    <v-btn @click="sendOrder()" v-if='undefinedPanier == ""'>Passer la commande</v-btn>
   </v-container>
 </template>
 <script src="./BasketOrder.js"/>

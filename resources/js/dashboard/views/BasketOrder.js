@@ -1,6 +1,7 @@
 import { basketService } from './../_services/basket.service.js';
 import {EventBus} from './../_helpers/event.bus';
 import { authenticationService } from '../_services/authentication.service';
+import { isEmpty } from 'lodash';
 
 
 export default {
@@ -11,6 +12,7 @@ export default {
         ordersList: [],
         ordersId: [],
         ordersQuantity: [],
+        undefinedPanier: "",
     }),
     created() {
         this.getBasket()
@@ -21,6 +23,10 @@ export default {
     methods: {
         getBasket() {
             this.basket = basketService.getBasket()
+            if(isEmpty(this.basket)) {
+                this.undefinedPanier = "Votre panier est vide ! Votre quête du produit parfait dans les univers de notre site n'est pas encore achevée.";
+            } 
+            
         },
         updateQuantity(article) {
             this.orders = article

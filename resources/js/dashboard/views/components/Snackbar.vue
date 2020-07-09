@@ -20,7 +20,7 @@ export default {
     EventBus.$on("snackError", error => {
       this.snackbar = true;
       this.text = error["msg"];
-      this.color = "grey";
+      this.color = "cyan";
     });
   }
 };

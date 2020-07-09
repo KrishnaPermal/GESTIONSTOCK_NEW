@@ -24,7 +24,7 @@ export default {
         getBasket() {
             this.basket = basketService.getBasket()
             if(isEmpty(this.basket)) {
-                this.undefinedPanier = "Votre panier est vide ! Votre quête du produit parfait dans les univers de notre site n'est pas encore achevée.";
+                this.undefinedPanier = "Votre panier d'achat est vide ! Vous n'avez ajouté aucun article dans votre panier.";
             } 
             
         },

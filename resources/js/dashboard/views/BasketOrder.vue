@@ -5,9 +5,10 @@
         </v-row>
 
 
-     <div>
+      <div class="text-center justify-center py-9 font-weight-regular display-1">
           {{undefinedPanier}}
      </div>
+    
      
     <v-row dense v-for="(article,key) in basket" :key="key" cols="6">
       <v-col>

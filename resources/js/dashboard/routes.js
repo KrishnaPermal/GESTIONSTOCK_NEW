@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from "./views/Home.vue";
 import Dashboard from './views/Dashboard.vue';
+import Gestion from './views/Gestion.vue';
 import Card from "./views/Card.vue";
 import dashboardFournisseur from './views/dashboardFournisseur.vue';
 import managementsClients from './views/managementsClients.vue';
@@ -18,9 +19,21 @@ const router = new VueRouter({
     mode: 'history',
     routes: [{
             path: '/',
-            name: 'home',
+            name: 'accueil',
             component: Home,
             //meta: { authorize: [] }
+        },
+        {
+            path: '/dashboard',
+            name: 'dashboard',
+            component: Dashboard,
+            meta: { authorize: [Role.Admin] }
+        },
+        {
+            path: '/gestion',
+            name: 'gestion',
+            component: Gestion,
+            meta: { authorize: [Role.Admin] }
         },
         {
             path: '/articles',
@@ -40,14 +53,6 @@ const router = new VueRouter({
             component: Register,
             meta: { authorize: [] }
         },
-
-        {
-            path: '/dashboard',
-            name: 'dashboard',
-            component: Dashboard,
-            meta: { authorize: [Role.Admin] }
-        },
-
         {
             path: '/dashboardFournisseur',
             name: 'fournisseur',

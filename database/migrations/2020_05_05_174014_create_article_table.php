@@ -44,8 +44,8 @@ class CreateArticleTable extends Migration
 
         Schema::table('article', function (Blueprint $table) {
             Schema::disableForeignKeyConstraints();
-            $table->dropForeign(['id_fournisseur']);
             $table->dropIfExists('id_fournisseur');
+            Schema::enableForeignKeyConstraints();
         });
         
         Schema::dropIfExists('article');

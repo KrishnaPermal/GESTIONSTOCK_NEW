@@ -1,14 +1,3 @@
 <template>
-<div>
-  <produitsTable/>
-</div>
+    <div>totototo</div>
 </template>
-
-<script>
-import produitsTable from './components/produitsTable.vue';
-export default {
-  components:{
-    produitsTable
-  }
-}
-</script>

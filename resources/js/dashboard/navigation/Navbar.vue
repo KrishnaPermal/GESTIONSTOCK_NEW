@@ -1,28 +1,38 @@
 <template>
   <div>
-
-<!--  Navbar -->
-    <v-app-bar color="cyan darken-1" dark fullscreen>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-     <v-toolbar-title>
-          <h1 class="headline font-weight-medium d-inline">S.N & INFORMATIQUE</h1>
+    <!--  Navbar -->
+    <v-app-bar color="cyan darken-1" dark fullscreen class="hidden">
+      <v-app-bar-nav-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-toolbar-title class="hidden-md-and-up">
+        <h1 class="headline font-weight-medium d-inline">S.N & I</h1>
       </v-toolbar-title>
-       <v-spacer></v-spacer>
+      <v-toolbar-title class="hidden-sm-and-down">
+        <h2 class="headline font-weight-medium d-inline">S.N & INFORMATIQUE</h2>
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
 
-       <v-toolbar-items>
-          <Menu></Menu>
-         </v-toolbar-items>    
-
-       <!--ajout component Panier-->
+      <v-toolbar-items class="hidden-sm-and-down">
+        <v-btn text class="nav-item nav-link" to="/">Accueil</v-btn>
+        <v-btn text class="nav-item nav-link" to="/dashboard">Dashboard</v-btn>
+        <v-btn text class="nav-item nav-link" :to="{name:'gestion'}">Gestion</v-btn>
+        <v-btn text class="nav-item nav-link" :to="{name:'articles'}">Articles</v-btn>
+        <Menu></Menu>
         <Panier></Panier>
-      <!--ajout component Panier--> 
+      </v-toolbar-items>
+
+      <!--ajout component Panier-->
+
+      <!--ajout component Panier-->
     </v-app-bar>
 
-     <v-divider></v-divider>
+    <v-divider></v-divider>
 
- <!-- Navigation vertical -->
-    <v-navigation-drawer v-model="drawer" absolute temporary>
-     <v-img :aspect-ratio="16/9" src="https://www.universite-rose-croix.org/wp-content/uploads/2018/12/video-informatique-et-spiritualit%C3%A9.jpg"></v-img>
+    <!-- Navigation vertical -->
+    <v-navigation-drawer overlay-opacity="0.9" v-model="drawer" absolute temporary >
+      <v-img
+        :aspect-ratio="16/9"
+        src="https://www.universite-rose-croix.org/wp-content/uploads/2018/12/video-informatique-et-spiritualit%C3%A9.jpg"
+      ></v-img>
       <v-list-item>
         <v-list-item-content color="black">
           <v-list-item-title class="font-italic">S.N&INFORMATIQUE</v-list-item-title>
@@ -30,7 +40,7 @@
         </v-list-item-content>
       </v-list-item>
 
-<v-divider></v-divider>
+      <v-divider></v-divider>
 
       <v-list rounded>
         <v-list-item link>
@@ -45,7 +55,7 @@
           </v-list-item-content>
         </v-list-item>
 
- <v-divider></v-divider>
+        <v-divider></v-divider>
 
          <v-list-item link>
           <v-list-item-icon>
@@ -57,11 +67,25 @@
               <router-link :to="{name:'dashboard'}">Dashboard</router-link>
             </v-list-item-title>
           </v-list-item-content>
-         </v-list-item>
+        </v-list-item>
 
-<v-divider></v-divider>
+        <v-divider></v-divider>
 
-         <v-list-item link>
+        <v-list-item link>
+          <v-list-item-icon>
+            <v-icon>mdi-cube</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title class="font-weight-bold">
+              <router-link :to="{name:'gestion'}">Gestion</router-link>
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-divider></v-divider>
+
+        <v-list-item link>
           <v-list-item-icon>
             <v-icon>mdi-shopping</v-icon>
           </v-list-item-icon>
@@ -71,11 +95,11 @@
               <router-link :to="{name:'articles'}">Articles</router-link>
             </v-list-item-title>
           </v-list-item-content>
-         </v-list-item>
+        </v-list-item>
 
-<v-divider></v-divider>
+        <v-divider></v-divider>
 
-         <v-list-item link>
+        <v-list-item link>
           <v-list-item-icon>
             <v-icon>mdi-shopping</v-icon>
           </v-list-item-icon>
@@ -85,14 +109,14 @@
               <router-link :to="{name:'fournisseur'}">Fournisseurs</router-link>
             </v-list-item-title>
           </v-list-item-content>
-         </v-list-item>
+        </v-list-item>
 
-<v-divider></v-divider>
+        <v-divider></v-divider>
 
-       <v-list-item link v-if="isChecked">
-            <v-list-item-icon>
-              <v-icon>mdi-logout</v-icon>
-            </v-list-item-icon>
+        <v-list-item link v-if="isChecked">
+          <v-list-item-icon>
+            <v-icon>mdi-logout</v-icon>
+          </v-list-item-icon>
 
           <v-list-item-content>
             <v-list-item-title class="font-weight-bold">
@@ -101,8 +125,7 @@
           </v-list-item-content>
         </v-list-item>
 
-
-         <v-list-item link v-if="!isChecked">
+        <v-list-item link v-if="!isChecked">
           <v-list-item-icon>
             <v-icon>mdi-login-variant</v-icon>
           </v-list-item-icon>
@@ -112,13 +135,11 @@
               <router-link :to="{name:'login'}">Login</router-link>
             </v-list-item-title>
           </v-list-item-content>
-         </v-list-item>
-    
-        
+        </v-list-item>
 
-<v-divider></v-divider>
+        <v-divider></v-divider>
 
- <v-list-item link v-if="!isChecked" small>
+        <v-list-item link v-if="!isChecked" small>
           <v-list-item-icon>
             <v-icon>mdi-account-plus</v-icon>
           </v-list-item-icon>
@@ -128,13 +149,12 @@
               <router-link :to="{name:'register'}">Inscription</router-link>
             </v-list-item-title>
           </v-list-item-content>
-         </v-list-item>
-         
-<v-divider></v-divider>
+        </v-list-item>
 
+        <v-divider></v-divider>
       </v-list>
     </v-navigation-drawer>
-<!-- Navigation vertical -->
+    <!-- Navigation vertical -->
   </div>
 </template>
 
@@ -142,14 +162,13 @@
 
 
 <script>
-import { authenticationService } from '../_services/authentication.service';
-import Panier from '../views/components/Panier.vue';
-import { Role } from '../_helpers/role'; 
-import router from '../routes';
-import Menu from './menu.vue';
+import { authenticationService } from "../_services/authentication.service";
+import Panier from "../views/components/Panier.vue";
+import { Role } from "../_helpers/role";
+import router from "../routes";
+import Menu from "./menu.vue";
 export default {
-
-  components:{
+  components: {
     Panier,
     Menu
   },
@@ -161,14 +180,15 @@ export default {
       items: [
         { title: "Accueil", icon: "mdi-home" },
         { title: "Dashboard", icon: "mdi-view-dashboard" },
+        { title: "Gestion", icon: "mdi-cube"},
         { title: "Articles", icon: "mdi-shopping" },
         { title: "Fournisseurs", icon: "mdi-account" },
         { title: "Login", icon: "mdi-login-variant" },
-        { title: "Inscription", icon: "mdi-account-plus"},
-      ], 
+        { title: "Inscription", icon: "mdi-account-plus" }
+      ]
     };
   },
-   computed: {
+  computed: {
     isAdmin() {
       return this.currentUser && this.currentUser.role.name === Role.Admin;
     },

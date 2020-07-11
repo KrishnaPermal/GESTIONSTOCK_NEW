@@ -17,11 +17,11 @@ export default {
 
         availableHeaders: {
             article: { text: "Article", align: "start", sortable: false,value: "article"},
+            photo: { text: "Photo", value:"photo"},
             categories:  { text: "Categories", value: "categories" },
             id_fournisseur:  { text: "Fournisseurs", value: "id_fournisseur" },
             quantite: { text: "Quantité", value: "quantity"},
             price: { text: "Prix", value: "price" },
-            photo: { text: "Photo", value:"photo"},
             actions: { text: "Actions", value:"actions" }, 
         },
         

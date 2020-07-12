@@ -16,8 +16,8 @@ export default {
         headers: [],
 
         availableHeaders: {
-            article: { text: "Article", align: "start", sortable: false,value: "article"},
             photo: { text: "Photo", value:"photo"},
+            article: { text: "Article", align: "start", sortable: false,value: "article"},
             categories:  { text: "Categories", value: "categories" },
             id_fournisseur:  { text: "Fournisseurs", value: "id_fournisseur" },
             quantite: { text: "Quantité", value: "quantity"},
@@ -54,22 +54,22 @@ export default {
         setHeaders(){ 
             if (authenticationService.isFournisseur()) { //si nous sommes fournisseur pas besoin du id_fournisseur
                 this.headers = [
+                    this.availableHeaders.photo,
                     this.availableHeaders.article,
                     this.availableHeaders.categories,
                     this.availableHeaders.quantite,
                     this.availableHeaders.price,
-                    this.availableHeaders.photo,
                     this.availableHeaders.actions,
                 ]
             }
             else { //sinon ont affiche tout !!!
                 this.headers = [
+                    this.availableHeaders.photo,
                     this.availableHeaders.article,
                     this.availableHeaders.categories,
                     this.availableHeaders.id_fournisseur,
                     this.availableHeaders.quantite,
                     this.availableHeaders.price,
-                    this.availableHeaders.photo,
                     this.availableHeaders.actions,
                 ]
             }

@@ -1,35 +1,26 @@
 <template>
   <v-container>
-              <v-row class="text-center justify-center py-2">
-                  <h1 class="font-weight-regular display-2 ">Mes Commandes</h1>
-              </v-row>
-
-    <v-row>
-
-
-    <v-col cols="12" md="6">
-
-            <div class="text-center justify-center py-9 font-weight-regular display-1">
-                {{undefinedPanier}}
-            </div>
-    </v-col>
-
-    <v-col cols="12" md="6">
-
-            <v-img 
-            src="https://faitcheznous.ca/wp-content/themes/une_boutique_fait/images/cart-empty.png"  
-            aspect-ratio="1.7" 
-            contain
-            height="200px"
-            >
-            </v-img>
-
-    </v-col>
+    <v-row class="text-center justify-center py-2">
+      <h1 class="font-weight-regular display-2">Mes Commandes</h1>
     </v-row>
 
-    
+    <v-row>
+      <v-col cols="12" md="6">
+        <div
+          class="text-center justify-center py-9 font-weight-regular display-1"
+        >{{undefinedPanier}}</div>
+      </v-col>
 
-     
+      <v-col cols="12" md="6">
+        <v-img
+          src="https://faitcheznous.ca/wp-content/themes/une_boutique_fait/images/cart-empty.png"
+          aspect-ratio="1.7"
+          contain
+          height="200px"
+        ></v-img>
+      </v-col>
+    </v-row>
+
     <v-row dense v-for="(article,key) in basket" :key="key" cols="6">
       <v-col>
         <v-card>

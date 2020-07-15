@@ -1,7 +1,7 @@
 <template>
   <div>
     <!--  Navbar -->
-    <v-app-bar color="cyan darken-1" dark fullscreen class="hidden">
+    <v-app-bar color="cyan darken-1" dark fullscreen class="hidden" elevation="0">
       <v-app-bar-nav-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title class="hidden-md-and-up">
         <h1 class="headline font-weight-medium d-inline">S.N & I</h1>

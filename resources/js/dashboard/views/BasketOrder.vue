@@ -4,9 +4,9 @@
       <h1 class="font-weight-regular display-2">Mes Commandes</h1>
     </v-row>
 
-    <v-row>
+    <v-row v-if="undefinedPanier != '' ">
       <v-col cols="12" md="6">
-        <div
+        <div 
           class="text-center justify-center py-9 font-weight-regular display-1"
         >{{undefinedPanier}}</div>
       </v-col>

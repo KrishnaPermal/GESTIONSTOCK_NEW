@@ -3,9 +3,10 @@
   <v-menu offset-y open-on-hover :close-on-content-click="false">
     <template v-slot:activator="{on}">
       <v-btn v-on="on" icon>
-        <v-badge color="red" :content="quantity">
+        <v-badge v-if="quantity!=0" color="red" :content="quantity">
           <v-icon>mdi-cart</v-icon>
         </v-badge>
+          <v-icon v-else>mdi-cart</v-icon> 
       </v-btn>
     </template>
     <v-list>

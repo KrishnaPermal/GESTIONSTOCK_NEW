@@ -11,6 +11,7 @@
         <v-card class="ma-5" height="200" width="200" @click="toggle">
           <v-row class="fill-height" align="center" justify="center">
             <v-img
+              :aspect-ratio="16/9"
               :src="n.photo"
               class="white--text align-end"
               gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"

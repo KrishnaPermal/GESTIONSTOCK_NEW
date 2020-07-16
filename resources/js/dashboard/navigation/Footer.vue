@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-footer dark padless>
-      <v-card class="flex cyan darken-3 white--text text-center" flat tile>
+      <v-card class="flex cyan blue-3 white--text text-center" flat tile>
         <v-divider></v-divider>
 
         <v-row class="cyan darken-2 white--text text-center">

@@ -27,14 +27,16 @@ const router = new VueRouter({
             path: '/dashboard',
             name: 'dashboard',
             component: Dashboard,
-            meta: { authorize: [Role.Admin] }
+            meta: { authorize: [Role.Admin] },
+            children: [
+                {
+                    path: '/dashboard/',
+                    name: 'gestion',
+                    component: Gestion,
+                },
+            ]
         },
-        {
-            path: '/gestion',
-            name: 'gestion',
-            component: Gestion,
-            meta: { authorize: [Role.Admin] }
-        },
+        
         {
             path: '/articles',
             name: 'articles',

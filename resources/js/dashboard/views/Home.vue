@@ -33,27 +33,31 @@
 
       <v-container fluid>
         <v-row dense class="justify-center">
-          <v-card
-            v-for="(article,key) in articlesDisplay"
-            :key="key"
-            class="mx-2 my-4 d-flex py-2"
-            max-width="200"
-          >
-            <v-col class>
-              <v-responsive>
-                <v-img
-                  
-                  :src="article.photo"
-                  class="white--text align-end"
-                  gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                ></v-img>
-              </v-responsive>
-              <v-card-title>{{article.mark}}</v-card-title>
-              <v-card-text>Categorie: {{displayCategories(article.categories)}}</v-card-text>
-              <v-card-subtitle>Prix: {{article.price}} €</v-card-subtitle>
-              <v-btn d-inline>toto</v-btn>
+          <template v-for="(article, key) in articlesDisplay">
+            <v-col :key="key" cols="12" md="3">
+              <v-hover v-slot:default="{ hover }">
+                <v-card
+                  :elevation="hover ? 12 : 2"
+                  :class="{ 'on-hover': hover }"
+                  :key="key"
+                  class="mx-2 my-4"
+                >
+                  <v-img
+                    :src="article.photo"
+                    class="white--text align-end"
+                    gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                  >
+                    <v-card-title>{{article.mark}}</v-card-title>
+                  </v-img>
+                  <v-card-subtitle>Prix: {{article.price}} €</v-card-subtitle>
+                  <v-card-text>Categorie: {{displayCategories(article.categories)}}</v-card-text>
+                  <v-card-actions>
+                  <v-btn d-inline>Voir plus</v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-hover>
             </v-col>
-          </v-card>
+          </template>
         </v-row>
       </v-container>
 
@@ -91,6 +95,7 @@ export default {
     articles: [],
     photo: [],
     articlesDisplay: [],
+    transparent: "rgba(255, 255, 255, 0)"
   }),
 
   methods: {
@@ -118,3 +123,16 @@ export default {
 };
 </script>    
 
+<style scoped>
+.v-card {
+  transition: opacity 0.4s ease-in-out;
+}
+
+.v-card:not(.on-hover) {
+  opacity: 0.6;
+}
+
+.show-btns {
+  color: rgba(255, 255, 255, 0.281) !important;
+}
+</style>

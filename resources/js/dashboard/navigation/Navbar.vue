@@ -13,9 +13,8 @@
 
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn text class="nav-item nav-link" to="/">Accueil</v-btn>
-        <v-btn text class="nav-item nav-link" to="/dashboard">Dashboard</v-btn>
-        <v-btn text class="nav-item nav-link" :to="{name:'gestion'}">Gestion</v-btn>
-        <v-btn text class="nav-item nav-link" :to="{name:'articles'}">Articles</v-btn>
+        <v-btn v-if="isAdmin" text class="nav-item nav-link" to="/dashboard">Dashboard</v-btn>
+        <v-btn v-if="isAdmin || isClient" text class="nav-item nav-link" :to="{name:'articles'}">Articles</v-btn>
         <Menu></Menu>
         <Panier></Panier>
       </v-toolbar-items>
@@ -57,7 +56,7 @@
 
         <v-divider></v-divider>
 
-         <v-list-item link>
+         <v-list-item link v-if="isAdmin">
           <v-list-item-icon>
             <v-icon>mdi-view-dashboard</v-icon>
           </v-list-item-icon>
@@ -71,21 +70,10 @@
 
         <v-divider></v-divider>
 
-        <v-list-item link>
-          <v-list-item-icon>
-            <v-icon>mdi-cube</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title class="font-weight-bold">
-              <router-link :to="{name:'gestion'}">Gestion</router-link>
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
 
         <v-divider></v-divider>
 
-        <v-list-item link>
+        <v-list-item link v-if="isAdmin || isClient">
           <v-list-item-icon>
             <v-icon>mdi-shopping</v-icon>
           </v-list-item-icon>
@@ -190,8 +178,13 @@ export default {
   },
   computed: {
     isAdmin() {
-      return this.currentUser && this.currentUser.role.name === Role.Admin;
+      return this.currentUser && this.currentUser.role.name === "Admin";
     },
+     isClient() {
+      return this.currentUser && this.currentUser.role.name === "Client";
+    
+    },
+    
     isChecked() {
       return this.currentUser;
     }

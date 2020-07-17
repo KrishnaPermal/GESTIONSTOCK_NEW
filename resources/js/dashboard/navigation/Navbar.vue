@@ -13,6 +13,7 @@
 
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn text class="nav-item nav-link" to="/">Accueil</v-btn>
+        <v-btn v-if="isFournisseur" text class="nav-item nav-link" to="/dashboardFournisseur">Gestionnaire</v-btn>
         <v-btn v-if="isAdmin" text class="nav-item nav-link" to="/dashboard">Dashboard</v-btn>
         <v-btn v-if="isAdmin || isClient" text class="nav-item nav-link" :to="{name:'articles'}">Articles</v-btn>
         <Menu></Menu>
@@ -70,9 +71,6 @@
 
         <v-divider></v-divider>
 
-
-        <v-divider></v-divider>
-
         <v-list-item link v-if="isAdmin || isClient">
           <v-list-item-icon>
             <v-icon>mdi-shopping</v-icon>
@@ -87,14 +85,14 @@
 
         <v-divider></v-divider>
 
-        <v-list-item link>
+        <v-list-item link v-if="isFournisseur">
           <v-list-item-icon>
             <v-icon>mdi-shopping</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
             <v-list-item-title class="font-weight-bold">
-              <router-link :to="{name:'fournisseur'}">Fournisseurs</router-link>
+              <router-link :to="{name:'fournisseur'}">Gestionnaire</router-link>
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
@@ -168,7 +166,7 @@ export default {
       items: [
         { title: "Accueil", icon: "mdi-home" },
         { title: "Dashboard", icon: "mdi-view-dashboard" },
-        { title: "Gestion", icon: "mdi-cube"},
+        //{ title: "Gestion", icon: "mdi-cube"},
         { title: "Articles", icon: "mdi-shopping" },
         { title: "Fournisseurs", icon: "mdi-account" },
         { title: "Login", icon: "mdi-login-variant" },
@@ -182,6 +180,10 @@ export default {
     },
      isClient() {
       return this.currentUser && this.currentUser.role.name === "Client";
+    
+    },
+    isFournisseur() {
+      return this.currentUser && this.currentUser.role.name === "Fournisseur";
     
     },
     

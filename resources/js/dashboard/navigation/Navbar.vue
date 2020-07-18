@@ -97,7 +97,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-divider></v-divider>
+         <v-divider></v-divider>
 
         <v-list-item link v-if="isChecked">
           <v-list-item-icon>

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class FournisseursController extends Controller
 {
-    public function getProducteurs()
+    /* public function getProducteurs()
     {
         $producteurs = Producteurs::get();
         return ProducteursResource::collection($producteurs);      
@@ -45,5 +45,5 @@ class FournisseursController extends Controller
             throw 'err';
         }
         return new ProducteursResource($producteur);
-    }
+    } */
 }

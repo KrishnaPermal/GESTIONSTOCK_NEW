@@ -16,31 +16,45 @@ class UsersSeeder extends Seeder
         $array = [
             [
                 "id" => 1,
-                "name" => "TPermal",
+                "name" => "Krishna PERMALNAÏKEN",
                 //"firstname" => "Krishna",
-                "email" => "tpermal@gmail.com",
+                "email" => "krishnapermalnaiken@gmail.com",
                 "password" => bcrypt('admin'),
                 "id_role" => "1"
 
             ],
             [
                 "id" => 2,
-                "name" => "KrishnaPermal",
-                //"firstname" => "Krishna",
-                "email" => "krishnapermal@gmail.com",
-                "password" => bcrypt('admin'),
+                "name" => "Alexander MILLER",
+                "email" => "alexandermiller@gmail.com",
+                "password" => bcrypt('client'),
                 "id_role" => "2"
 
             ],
             [
                 "id" => 3,
-                "name" => "KrishNaiken",
-                //"firstname" => "Krishna",
-                "email" => "krishnaiken@gmail.com",
-                "password" => bcrypt('admin'),
+                "name" => "Joe GARCIA",
+                "email" => "joegarcia@gmail.com",
+                "password" => bcrypt('fournisseur'),
                 "id_role" => "3"
 
-            ]
+            ],
+            [
+                "id" => 4,
+                "name" => "Waren ROBINSON",
+                "email" => "warenrobinson@gmail.com",
+                "password" => bcrypt('client'),
+                "id_role" => "2"
+
+            ],
+            [
+                "id" => 5,
+                "name" => "Kyle LOPEZ ",
+                "email" => "kylelopez@gmail.com",
+                "password" => bcrypt('client'),
+                "id_role" => "2"
+
+            ],
         ];
 
         DB::table('users')->insert(

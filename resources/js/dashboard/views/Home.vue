@@ -2,7 +2,9 @@
   <v-container>
     <div>
       <v-card-title class="text-center justify-center py-6">
-        <h1 class="font-italic font-weight-bold display-1 cyan--text">GESTION DE STOCK</h1>
+        <h1
+          class="font-italic font-weight-bold text-caption text-sm-body-2 text-md-body-1 text-lg-h3 cyan--text"
+        >GESTION DE STOCK</h1>
       </v-card-title>
 
       <v-container class="text-center justify-center py-6">
@@ -52,7 +54,7 @@
                   <v-card-subtitle>Prix: {{article.price}} €</v-card-subtitle>
                   <v-card-text>Categorie: {{displayCategories(article.categories)}}</v-card-text>
                   <v-card-actions>
-                  <v-btn d-inline>Voir plus</v-btn>
+                    <!-- <v-btn d-inline>Voir plus</v-btn> -->
                   </v-card-actions>
                 </v-card>
               </v-hover>

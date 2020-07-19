@@ -15,14 +15,10 @@
         <v-btn text class="nav-item nav-link" to="/">Accueil</v-btn>
         <v-btn v-if="isFournisseur" text class="nav-item nav-link" to="/dashboardFournisseur">Gestionnaire</v-btn>
         <v-btn v-if="isAdmin" text class="nav-item nav-link" to="/dashboard">Dashboard</v-btn>
-        <v-btn v-if="isAdmin || isClient" text class="nav-item nav-link" :to="{name:'articles'}">Articles</v-btn>
+        <v-btn text class="nav-item nav-link" :to="{name:'articles'}">Articles</v-btn>
         <Menu></Menu>
-        <Panier></Panier>
       </v-toolbar-items>
-
-      <!--ajout component Panier-->
-
-      <!--ajout component Panier-->
+        <Panier></Panier>
     </v-app-bar>
 
     <v-divider></v-divider>
@@ -50,7 +46,7 @@
 
           <v-list-item-content>
             <v-list-item-title class="font-weight-bold">
-              <router-link :to="{name:'home'}">Accueil</router-link>
+              <router-link to="/">Accueil</router-link>
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
@@ -71,7 +67,7 @@
 
         <v-divider></v-divider>
 
-        <v-list-item link v-if="isAdmin || isClient">
+        <v-list-item >
           <v-list-item-icon>
             <v-icon>mdi-shopping</v-icon>
           </v-list-item-icon>

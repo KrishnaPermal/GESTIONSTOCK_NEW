@@ -20,7 +20,7 @@ export default {
             article: { text: "Article", align: "start", sortable: false,value: "article"},
             categories:  { text: "Categories", value: "categories" },
             id_fournisseur:  { text: "Fournisseurs", value: "id_fournisseur" },
-            quantite: { text: "Quantité", value: "quantity"},
+            quantity: { text: "Quantité", value: "quantity"},
             price: { text: "Prix", value: "price" },
             actions: { text: "Actions", value:"actions" }, 
         },
@@ -56,7 +56,7 @@ export default {
                     this.availableHeaders.photo,
                     this.availableHeaders.article,
                     this.availableHeaders.categories,
-                    this.availableHeaders.quantite,
+                    this.availableHeaders.quantity,
                     this.availableHeaders.price,
                     this.availableHeaders.actions,
                 ]
@@ -67,7 +67,7 @@ export default {
                     this.availableHeaders.article,
                     this.availableHeaders.categories,
                     this.availableHeaders.id_fournisseur,
-                    this.availableHeaders.quantite,
+                    this.availableHeaders.quantity,
                     this.availableHeaders.price,
                     this.availableHeaders.actions,
                 ]

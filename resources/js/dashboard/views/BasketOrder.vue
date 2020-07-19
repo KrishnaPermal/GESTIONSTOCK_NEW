@@ -1,7 +1,7 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <v-row class="text-center justify-center py-2">
-      <h1 class="font-weight-regular display-2">Mes Commandes</h1>
+      <h1 class="font-weight-regular display-2 py-7">Votre panier : </h1>
     </v-row>
 
     <v-row v-if="undefinedPanier != '' ">

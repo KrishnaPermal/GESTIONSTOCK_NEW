@@ -34,39 +34,42 @@
           <!--Autocomplete-->
 
           <!--Carte-->
-          <v-card
-            v-for="(article,key) in articlesDisplay"
-            :key="key"
-            class="mx-2 my-4 d-flex py-2" 
-            max-width="300" 
-          >
-            <v-container fluid>
-              <v-row dense>
-                <v-col class="md-4">
-                  
-                  <v-responsive>
-                    <v-img
-                    :src="article.photo"
-                    class="white--text align-end"
-                    gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                    height="200px"
-                  ></v-img>
-                  </v-responsive>
-                  <v-card-actions>
-                    <v-card-title>{{article.mark}}</v-card-title>
-                    <v-card-subtitle>Categorie: {{displayCategories(article.categories)}}</v-card-subtitle>
-                    <v-card-subtitle>Prix: {{article.price}} €</v-card-subtitle>
-                    <v-spacer />
-                  </v-card-actions>
-                  <!--ajout component addPanier-->
-                  <addPanier :article="article"></addPanier>
-                  <!--ajout component addPanier-->
+          <v-container>
+            <v-row dense class="justify-center">
+              <template v-for="(article,key) in articlesDisplay">
+                <v-col :key="key" cols="8" md="3">
+                  <v-hover v-slot:default="{ hover }">
+                    <v-card
+                      :elevation="hover ? 12 : 2"
+                      :class="{ 'on-hover': hover }"
+                      :key="key"
+                      class="mx-2 my-4"
+                    >
+                      <v-responsive>
+                        <v-img
+                          :src="article.photo"
+                          class="white--text align-end"
+                          gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                        >
+                        <v-card-title>{{article.mark}}</v-card-title>
+                        </v-img>
+                      </v-responsive>
+                      <v-card-actions>
+                        <v-card-subtitle>Categorie: {{displayCategories(article.categories)}}</v-card-subtitle>
+                        <v-card-subtitle>Prix: {{article.price}} €</v-card-subtitle>
+                        <v-spacer />
+                      </v-card-actions>
+                      <!--ajout component addPanier-->
+                      <addPanier :article="article"></addPanier>
+                      <!--ajout component addPanier-->
+                    </v-card>
+                  </v-hover>
                 </v-col>
-              </v-row>
-              <v-row></v-row>
-            </v-container>
-          </v-card>
+              </template>
+            </v-row>
+          </v-container>
           <!--Carte-->
+          
         </v-row>
       </div>
     </div>

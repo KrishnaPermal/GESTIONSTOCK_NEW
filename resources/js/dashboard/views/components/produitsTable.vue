@@ -19,7 +19,10 @@
       <template v-slot:item.article="{ item }">{{item.mark}}</template>
       <template v-slot:item.categories="{ item }">{{displayCategories(item.categories)}}</template>
       <template v-slot:item.price="{ item }">{{item.price}}</template>
-      <template v-slot:item.quantite="{ item }">{{item.quantity}}</template>
+      <template v-slot:item.quantity="{ item }">{{item.quantity}}</template>
+      <!-- <template v-slot:item.quantity="{ item }">
+        <v-text-field type="number" outlined :value="item.quantity" />
+      </template> -->
       <template v-slot:item.id_fournisseur="{ item }">{{item.fournisseur.name}}</template>
       <template v-slot:item.actions="{ item }">
         <addArticle :item="item" :articles="articles" :isModification="true"></addArticle>

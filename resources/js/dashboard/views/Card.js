@@ -14,6 +14,7 @@ export default {
         articlesDisplay: [],
         search: null,
         loading: false,
+        rating: 4.3,
     }),
     
     watch: {

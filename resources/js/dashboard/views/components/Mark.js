@@ -3,52 +3,52 @@
       model: null,
       articles: [],
       mark:[
-        {
+         {
           markList:'MSI',
           src: 
-          'storage/images/Msi.png',
-        },
+          'storage/images/asus.png',
+        }, 
 
         {
           markList:'Asus',
           src: 
           'storage/images/asus.png',
         },
-        {
+         {
           markList:'Hp',
           src: 
-          'storage/images/hp.png',
+          'storage/images/asus.png',
         },
         {
           markList:'Intel',
           src: 
-          'storage/images/intel.png',
+          'storage/images/asus.png',
         },
         {
           markList:'Samsung',
           src: 
-          'storage/images/samsung.png',
+          'storage/images/asus.png',
         },
         {
           markList:'Acer',
           src: 
-          'storage/images/acer.png',
+          'storage/images/asus.png',
         },
         {
           markList:'WesternDigital',
           src: 
-          'storage/images/WesternDigital.png',
+          'storage/images/asus.png',
         },
         {
           markList:'Dell',
           src: 
-          'storage/images/dell.png',
+          'storage/images/asus.png',
         },
         {
           markList:'LG',
           src: 
-          'storage/images/LG.png',
-        },
+          'storage/images/asus.png',
+        }, 
           
       ],
     }),

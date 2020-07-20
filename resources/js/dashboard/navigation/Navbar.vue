@@ -1,30 +1,37 @@
 <template>
   <div>
     <!--  Navbar -->
-    <v-app-bar color="cyan darken-1" dark fullscreen class="hidden" elevation="0">
-      <v-app-bar-nav-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title class="hidden-md-and-up">
-        <h1 class="headline font-weight-medium d-inline">S.N & I</h1>
-      </v-toolbar-title>
-      <v-toolbar-title class="hidden-sm-and-down">
-        <h2 class="headline font-weight-medium d-inline">S.N & INFORMATIQUE</h2>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
+    <v-app-bar color="cyan darken-1" dark fullscreen class="hidden pr-16 pl-16" elevation="0" >
+      
+        <v-app-bar-nav-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+        <v-toolbar-title class="hidden-md-and-up">
+          <h1 class="headline font-weight-medium d-inline">S.N & I</h1>
+        </v-toolbar-title>
+        <v-toolbar-title class="hidden-sm-and-down">
+          <h2 class="headline font-weight-medium d-inline">S.N & INFORMATIQUE</h2>
+        </v-toolbar-title>
+        <v-spacer></v-spacer>
 
-      <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn text class="nav-item nav-link" to="/">Accueil</v-btn>
-        <v-btn v-if="isFournisseur" text class="nav-item nav-link" to="/dashboardFournisseur">Gestionnaire</v-btn>
-        <v-btn v-if="isAdmin" text class="nav-item nav-link" to="/dashboard">Dashboard</v-btn>
-        <v-btn text class="nav-item nav-link" :to="{name:'articles'}">Articles</v-btn>
-        <Menu></Menu>
-      </v-toolbar-items>
+        <v-toolbar-items class="hidden-sm-and-down">
+          <v-btn text class="nav-item nav-link" to="/">Accueil</v-btn>
+          <v-btn
+            v-if="isFournisseur"
+            text
+            class="nav-item nav-link"
+            to="/dashboardFournisseur"
+          >Gestionnaire</v-btn>
+          <v-btn v-if="isAdmin" text class="nav-item nav-link" to="/dashboard">Dashboard</v-btn>
+          <v-btn text class="nav-item nav-link" :to="{name:'articles'}">Articles</v-btn>
+          <Menu></Menu>
+        </v-toolbar-items>
         <Panier></Panier>
+      
     </v-app-bar>
 
     <v-divider></v-divider>
 
     <!-- Navigation vertical -->
-    <v-navigation-drawer overlay-opacity="0.9" v-model="drawer" absolute temporary >
+    <v-navigation-drawer overlay-opacity="0.9" v-model="drawer" absolute temporary>
       <v-img
         :aspect-ratio="16/9"
         src="https://www.universite-rose-croix.org/wp-content/uploads/2018/12/video-informatique-et-spiritualit%C3%A9.jpg"
@@ -53,7 +60,7 @@
 
         <v-divider></v-divider>
 
-         <v-list-item link v-if="isAdmin">
+        <v-list-item link v-if="isAdmin">
           <v-list-item-icon>
             <v-icon>mdi-view-dashboard</v-icon>
           </v-list-item-icon>
@@ -67,7 +74,7 @@
 
         <v-divider></v-divider>
 
-        <v-list-item >
+        <v-list-item>
           <v-list-item-icon>
             <v-icon>mdi-shopping</v-icon>
           </v-list-item-icon>
@@ -93,7 +100,7 @@
           </v-list-item-content>
         </v-list-item>
 
-         <v-divider></v-divider>
+        <v-divider></v-divider>
 
         <v-list-item link v-if="isChecked">
           <v-list-item-icon>
@@ -174,15 +181,13 @@ export default {
     isAdmin() {
       return this.currentUser && this.currentUser.role.name === "Admin";
     },
-     isClient() {
+    isClient() {
       return this.currentUser && this.currentUser.role.name === "Client";
-    
     },
     isFournisseur() {
       return this.currentUser && this.currentUser.role.name === "Fournisseur";
-    
     },
-    
+
     isChecked() {
       return this.currentUser;
     }

@@ -52,6 +52,7 @@
                   class="mx-2 my-4"
                 >
                   <v-img
+                    :aspect-ratio="16/9"
                     :src="article.photo"
                     class="white--text align-end"
                     gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"

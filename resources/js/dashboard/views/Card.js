@@ -1,5 +1,6 @@
 import {apiServices} from '../_services/api.services'
 import addPanier from './components/addPanier.vue';
+
 export default {
     components:{
         addPanier,
@@ -96,4 +97,7 @@ export default {
     created() {
         this.articleDisplay();
     }
-}
+    
+};
+
+

@@ -21,7 +21,7 @@
             <v-icon>mdi-restore</v-icon>S.A.V
           </v-col>
         </v-row>
- <v-divider></v-divider>
+        <v-divider></v-divider>
         <v-row dense class="justify-center">
           <v-col cols="12" md="4" class="pa-0">
             <v-card-text class="flex cyan darken-2">
@@ -67,7 +67,7 @@
               </v-btn>-->
             </v-card-text>
           </v-col>
- <v-divider></v-divider>
+          <v-divider></v-divider>
           <v-col cols="12" md="4" class="pa-0">
             <v-card-text class="flex cyan darken-2">
               <v-list-item>
@@ -81,7 +81,7 @@
               </v-btn>
             </v-card-text>
           </v-col>
- <v-divider></v-divider>
+          <v-divider></v-divider>
           <v-col cols="12" md="4" class="pa-0">
             <v-card-text class="flex cyan darken-2">
               <v-list-item>
@@ -102,6 +102,47 @@
 
         <v-divider></v-divider>
 
+        <v-row dense class="justify-center">
+          <v-col cols="12" md="4" class="pa-0">
+            <v-card-text class="flex cyan darken-2">
+              <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-subtitle>Mentions légales</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+
+              
+            </v-card-text>
+          </v-col>
+          <v-divider></v-divider>
+
+          <v-col cols="12" md="4" class="pa-0">
+            <v-card-text class="flex cyan darken-2">
+              <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-subtitle>CGU</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+
+              
+            </v-card-text>
+          </v-col>
+
+          <v-divider></v-divider>
+
+          <v-col cols="12" md="4" class="pa-0">
+            <v-card-text class="flex cyan darken-2">
+              <v-list-item>
+                <v-list-item-content>
+                  <v-list-item-subtitle>CGV</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
+
+             
+            </v-card-text>
+          </v-col>
+        </v-row>
+        <v-divider></v-divider>
         <v-card-text class="py-2 flex white--text text-center">
           {{ new Date().getFullYear() }} —
           <strong>© S.N.INFORMATIQUE : By KRISHNA</strong>

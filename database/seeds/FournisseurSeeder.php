@@ -14,20 +14,15 @@ class FournisseurSeeder extends Seeder
      */
     public function run()
     {
-       
-        factory(Fournisseurs::class, 5)->create()
-        
-            ->each(function($t){
-                $t->article()->saveMany(
-                   factory(Articles::class,2)->make())
 
-                    /* ->each(function($a){
-                         $a->recompenses()->saveMany(factory(Recompenses::class,1)->make());
-                     }) */
-                    ->each(function($n){
-                        $n->categories()->saveMany(factory(Categories::class,1)->make());
-                    });
+        factory(Categories::class, 4)->create();
+        factory(Fournisseurs::class, 5)->create()
+
+            ->each(function ($t) {
+                $t->article()->saveMany(
+                    factory(Articles::class, 2)->make());
+
+            });
         
-             });   
     }
 }

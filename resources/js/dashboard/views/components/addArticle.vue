@@ -16,7 +16,7 @@
           </v-btn>
         </div>
         <v-btn
-          @click="modifierArticle(item)"
+          @click="modifierArticle(article)"
           v-if="isModification"
           class="ma-2"
           color="light-blue lighten-3"
@@ -41,15 +41,15 @@
               <v-col cols="12" sm="6" md="4">
                 <v-text-field
                   color="light-blue lighten-4"
-                  v-model="article"
+                  v-model="var_article"
                   :rules="articleRules"
                   label="Marque*"
                   required
                 ></v-text-field>
               </v-col>
 
+              <!--si fournisseur affiche pas le select grâce au v-if-->
               <v-col cols="12" sm="6" md="4" v-if="!isFournisseur">
-                <!--si fournisseur affiche pas le select grâce au v-if-->
                 <v-select
                   :items="fournisseurs"
                   item-value="id"
@@ -60,6 +60,7 @@
                   required
                 ></v-select>
               </v-col>
+              <!--si fournisseur affiche pas le select grâce au v-if-->
 
               <v-col cols="12" sm="6" md="4">
                 <v-text-field
@@ -100,35 +101,23 @@
                 ></v-text-field>
               </v-col>
 
-              <!--autocomplete-->
+              <!--ancien autocomple effacé-->
               <v-col cols="12" sm="6" md="6">
-                <v-autocomplete
-                  v-model="categories"
-                  :loading="loading"
+                <v-select
                   :items="categoryList"
-                  :search-input.sync="search"
+                  item-value="id"
+                  v-model="categories"
+                  :rules="id_fournisseurRules"
                   item-text="name"
-                  @input="createCategorie"
-                  return-object
-                  multiple
-                  cache-items
-                  hide-no-data
-                  hide-details
-                  placeholder="Categories*"
-                  label="Categorie"
-                >
-                  <template v-slot:prepend>
-                    <v-btn icon color="success" :disabled="categories.length == 0">
-                      <v-icon>mdi-plus-circle</v-icon>
-                    </v-btn>
-                  </template>
-                </v-autocomplete>
+                  label="Fournisseur"
+                  required
+                ></v-select>
               </v-col>
               <v-col cols="12" sm="6" md="12">
                 <v-file-input v-on:change="onFileChange"></v-file-input>
               </v-col>
               <v-img :src="article.photo" aspect-ratio="1.9"></v-img>
-              <!--autocomplete-->
+              <!--ancien autocomple effacé-->
             </v-row>
           </v-container>
           <small>*Champ obligatoire</small>

@@ -1,6 +1,6 @@
 <template>
   <v-content>
-    <v-container class="fill-height" fluid>
+    <v-container class="fill-height mb-10 mt-10" fluid>
       <v-row align="center" justify="center">
         <v-col cols="12" sm="8" md="4">
           <v-card class="elevation-12">
@@ -33,11 +33,10 @@
             </v-card-text>
             <v-card-actions>
               <v-btn outlined color="success" :disabled="!valid" @click="connection">Connexion</v-btn>
-            <v-spacer></v-spacer> 
-            <v-btn color="blue" dark :to="{ path: '/register'}">S'inscrire</v-btn>
+              <v-spacer></v-spacer>
+              <v-btn color="blue" dark :to="{ path: '/register'}">S'inscrire</v-btn>
             </v-card-actions>
           </v-card>
-         
         </v-col>
       </v-row>
     </v-container>
@@ -46,3 +45,4 @@
 
 <script src='./login.js'>
 </script>
+

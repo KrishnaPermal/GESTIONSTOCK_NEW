@@ -42,7 +42,7 @@
 
       <v-container fluid>
         <v-row dense class="justify-center">
-          <template v-for="(article, key) in articlesDisplay">
+          <template v-for="(article, key) in articles">
             <v-col :key="key" cols="12" md="3">
               <v-hover v-slot:default="{ hover }">
                 <v-card
@@ -60,7 +60,7 @@
                     <v-card-title>{{article.mark}}</v-card-title>
                   </v-img>
                   <v-card-subtitle>Prix: {{article.price}} €</v-card-subtitle>
-                  <v-card-text>Categorie: {{displayCategories(article.categories)}}</v-card-text>
+                  <v-card-text>Categorie: {{article.categorie.name}}</v-card-text>
                   <v-card-actions>
                     <!-- <v-btn d-inline>Voir plus</v-btn> -->
                   </v-card-actions>
@@ -104,7 +104,6 @@ export default {
   data: () => ({
     articles: [],
     photo: [],
-    articlesDisplay: [],
     transparent: "rgba(255, 255, 255, 0)"
   }),
 
@@ -113,18 +112,12 @@ export default {
       apiServices.get("/api/articles").then(({ data }) => {
         data.data.forEach(_data => {
           this.articles.push(_data);
+          console.log(this.articles)
         });
       });
-      this.articlesDisplay = this.articles;
     },
 
-    displayCategories(_categories) {
-      var categories = [];
-      _categories.forEach(_categorie => {
-        categories.push(_categorie.name);
-      });
-      return categories.join(", ");
-    }
+    
   },
 
   created() {

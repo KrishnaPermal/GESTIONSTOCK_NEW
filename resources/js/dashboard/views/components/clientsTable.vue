@@ -10,6 +10,16 @@
         <v-spacer></v-spacer>
         <v-divider></v-divider>
       </template>
+      <template v-slot:item.actions="{ item }">
+        <v-row>
+          <v-col md="6">
+            <editClient :item="item" :clients="clients" :isModification="true"></editClient>
+          </v-col>
+          <v-col md="6">
+            <delete :client="item" :clients="clients"></delete>
+          </v-col>
+        </v-row>
+      </template>
     </v-data-table>
   </v-container>
 </template>

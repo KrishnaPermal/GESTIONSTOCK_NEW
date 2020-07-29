@@ -24,11 +24,12 @@ class CreateArticleTable extends Migration
             $table->string('photo');
             $table->softDeletes();
 
-        });
-
-        Schema::table('article', function (Blueprint $table) {
             $table->unsignedBigInteger('id_fournisseur');
             $table->foreign('id_fournisseur')->references('id')->on('fournisseur');
+
+            $table->unsignedBigInteger('id_categorie');
+            $table->foreign('id_categorie')->references('id')->on('categorie');
+
         });
 
     }
@@ -45,6 +46,7 @@ class CreateArticleTable extends Migration
         Schema::table('article', function (Blueprint $table) {
             Schema::disableForeignKeyConstraints();
             $table->dropIfExists('id_fournisseur');
+            $table->dropIfExists('id_categorie');
             Schema::enableForeignKeyConstraints();
         });
         

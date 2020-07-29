@@ -1,6 +1,13 @@
 import { apiServices } from "../../_services/api.services";
+import editClient from "./editClient.vue";
+import Delete from "../components/deleteClients.vue";
 
 export default {
+  components: {
+    editClient,
+    Delete,
+  },
+
   data() {
     return {
       clients: [],
@@ -23,8 +30,6 @@ export default {
   methods: {
     getClients() {
       apiServices.get("/api/clients").then(({ data }) => {
-        console.log("tototo");
-        console.log(data.data);
         data.data.forEach((_clients) => {
           this.clients.push(_clients);
         });

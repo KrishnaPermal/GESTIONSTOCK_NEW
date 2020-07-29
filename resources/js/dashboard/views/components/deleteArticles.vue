@@ -5,7 +5,6 @@
         <v-btn
           color="red lighten-2"
           class="ma-2"
-          v-on:click="getId(article.id)"
           dark
           small
           icon

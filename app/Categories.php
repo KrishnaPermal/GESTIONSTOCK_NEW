@@ -17,7 +17,7 @@ class Categories extends Model
 
     function article()
     {
-        return $this->belongsToMany('App\Articles', 'article_has_categorie', 'id_article', 'id_categorie');
+        return $this->belongsTo('App\Articles', 'id_categorie');
     }
 
 

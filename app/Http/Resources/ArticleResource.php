@@ -14,12 +14,12 @@ class ArticleResource extends JsonResource
      */
     public function toArray($request)
     {
-        
+
         $fournisseur = new FournisseursResource($this->fournisseur);
-        $categories = CategoriesResource::collection($this->categories);
-      
+        $categorie = new CategoriesResource($this->categories);
+
         return [
-            'id' =>$this->id,
+            'id' => $this->id,
             'article_ref' => $this->article_ref,
             'mark' => $this->mark,
             'description' => $this->description,
@@ -27,8 +27,8 @@ class ArticleResource extends JsonResource
             'quantity' => $this->quantity,
             'price' => $this->price,
             'fournisseur' => $fournisseur,
-            'categories' => $categories,
-            'id_fournisseur'=>$this->id_fournisseur,
+            'categorie' => $categorie,
+            'id_fournisseur' => $this->id_fournisseur,
             'photo' => $this->photo,
         ];
     }

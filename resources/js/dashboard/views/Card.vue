@@ -59,7 +59,7 @@
                         </v-img>
                       </v-responsive>
                       <v-card-actions>
-                        <v-card-subtitle>Categorie: {{displayCategories(article.categories)}}</v-card-subtitle>
+                        <v-card-subtitle>Categorie: {{article.categorie.name}}</v-card-subtitle>
                         <v-card-subtitle>Prix: {{article.price}} €</v-card-subtitle>
                         <v-spacer />
                       </v-card-actions>

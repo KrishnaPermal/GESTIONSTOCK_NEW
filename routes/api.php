@@ -57,6 +57,7 @@ Route::middleware(['auth:api', 'roles:Admin|Fournisseur'])->prefix('articles')->
 /**********************************DELETE CLIENT*********************************/
 
 Route::delete('/{id}/client', 'AdminController@delete')->where('id', "[0-9]+");
+Route::post('/clients', 'AdminController@addOrUpdateClient');
 
 /**********************************DELETE CLIENT*********************************/
 

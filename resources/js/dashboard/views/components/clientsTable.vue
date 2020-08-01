@@ -13,7 +13,7 @@
       <template v-slot:item.actions="{ item }">
         <v-row>
           <v-col md="6">
-            <editClient :item="item" :clients="clients" :isModification="true"></editClient>
+            <editClient :client="item" @modifClient="update(item, $event)" :isModification="true"></editClient>
           </v-col>
           <v-col md="6">
             <delete :client="item" :clients="clients"></delete>

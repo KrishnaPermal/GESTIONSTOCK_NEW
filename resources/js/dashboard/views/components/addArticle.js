@@ -39,11 +39,16 @@ export default {
       loading: false,
       isFournisseur: authenticationService.isFournisseur(),
 
-      articleRules: [(v) => !!v || "Une marque est requise"],
 
       id_fournisseurRules: [(v) => !!v || "Un fournisseur est requis"],
 
-      priceRules: [(v) => !!v || "Un prix est requis"],
+      priceRules: [
+        (v) => !!v || "Un prix est requis",
+        (v) =>
+          (!isNaN(parseInt(v)) && v % 1 === 0 && v.indexOf(".") == -1) ||
+          "un nombre entier est requis",
+        (v) => (v && v <= 99) || "pas plus de 99 euros",
+      ],
 
       article_refRules: [(v) => !!v || "Une référence est requise"],
 
@@ -93,7 +98,6 @@ export default {
     },
 
     modifierArticle(article) {
-      console.log(article.categorie)
       this.id_fournisseur = article.id_fournisseur;
       this.var_article = article.mark;
       this.categories = article.categorie;
@@ -122,7 +126,6 @@ export default {
         apiServices.get("/api/articles").then(({ data }) => {
           data.data.forEach((_article) => {
             this.fournisseurs.push(_article.fournisseur);
-            
           });
         });
       }
@@ -133,7 +136,6 @@ export default {
       apiServices.get("/api/articles/categories").then(({ data }) => {
         data.data.forEach((_categories) => {
           this.categoryList.push(_categories);
-          console.log(this.categoryList)
         });
       });
     },

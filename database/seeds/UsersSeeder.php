@@ -16,9 +16,9 @@ class UsersSeeder extends Seeder
         $array = [
             [
                 "id" => 1,
-                "name" => "Krishna PERMALNAÏKEN",
+                "name" => "John SMITH",
                 //"firstname" => "Krishna",
-                "email" => "krishnapermalnaiken@gmail.com",
+                "email" => "johnsmith@gmail.com",
                 "password" => bcrypt('admin'),
                 "id_role" => "1"
 

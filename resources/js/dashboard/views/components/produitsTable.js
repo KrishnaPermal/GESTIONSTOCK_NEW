@@ -24,6 +24,7 @@ export default {
       id_fournisseur: { text: "Fournisseurs", value: "id_fournisseur" },
       quantity: { text: "Quantité", value: "quantity" },
       price: { text: "Prix", value: "price" },
+      description: { text: "Description", value: "description" },
       actions: { text: "Actions", value: "actions" },
     },
 
@@ -57,6 +58,7 @@ export default {
         this.headers = [
           this.availableHeaders.photo,
           this.availableHeaders.article,
+          this.availableHeaders.description,
           this.availableHeaders.categories,
           this.availableHeaders.quantity,
           this.availableHeaders.price,
@@ -67,6 +69,7 @@ export default {
         this.headers = [
           this.availableHeaders.photo,
           this.availableHeaders.article,
+          this.availableHeaders.description,
           this.availableHeaders.categories,
           this.availableHeaders.id_fournisseur,
           this.availableHeaders.quantity,

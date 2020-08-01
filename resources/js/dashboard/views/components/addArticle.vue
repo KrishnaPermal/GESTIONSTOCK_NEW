@@ -42,7 +42,6 @@
                 <v-text-field
                   color="light-blue lighten-4"
                   v-model="var_article"
-                  :rules="articleRules"
                   label="Marque*"
                   required
                 ></v-text-field>

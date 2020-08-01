@@ -35,5 +35,12 @@ export default {
         });
       });
     },
+
+    update(item, client) {
+
+      const index = _.findIndex(this.clients, {id: client.id});
+      this.clients.splice(index, 1, client);
+      
+  },
   },
 };

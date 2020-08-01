@@ -20,6 +20,7 @@
       <template v-slot:item.categorie="{ item }">{{(item.categorie.name)}}</template>
       <template v-slot:item.price="{ item }">{{item.price}}</template>
       <template v-slot:item.quantity="{ item }">{{item.quantity}}</template>
+      <template v-slot:item.description="{ item }">{{item.description}}</template>
       <!-- <template v-slot:item.quantity="{ item }">
         <v-text-field type="number" outlined :value="item.quantity" />
       </template>-->

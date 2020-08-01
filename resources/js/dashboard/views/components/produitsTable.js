@@ -18,7 +18,7 @@ export default {
         text: "Article",
         align: "start",
         sortable: false,
-        value: "article",
+        value: "mark",
       },
       categories: { text: "Categories", value: "categorie" },
       id_fournisseur: { text: "Fournisseurs", value: "id_fournisseur" },
@@ -78,13 +78,9 @@ export default {
         ];
       }
     },
-    /*   displayCategories(items){
-            var categories=[];
-            items.forEach(item=>{
-                categories.push((item.name))
-            })
-            return categories.join(', ');
-        },
- */
+    update(item, article) {
+      const index = _.findIndex(this.articles, { id: article.id });
+      this.articles.splice(index, 1, article);
+    },
   },
 };

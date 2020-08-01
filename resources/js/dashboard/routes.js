@@ -68,11 +68,7 @@ const router = new VueRouter({
       component: dashboardFournisseur,
       meta: { authorize: [Role.Fournisseur] },
     },
-    /* {
-            path: '/client',
-            name: 'client',
-            component: Client,
-        }, */
+    
     {
       path: "/basket",
       name: "basket",

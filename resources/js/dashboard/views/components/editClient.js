@@ -21,8 +21,13 @@ export default {
       timeout: 3000,
       snackbar: false,
       text:'',
-      id: ''
+      id: '',
+
+      champ_clientRules: [(v) => !!v || "Champs Obligatoire"],
+      emailRules: [(v) => !!v || "Champs Obligatoire"],
+
     };
+
   },
   methods: {
     add() {

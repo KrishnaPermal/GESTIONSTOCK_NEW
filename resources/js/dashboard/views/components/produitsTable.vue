@@ -9,24 +9,21 @@
         </v-card>
         <v-spacer></v-spacer>
         <v-divider></v-divider>
-        <addArticle v-on:addArticles="articles.push($event)" />
+        <addArticle v-on:addArticle="articles.push($event)" />
       </template>
       <template v-slot:item.photo="{ item }">
         <v-responsive>
           <v-img :src="item.photo" aspect-ratio="1.7" contain></v-img>
         </v-responsive>
       </template>
-      <template v-slot:item.article="{ item }">{{item.mark}}</template>
+      <template v-slot:item.mark="{ item }">{{item.mark}}</template>
       <template v-slot:item.categorie="{ item }">{{(item.categorie.name)}}</template>
       <template v-slot:item.price="{ item }">{{item.price}}</template>
       <template v-slot:item.quantity="{ item }">{{item.quantity}}</template>
       <template v-slot:item.description="{ item }">{{item.description}}</template>
-      <!-- <template v-slot:item.quantity="{ item }">
-        <v-text-field type="number" outlined :value="item.quantity" />
-      </template>-->
       <template v-slot:item.id_fournisseur="{ item }">{{item.fournisseur.name}}</template>
       <template v-slot:item.actions="{ item }">
-        <addArticle :article="item" :articles="articles" :isModification="true"></addArticle>
+        <addArticle :article="item" @modifArticle="update(item, $event)" :isModification="true"></addArticle>
         <delete :article="item" :articles="articles"></delete>
       </template>
     </v-data-table>

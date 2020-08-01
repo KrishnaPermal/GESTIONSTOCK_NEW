@@ -1,31 +1,24 @@
 <template>
   <div>
     <!--  Navbar -->
-    <v-app-bar color="cyan darken-1" dark fullscreen class="hidden pr-16 pl-16" elevation="0" >
-      
-        <v-app-bar-nav-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-        <v-toolbar-title class="hidden-md-and-up">
-          <h1 class="headline font-weight-medium d-inline">S.N & I</h1>
-        </v-toolbar-title>
-        <v-toolbar-title class="hidden-sm-and-down">
-          <h2 class="headline font-weight-medium d-inline">S.N & INFORMATIQUE</h2>
-        </v-toolbar-title>
-        <v-spacer></v-spacer>
+    <v-app-bar color="cyan darken-1" dark fullscreen class="hidden pr-16 pl-16" elevation="0">
+      <v-app-bar-nav-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-toolbar-title class="hidden-md-and-up">
+        <h1 class="headline font-weight-medium d-inline">S.N & I</h1>
+      </v-toolbar-title>
+      <v-toolbar-title class="hidden-sm-and-down">
+        <h2 class="headline font-weight-medium d-inline">S.N & INFORMATIQUE</h2>
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
 
-        <v-toolbar-items class="hidden-sm-and-down">
-          <v-btn text class="nav-item nav-link" to="/">Accueil</v-btn>
-          <v-btn
-            v-if="isFournisseur"
-            text
-            class="nav-item nav-link"
-            to="/dashboardFournisseur"
-          >Gestionnaire</v-btn>
-          <v-btn v-if="isAdmin" text class="nav-item nav-link" to="/dashboard">Dashboard</v-btn>
-          <v-btn text class="nav-item nav-link" :to="{name:'articles'}">Articles</v-btn>
-          <Menu></Menu>
-        </v-toolbar-items>
-        <Panier></Panier>
-      
+      <v-toolbar-items class="hidden-sm-and-down">
+        <v-btn text class="nav-item nav-link" to="/">Accueil</v-btn>
+        <v-btn v-if="isFournisseur" text class="nav-item nav-link" :to="{name: 'fournisseur'}">DashFournisseur</v-btn>
+        <v-btn v-if="isAdmin" text class="nav-item nav-link" to="/dashboard">Dashboard</v-btn>
+        <v-btn text class="nav-item nav-link" :to="{name:'articles'}">Articles</v-btn>
+        <Menu></Menu>
+      </v-toolbar-items>
+      <Panier></Panier>
     </v-app-bar>
 
     <v-divider></v-divider>
@@ -95,7 +88,7 @@
 
           <v-list-item-content>
             <v-list-item-title class="font-weight-bold">
-              <router-link :to="{name:'fournisseur'}">Gestionnaire</router-link>
+              <router-link :to="{name:'fournisseur'}">DashFournisseur</router-link>
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
@@ -159,7 +152,7 @@ import Menu from "./menu.vue";
 export default {
   components: {
     Panier,
-    Menu
+    Menu,
   },
 
   data() {
@@ -173,8 +166,8 @@ export default {
         { title: "Articles", icon: "mdi-shopping" },
         { title: "Fournisseurs", icon: "mdi-account" },
         { title: "Login", icon: "mdi-login-variant" },
-        { title: "Inscription", icon: "mdi-account-plus" }
-      ]
+        { title: "Inscription", icon: "mdi-account-plus" },
+      ],
     };
   },
   computed: {
@@ -190,16 +183,16 @@ export default {
 
     isChecked() {
       return this.currentUser;
-    }
+    },
   },
   created() {
-    authenticationService.currentUser.subscribe(x => (this.currentUser = x));
+    authenticationService.currentUser.subscribe((x) => (this.currentUser = x));
   },
   methods: {
     logout() {
       authenticationService.logout();
       router.push("/login");
-    }
-  }
+    },
+  },
 };
 </script>

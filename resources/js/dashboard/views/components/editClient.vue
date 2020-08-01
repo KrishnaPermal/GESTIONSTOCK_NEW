@@ -40,6 +40,7 @@
                 <v-text-field
                   color="light-blue lighten-4"
                   v-model="champ_client"
+                  :rules="champ_clientRules"
                   label="client*"
                   required
                 ></v-text-field>
@@ -49,6 +50,7 @@
                 <v-text-field
                   color="light-blue lighten-4"
                   v-model="email"
+                  :rules="emailRules"
                   label="Email*"
                   required
                 ></v-text-field>

@@ -18,7 +18,7 @@ $factory->define(Articles::class, function (Faker $faker) {
 
     return [
         "article_ref" => $faker->ean8,
-        "mark" => $faker->randomElement($array = array ('Hp','Msi','Acer','ASUS','Lenovo','Dell')),
+        "mark" => $faker->randomElement($array = array ('HP','MSI','ACER','ASUS','LENOVO','DELL','LG','SAMSUMG','WESTERN DIGITAL')),
         "description" => $faker->word,
         "provider" => $faker->firstNameMale,
         "quantity" => $faker->numberBetween($min = 3, $max = 800),

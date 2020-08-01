@@ -95,7 +95,7 @@
                       <v-card max-width="400">
                         <div class="d-flex justify-space-between">
                           <div>
-                            <v-card-title class="headline" v-text="article.name"></v-card-title>
+                            <v-card-title class="headline" v-text="article.mark"></v-card-title>
                             <v-card-subtitle v-text="'Prix:'+article.price">€</v-card-subtitle>
                             <v-card-subtitle v-text="'Nombre de produit:'+article.quantity"></v-card-subtitle>
                             <v-card-subtitle v-text="'Total:'+article.price * article.quantity"></v-card-subtitle>

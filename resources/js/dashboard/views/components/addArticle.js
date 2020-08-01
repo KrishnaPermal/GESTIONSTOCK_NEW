@@ -3,11 +3,6 @@ import { authenticationService } from "../../_services/authentication.service";
 
 export default {
   props: {
-    articles: {
-      default: function() {
-        return {};
-      },
-    },
     article: {
       default: function() {
         return {};
@@ -39,7 +34,6 @@ export default {
       loading: false,
       isFournisseur: authenticationService.isFournisseur(),
 
-
       id_fournisseurRules: [(v) => !!v || "Un fournisseur est requis"],
 
       priceRules: [
@@ -49,6 +43,8 @@ export default {
           "un nombre entier est requis",
         (v) => (v && v <= 99) || "pas plus de 99 euros",
       ],
+
+      var_articleRules: [(v) => !!v || "Une marque est requise"],
 
       article_refRules: [(v) => !!v || "Une référence est requise"],
 
@@ -61,7 +57,7 @@ export default {
 
       quantityRules: [(v) => !!v || "Une quantité est requise"],
 
-      photoRules: [(v) => !!v || "Une photo est requise"],
+      // photoRules: [(v) => !!v || "Une photo est requise"],
     };
   },
 
@@ -83,30 +79,31 @@ export default {
       let url = this.isFournisseur
         ? "/api/fournisseurs/articles"
         : "/api/articles";
+
       apiServices.post(url, datasToAdd).then(({ data }) => {
         if (this.isModification) {
-          if (this.id) {
-            const index = this.articles.indexOf(this.article);
-            this.articles.splice(index, 1, data.data);
-          }
+          this.dialog = false;
+          this.$emit("modifArticle", data.data);
+          this.snackbar = true;
+          this.text = "L'Article à bien été modifier";
+        } else if (!this.isModification) {
+          this.dialog = false;
+          this.$emit("addArticle", data.data);
+          this.snackbar = true;
+          this.text = "L'Article à bien été ajoutée";
         }
-        this.dialog = false;
-        this.$emit("addArticles", data.data);
-        this.snackbar = true;
-        this.text = "L'Article à bien été ajoutée";
       });
     },
 
     modifierArticle(article) {
       this.id_fournisseur = article.id_fournisseur;
       this.var_article = article.mark;
-      this.categories = article.categorie;
+      this.categories = article.categorie.id;
       this.description = article.description;
       this.article_ref = article.article_ref;
       this.quantity = article.quantity;
       this.price = article.price;
       this.id = article.id;
-      this.photo = article.photo;
     },
 
     onFileChange(file) {

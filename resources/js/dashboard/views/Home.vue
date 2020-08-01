@@ -10,20 +10,19 @@
       <v-container fluid>
         <v-row class="text-center justify-center py-6">
           <v-col cols="12" md="6">
-            <img src="storage/images/logo1.png" width="200px" height="200px" />
+            <img src="storage/images/logo1.png" width="400px" height="400px" />
           </v-col>
 
           <v-col cols="12" md="6">
-            <h1 class="text-center justify-center py-6">Presentation</h1>
+            <h1 class="text-center justify-center py-6">Bienvenue</h1>
             <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Tempore officia officiis veritatis, tempora velit adipisci architecto consectetur enim modi quaerat doloremque placeat nulla!
-              Voluptatibus ab itaque adipisci quibusdam nostrum perspiciatis.
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Fuga, eos ad! Assumenda incidunt cum rem unde laboriosam fugiat consequuntur enim, a saepe libero omnis?
-              Omnis asperiores quos inventore corrupti aperiam.
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Repellat, perspiciatis dicta! Qui earum corrupti saepe doloribus inventore harum neque in nemo laudantium voluptate, reiciendis asperiores, alias illo quisquam cumque mollitia.
+              S.N.& INFORMATIQUE, spécialiste de la vente sur Internet de matériel informatique, High-Tech et multimédia est rapidement devenu un acteur majeur du e-commerce. 
+              S.N & INFORMATIQUE a dès sa fondation souhaité trouver un positionnement différenciant, largement centré sur son offre et sa relation client : choix des produits, qualité du site, des conseils mais également du service avant et après-vente. 
+              Des atouts qui ont permis à S.N.& INFORMATIQUE d'être plusieurs fois récompensé pour sa Relation Clients. 
+              Nos équipes sont à votre écoute pour vous apporter les meilleurs conseils, que vous soyez un particulier ou un professionnel !
+              Nos spécialistes produits sélectionnent avec soin les références de notre catalogue afin de faciliter votre choix et vous offrir le meilleur rapport qualité / prix. 
+              Vous trouverez une large sélection des meilleurs composants PC pour équiper votre ordinateur : carte mère, processeur, carte graphique, disque dur SSD, disque dur interne, disque dur externe... 
+              S.N.& INFORMATIQUE met à votre disposition un catalogue produits de plus de 15 000 références de marques dans les univers de l'informatique et réseau (serveur NAS ou encore de la mémoire pour ordinateur), mais aussi du High-Tech et du multimédia : smartphone, tablette tactile, téléviseur, l'audio (casque, enceinte bluetooth, HiFi...), la vidéo ou encore la photo.
             </p>
           </v-col>
         </v-row>
@@ -98,31 +97,29 @@ import Mark from "./components/Mark.vue";
 export default {
   components: {
     BestSeller,
-    Mark
+    Mark,
   },
 
   data: () => ({
     articles: [],
     photo: [],
-    transparent: "rgba(255, 255, 255, 0)"
+    transparent: "rgba(255, 255, 255, 0)",
   }),
 
   methods: {
     articleDisplay() {
       apiServices.get("/api/articles").then(({ data }) => {
-        data.data.forEach(_data => {
+        data.data.forEach((_data) => {
           this.articles.push(_data);
-          console.log(this.articles)
+          console.log(this.articles);
         });
       });
     },
-
-    
   },
 
   created() {
     this.articleDisplay();
-  }
+  },
 };
 </script>    
 

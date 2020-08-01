@@ -42,6 +42,7 @@
                 <v-text-field
                   color="light-blue lighten-4"
                   v-model="var_article"
+                  :rules="var_articleRules"
                   label="Marque*"
                   required
                 ></v-text-field>
@@ -106,16 +107,15 @@
                   :items="categoryList"
                   item-value="id"
                   v-model="categories"
-                  :rules="id_fournisseurRules"
                   item-text="name"
-                  label="Fournisseur"
+                  label="Categories"
                   required
                 ></v-select>
               </v-col>
               <v-col cols="12" sm="6" md="12">
                 <v-file-input v-on:change="onFileChange"></v-file-input>
               </v-col>
-              <v-img :src="article.photo" aspect-ratio="1.9"></v-img>
+              <v-img  v-if="article.photo" :src="article.photo" aspect-ratio="1.9"></v-img>
               <!--ancien autocomple effacé-->
             </v-row>
           </v-container>

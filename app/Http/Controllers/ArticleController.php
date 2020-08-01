@@ -90,49 +90,48 @@ class ArticleController extends Controller
                 }
             }
 
-            if (isset($addToDb->photo)) { //Si ceci est vrai, alors on save dans la base
-                $addToDb->save();
-            } else {
-                $img = $request->get('photo'); // Sinon envoie une requête
 
-                $exploded = explode(",", $img); // explode retourne une chaîne de caractère
+                if (!$datasToAdd['photo'] == null) {
+                    $img = $request->get('photo'); // Sinon envoie une requête
 
-                if (str::contains($exploded[0], 'gif')) { // si la chaîne donnée contient la valeur donnée 'gif'
-                    $ext = 'gif'; // exter
-                } else if (str::contains($exploded[0], 'png')) { // sinon si 'png'
-                    $ext = 'png';
-                } else {
-                    $ext = 'jpeg'; // sinon 'jpeg'
-                }
+                    $exploded = explode(",", $img); // explode retourne une chaîne de caractère
 
-                $decode = base64_decode($exploded[1]); // ici on va encodée sous forme de chaîne de caractère
-
-                $filename = str::random() . "." . $ext; // génère une chaîne aléatoire
-                $path = public_path() . "/storage/images/" . $filename; // renvoie le chemin d'accès complet au répertoire public
-                if (file_put_contents($path, $decode)) { // si Écrit le résultat dans le fichier
-                    $addToDb->photo = "/storage/images/" . $filename; // ajout photo dans /storage/images/
-                }
-            }
-
-            if (isset($datasToAdd['categorie'])) {
-
-                $categories = Categories::find($datasToAdd['categorie']);
-
-                $addToDb->categories()->associate($categories);
-
-            } else {
-                if (!isset($datasToAdd['id'])) {
-                    $user = $request->user();
-                    $categorie = Categories::where('id_users', '=', $user->id)->first();
-                    if (!$categorie) {
-                        return "err cat";
+                    if (str::contains($exploded[0], 'gif')) { // si la chaîne donnée contient la valeur donnée 'gif'
+                        $ext = 'gif'; // exter
+                    } else if (str::contains($exploded[0], 'png')) { // sinon si 'png'
+                        $ext = 'png';
+                    } else {
+                        $ext = 'jpeg'; // sinon 'jpeg'
                     }
 
-                    $addToDb->categories()->associate($categorie);
-                }
+                    $decode = base64_decode($exploded[1]); // ici on va encodée sous forme de chaîne de caractère
+
+                    $filename = str::random() . "." . $ext; // génère une chaîne aléatoire
+                    $path = public_path() . "/storage/images/" . $filename; // renvoie le chemin d'accès complet au répertoire public
+                    if (file_put_contents($path, $decode)) { // si Écrit le résultat dans le fichier
+                        $addToDb->photo = "/storage/images/" . $filename; // ajout photo dans /storage/images/
+                    }
+
+                    if (isset($datasToAdd['categorie'])) {
+
+                        $categories = Categories::find($datasToAdd['categorie']);
+        
+                        $addToDb->categories()->associate($categories);
+        
+                    } else {
+                        if (!isset($datasToAdd['id'])) {
+                            $user = $request->user();
+                            $categorie = Categories::where('id_users', '=', $user->id)->first();
+                            if (!$categorie) {
+                                return "err cat";
+                            }
+        
+                            $addToDb->categories()->associate($categorie);
+                        }
+                    }
+              
+                $addToDb->save(); // on save
             }
-            // return $addToDb;
-            $addToDb->save(); // on save
         }
 
         return new ArticleResource($addToDb);

@@ -20,11 +20,11 @@
         "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
-        "rxjs": "^6.6.0",
+        "rxjs": "^6.6.2",
         "v-stripe-elements": "^1.2.0",
         "vue": "^2.6.11",
         "vue-plugin-load-script": "^1.3.0",
         "vue-router": "^3.3.4",
-        "vuetify": "^2.3.6"
+        "vuetify": "^2.3.7"
     }
 }

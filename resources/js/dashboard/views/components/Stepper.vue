@@ -118,7 +118,7 @@
           </v-row>
           <v-row>
             <v-col md="12">
-              <v-btn color="success" @click="process" :disabled="!source">Payer</v-btn>
+              <v-btn color="success" @click="process" :disabled="!source" to="/acceptpayment">Payer</v-btn>
             </v-col>
           </v-row>
 

@@ -34,6 +34,7 @@ export default {
       hidden: true,
       orderId: "",
       status: "",
+      prixFinal: "",
     };
   },
 
@@ -46,8 +47,9 @@ export default {
     },
     sendOrder() {
       basketService.sendOrder(this.order).then((response) => {
-        this.orderId = response.data.data.id;
+        this.orderId = response.data[0].id;
         console.log(response);
+        this.prixFinal = response.data.prix;
       });
       this.e1 = 3;
     },
@@ -56,6 +58,7 @@ export default {
       apiServices
         .post("/api/commandes/" + this.orderId + "/payment", {
           id: this.source.id,
+          prix: this.prixFinal,
         })
         .then((response) => {
           console.log(response);

@@ -7,6 +7,7 @@ import Client from "./views/Client.vue";
 import Card from "./views/Card.vue";
 import dashboardFournisseur from "./views/dashboardFournisseur.vue";
 import Basket from "./views/BasketOrder.vue";
+import Acceptpayment from "./views/Acceptpayment.vue";
 import Stepper from "./views/components/Stepper.vue";
 import Login from "./login/Login.vue";
 import Register from "./views/Register.vue";
@@ -73,6 +74,12 @@ const router = new VueRouter({
       path: "/basket",
       name: "basket",
       component: Basket,
+    },
+
+    {
+      path: "/acceptpayment",
+      name: "acceptpayment",
+      component: Acceptpayment,
     },
 
     {

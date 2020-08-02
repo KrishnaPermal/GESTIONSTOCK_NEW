@@ -16,12 +16,12 @@
           <v-col cols="12" md="6">
             <h1 class="text-center justify-center py-6">Bienvenue</h1>
             <p>
-              S.N.& INFORMATIQUE, spécialiste de la vente sur Internet de matériel informatique, High-Tech et multimédia est rapidement devenu un acteur majeur du e-commerce. 
-              S.N & INFORMATIQUE a dès sa fondation souhaité trouver un positionnement différenciant, largement centré sur son offre et sa relation client : choix des produits, qualité du site, des conseils mais également du service avant et après-vente. 
-              Des atouts qui ont permis à S.N.& INFORMATIQUE d'être plusieurs fois récompensé pour sa Relation Clients. 
+              S.N.& INFORMATIQUE, spécialiste de la vente sur Internet de matériel informatique, High-Tech et multimédia est rapidement devenu un acteur majeur du e-commerce.
+              S.N & INFORMATIQUE a dès sa fondation souhaité trouver un positionnement différenciant, largement centré sur son offre et sa relation client : choix des produits, qualité du site, des conseils mais également du service avant et après-vente.
+              Des atouts qui ont permis à S.N.& INFORMATIQUE d'être plusieurs fois récompensé pour sa Relation Clients.
               Nos équipes sont à votre écoute pour vous apporter les meilleurs conseils, que vous soyez un particulier ou un professionnel !
-              Nos spécialistes produits sélectionnent avec soin les références de notre catalogue afin de faciliter votre choix et vous offrir le meilleur rapport qualité / prix. 
-              Vous trouverez une large sélection des meilleurs composants PC pour équiper votre ordinateur : carte mère, processeur, carte graphique, disque dur SSD, disque dur interne, disque dur externe... 
+              Nos spécialistes produits sélectionnent avec soin les références de notre catalogue afin de faciliter votre choix et vous offrir le meilleur rapport qualité / prix.
+              Vous trouverez une large sélection des meilleurs composants PC pour équiper votre ordinateur : carte mère, processeur, carte graphique, disque dur SSD, disque dur interne, disque dur externe...
               S.N.& INFORMATIQUE met à votre disposition un catalogue produits de plus de 15 000 références de marques dans les univers de l'informatique et réseau (serveur NAS ou encore de la mémoire pour ordinateur), mais aussi du High-Tech et du multimédia : smartphone, tablette tactile, téléviseur, l'audio (casque, enceinte bluetooth, HiFi...), la vidéo ou encore la photo.
             </p>
           </v-col>
@@ -74,9 +74,8 @@
       <h1 class="text-center justify-center py-6">Nos Marques</h1>
       <v-container class="text-center justify-center py-6">
         <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-          Tempore officia officiis veritatis, tempora velit adipisci architecto consectetur enim modi quaerat doloremque placeat nulla!
-          Voluptatibus ab itaque adipisci quibusdam nostrum perspiciatis.
+         La logistique est au cœur de notre activité et nous apportons un soin tout particulier à la rapidité et la qualité de vos commandes.<br> 
+         Nous vous proposons un retrait directement dans notre magasin,différentes marques de hautes gammes ainsi que de nombreux modes de paiement sécurisés.
         </p>
         <Mark></Mark>
       </v-container>

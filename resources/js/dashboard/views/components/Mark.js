@@ -6,7 +6,7 @@
          {
           markList:'MSI',
           src: 
-          'storage/images/asus.png',
+          'storage/images/msi.png',
         }, 
 
         {
@@ -17,37 +17,37 @@
          {
           markList:'Hp',
           src: 
-          'storage/images/asus.png',
+          'storage/images/hp1.png',
         },
         {
           markList:'Intel',
           src: 
-          'storage/images/asus.png',
+          'storage/images/intel.png',
         },
         {
           markList:'Samsung',
           src: 
-          'storage/images/asus.png',
+          'storage/images/samsung.png',
         },
         {
           markList:'Acer',
           src: 
-          'storage/images/asus.png',
+          'storage/images/acer.png',
         },
         {
           markList:'WesternDigital',
           src: 
-          'storage/images/asus.png',
+          'storage/images/westerndigital.png',
         },
         {
           markList:'Dell',
           src: 
-          'storage/images/asus.png',
+          'storage/images/dell.png',
         },
         {
           markList:'LG',
           src: 
-          'storage/images/asus.png',
+          'storage/images/lg.png',
         }, 
           
       ],

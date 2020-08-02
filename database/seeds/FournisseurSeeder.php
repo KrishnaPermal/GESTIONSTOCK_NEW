@@ -15,8 +15,8 @@ class FournisseurSeeder extends Seeder
     public function run()
     {
 
-        factory(Categories::class, 4)->create();
-        factory(Fournisseurs::class, 5)->create()
+        factory(Categories::class, 9)->create();
+        factory(Fournisseurs::class, 6)->create()
 
             ->each(function ($t) {
                 $t->article()->saveMany(

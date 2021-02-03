@@ -4,25 +4,44 @@
       <v-card-title class="text-center justify-center py-6">
         <h1
           class="font-italic font-weight-bold text-caption text-sm-body-2 text-md-body-1 text-lg-h3 cyan--text"
-        >GESTION DE STOCK</h1>
+        >
+          GESTION DE STOCK
+        </h1>
       </v-card-title>
 
       <v-container fluid>
         <v-row class="text-center justify-center py-6">
           <v-col cols="12" md="6">
-            <img src="storage/images/logo1.png" width="400px" height="400px" />
+            <img src="storage/images/logo1.png" width="200px" height="200px" />
           </v-col>
+        </v-row>
 
-          <v-col cols="12" md="6">
+        <v-row class="text-center justify-center py-6">
+          <v-col cols="12" md="8">
             <h1 class="text-center justify-center py-6">Bienvenue</h1>
             <p>
-              S.N.& INFORMATIQUE, spécialiste de la vente sur Internet de matériel informatique, High-Tech et multimédia est rapidement devenu un acteur majeur du e-commerce.
-              S.N & INFORMATIQUE a dès sa fondation souhaité trouver un positionnement différenciant, largement centré sur son offre et sa relation client : choix des produits, qualité du site, des conseils mais également du service avant et après-vente.
-              Des atouts qui ont permis à S.N.& INFORMATIQUE d'être plusieurs fois récompensé pour sa Relation Clients.
-              Nos équipes sont à votre écoute pour vous apporter les meilleurs conseils, que vous soyez un particulier ou un professionnel !
-              Nos spécialistes produits sélectionnent avec soin les références de notre catalogue afin de faciliter votre choix et vous offrir le meilleur rapport qualité / prix.
-              Vous trouverez une large sélection des meilleurs composants PC pour équiper votre ordinateur : carte mère, processeur, carte graphique, disque dur SSD, disque dur interne, disque dur externe...
-              S.N.& INFORMATIQUE met à votre disposition un catalogue produits de plus de 15 000 références de marques dans les univers de l'informatique et réseau (serveur NAS ou encore de la mémoire pour ordinateur), mais aussi du High-Tech et du multimédia : smartphone, tablette tactile, téléviseur, l'audio (casque, enceinte bluetooth, HiFi...), la vidéo ou encore la photo.
+              S.N.& INFORMATIQUE, spécialiste de la vente sur Internet de
+              matériel informatique, High-Tech et multimédia est rapidement
+              devenu un acteur majeur du e-commerce. 
+
+              A dès sa fondation souhaité trouver un positionnement différenciant,
+              largement centré sur son offre et sa relation client : choix des
+              produits, qualité du site, des conseils mais également du service
+              avant et après-vente. 
+            </p>
+
+            <p>
+              Des atouts qui ont permis d'être plusieurs fois récompensé pour sa Relation
+              Clients. Nos équipes sont à votre écoute pour vous apporter les
+              meilleurs conseils, que vous soyez un particulier ou un professionnel.
+              Nos spécialistes produits sélectionnent avec soin les références de notre catalogue afin de faciliter votre choix et
+              vous offrir le meilleur rapport qualité / prix. Vous trouverez une large sélection des meilleurs composants PC pour équiper votre
+              ordinateur : carte mère, processeur, carte graphique, disque dur SSD, disque dur interne, disque dur externe... 
+              
+              S.N.& INFORMATIQUE met à votre disposition un catalogue produits de plus de 15 000
+              références de marques dans les univers de l'informatique et réseau (serveur NAS ou encore de la mémoire pour ordinateur), mais aussi
+              du High-Tech et du multimédia : smartphone, tablette tactile, téléviseur, l'audio (casque, enceinte bluetooth, HiFi...), la
+              vidéo ou encore la photo.
             </p>
           </v-col>
         </v-row>
@@ -51,15 +70,17 @@
                   class="mx-2 my-4"
                 >
                   <v-img
-                    :aspect-ratio="16/9"
+                    :aspect-ratio="16 / 9"
                     :src="article.photo"
                     class="white--text align-end"
                     gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
                   >
-                    <v-card-title>{{article.mark}}</v-card-title>
+                    <v-card-title>{{ article.mark }}</v-card-title>
                   </v-img>
-                  <v-card-subtitle>Prix: {{article.price}} €</v-card-subtitle>
-                  <v-card-text>Categorie: {{article.categorie.name}}</v-card-text>
+                  <v-card-subtitle>Prix: {{ article.price }} €</v-card-subtitle>
+                  <v-card-text
+                    >Categorie: {{ article.categorie.name }}</v-card-text
+                  >
                   <v-card-actions>
                     <!-- <v-btn d-inline>Voir plus</v-btn> -->
                   </v-card-actions>
@@ -74,8 +95,11 @@
       <h1 class="text-center justify-center py-6">Nos Marques</h1>
       <v-container class="text-center justify-center py-6">
         <p>
-         La logistique est au cœur de notre activité et nous apportons un soin tout particulier à la rapidité et la qualité de vos commandes.<br> 
-         Nous vous proposons un retrait directement dans notre magasin,différentes marques de hautes gammes ainsi que de nombreux modes de paiement sécurisés.
+          La logistique est au cœur de notre activité et nous apportons un soin
+          tout particulier à la rapidité et la qualité de vos commandes.<br />
+          Nous vous proposons un retrait directement dans notre
+          magasin,différentes marques de hautes gammes ainsi que de nombreux
+          modes de paiement sécurisés.
         </p>
         <Mark></Mark>
       </v-container>
